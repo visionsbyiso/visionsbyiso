@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISO | High-Fidelity Design & Automations</title>
+    <title>ISO | Design & Automations</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,106 +11,141 @@
 
     <style>
         :root {
-            --color-paper: #e9e4df;
-            --color-dark: #1a1a1a;
-            --bg: var(--color-paper);
-            --text: var(--color-dark);
-            --transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.8s ease;
+            /* Duende's Palette */
+            --paper: #f8f7f4; 
+            --charcoal: #2b2a28;
+            --muted: #7a7975;
+            /* The "Expensive" Ease - crucial for the right feel */
+            --ease: cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
-        /* Base Setup */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            background-color: var(--bg); 
-            color: var(--text); 
+            background-color: var(--paper); 
+            color: var(--charcoal); 
             font-family: 'Montserrat', sans-serif;
-            transition: var(--transition);
+            /* Smooth background transition for dark mode */
+            transition: background-color 1.2s var(--ease), color 1.2s var(--ease);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            cursor: none; /* Hide default cursor */
         }
 
-        body.dark-theme {
-            --bg: var(--color-dark);
-            --text: var(--color-paper);
-        }
-
-        /* Grainy Paper Texture Overlay */
+        /* The Grain Texture Overlay */
         .grain {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; inset: 0; z-index: 9999;
             background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-            opacity: 0.05; pointer-events: none; z-index: 9999;
+            opacity: 0.06; pointer-events: none;
         }
 
-        /* Custom Cursor (Hidden on Mobile) */
+        /* Custom Luxury Cursor */
         #cursor {
-            width: 10px; height: 10px; background: currentColor;
+            width: 12px; height: 12px; background: currentColor;
             border-radius: 50%; position: fixed; pointer-events: none;
-            z-index: 10000; transition: transform 0.15s ease-out;
-            display: none;
+            z-index: 10000; transition: transform 0.2s ease-out;
+            mix-blend-mode: difference; /* Makes it visible on all backgrounds */
+            color: white;
         }
-        @media (min-width: 1024px) { #cursor { display: block; } }
 
-        /* Navigation */
+        /* Centered Split Navigation */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 30px 50px;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+            position: fixed; top: 0; width: 100%; padding: 40px 60px;
+            display: flex; align-items: center; z-index: 1000;
         }
-        .nav-links { display: flex; gap: 30px; }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 24px; letter-spacing: 8px; font-weight: 300; }
+        .nav-left, .nav-right { flex: 1; display: flex; gap: 40px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; }
+        .nav-right { justify-content: flex-end; }
+        .logo { 
+            font-family: 'Cormorant Garamond', serif; font-size: 28px; 
+            letter-spacing: 10px; font-weight: 300; text-align: center;
+        }
+        a { text-decoration: none; color: inherit; transition: opacity 0.3s; }
 
-        /* Typography Reveal Styling */
-        .reveal-container { overflow: hidden; display: block; }
+        /* --- THE EXACT PHOTO TRANSITION --- */
+        .img-mask {
+            width: 100%;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            position: relative;
+            background-color: #e0dbd5; /* Placeholder color */
+            /* Start state: clipped completely from the bottom */
+            clip-path: inset(100% 0 0 0);
+            /* The reveal animation timing */
+            transition: clip-path 1.8s var(--ease);
+        }
+
+        /* End state: fully revealed */
+        .img-mask.active {
+            clip-path: inset(0 0 0 0);
+        }
+
+        .img-mask img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Start state: zoomed in slightly */
+            transform: scale(1.15);
+            /* The zoom-out animation is slower than the reveal */
+            transition: transform 2.2s var(--ease);
+        }
+
+        /* End state: normal scale */
+        .img-mask.active img {
+            transform: scale(1);
+        }
+
+
+        /* --- Typography Reveals --- */
+        .reveal-wrap { overflow: hidden; display: block; }
         .reveal-item { 
             display: block; transform: translateY(110%); 
-            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); 
+            transition: transform 1.5s var(--ease); 
         }
         .active .reveal-item { transform: translateY(0); }
 
         /* Hero Section */
         .hero {
-            height: 100vh; width: 100%; display: flex; flex-direction: column;
+            height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
             position: relative;
         }
-        .hero video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: -1; opacity: 0.9;
+        .hero-video-frame {
+            position: absolute; inset: 0; z-index: -1;
+            padding: 80px; /* Creates the frame effect */
+            background-color: var(--paper);
+            transition: background-color 1.2s var(--ease);
         }
+        video { 
+            width: 100%; height: 100%; object-fit: cover; 
+            filter: grayscale(20%) contrast(0.95); opacity: 0.9;
+        }
+
         h1 { 
-            font-family: 'Cormorant Garamond', serif; font-size: clamp(4rem, 12vw, 10rem); 
-            font-weight: 300; line-height: 0.8; margin: 10px 0;
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: clamp(3.5rem, 11vw, 10rem); 
+            font-weight: 300; line-height: 0.85; margin: 5px 0;
         }
         .italic { font-style: italic; }
 
-        /* Sections & Grids */
-        section { padding: 15vw 50px; display: flex; justify-content: center; }
-        .container { max-width: 1400px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-        
-        .image-reveal { 
-            width: 100%; aspect-ratio: 4/5; background: #d1cdc7; overflow: hidden;
-            clip-path: inset(100% 0 0 0); transition: clip-path 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        .image-reveal.active { clip-path: inset(0 0 0 0); }
-        .image-reveal img { width: 100%; height: 100%; object-fit: cover; }
+        /* Standard Sections */
+        section { padding: 160px 80px; position: relative; }
+        .grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 120px; align-items: center; max-width: 1400px; margin: 0 auto; }
+        .grid.reverse { grid-template-columns: 1.2fr 1fr; }
 
-        .content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 300; margin-bottom: 20px; line-height: 1; }
-        .content p { font-size: 14px; max-width: 400px; font-weight: 300; opacity: 0.8; line-height: 1.8; }
-        .tag { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        .service-tag { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--muted); margin-bottom: 30px; display: block; }
+        h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 5rem); font-weight: 300; line-height: 1; margin-bottom: 30px; }
+        p { font-size: 15px; max-width: 420px; font-weight: 300; line-height: 1.8; opacity: 0.8; }
 
-        /* Wide Statement Section */
-        .wide-text { text-align: center; max-width: 1000px; }
-        .wide-text h2 { font-size: 6vw; font-style: italic; }
+        /* Dark Mode State */
+        body.dark-mode { background-color: var(--charcoal); color: var(--paper); }
+        body.dark-mode .hero-video-frame { background-color: var(--charcoal); }
 
-        /* Mobile Friendliness */
+        /* Mobile Response */
         @media (max-width: 900px) {
-            nav { padding: 20px; }
-            .nav-links { display: none; } /* Hide secondary links on mobile */
-            .container { grid-template-columns: 1fr; gap: 40px; }
-            section { padding: 100px 20px; }
-            h1 { font-size: 18vw; }
-            .content h2 { font-size: 3rem; }
+            nav { padding: 30px 20px; }
+            .nav-left, .nav-right { display: none; } /* Hide links for cleaner mobile view */
+            .grid, .grid.reverse { grid-template-columns: 1fr; gap: 60px; }
+            section { padding: 100px 25px; }
+            .hero-video-frame { padding: 30px; }
         }
     </style>
 </head>
@@ -120,97 +155,94 @@
     <div id="cursor"></div>
 
     <nav>
-        <div class="nav-links"><a>Studio</a><a>Work</a></div>
+        <div class="nav-left"><a href="#services">Capabilities</a><a href="#work">Work</a></div>
         <div class="logo">ISO</div>
-        <div class="nav-links"><a>Systems</a><a>Contact</a></div>
+        <div class="nav-right"><a href="#studio">Studio</a><a href="#contact">Contact</a></div>
     </nav>
 
-    <section class="hero" data-theme="light">
-        <video autoplay muted loop playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-minimalist-abstract-background-41801-large.mp4" type="video/mp4">
-        </video>
-        <div class="reveal-container"><h1 class="reveal-item">Creative</h1></div>
-        <div class="reveal-container"><h1 class="reveal-item italic">Infrastructure.</h1></div>
-        <span class="tag reveal-container" style="margin-top:20px"><span class="reveal-item">Design • Systems • Automation</span></span>
-    </section>
+    <div class="hero reveal-trigger">
+        <div class="hero-video-frame">
+            <video autoplay muted loop playsinline>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-creative-studio-environment-with-plants-and-equipment-42238-large.mp4" type="video/mp4">
+            </video>
+        </div>
+        <span class="reveal-wrap"><h1 class="reveal-item">Strategic</h1></span>
+        <span class="reveal-wrap"><h1 class="reveal-item italic">Simplicity.</h1></span>
+    </div>
 
-    <section data-theme="light">
-        <div class="container">
-            <div class="image-reveal reveal-trigger">
-                <img src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&w=1200" alt="Desk">
+    <section id="services">
+        <div class="grid">
+            <div class="img-mask reveal-trigger">
+                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1000&q=80" alt="Interior Design">
             </div>
             <div class="content reveal-trigger">
-                <span class="tag">01 / Strategy</span>
-                <div class="reveal-container"><h2>Built for <span class="italic">Speed.</span></h2></div>
-                <p>We redefine how brands operate by merging high-fidelity aesthetics with automated systems that remove the friction of growth.</p>
+                <span class="service-tag">01 / Foundation</span>
+                <span class="reveal-wrap"><h2>Brand <span class="italic">Architecture</span></h2></span>
+                <p>We build the systemic core of your business. ISO merges high-fidelity design with robust automation infrastructure to create marketing engines that scale frictionlessly.</p>
             </div>
         </div>
     </section>
 
-    <section data-theme="dark">
-        <div class="wide-text reveal-trigger">
-            <span class="tag">Our Philosophy</span>
-            <div class="reveal-container"><h2>“Aesthetics meet <span class="italic">Logic.”</span></h2></div>
-            <p style="margin: 30px auto;">We believe that great design is only as good as the systems supporting it. ISO creates the digital architecture for the modern age.</p>
-        </div>
-    </section>
-
-    <section data-theme="light">
-        <div class="container" style="align-items: flex-end;">
+    <section data-bg="dark">
+        <div class="grid reverse">
             <div class="content reveal-trigger">
-                <span class="tag">02 / Design</span>
-                <div class="reveal-container"><h2>Systemic <span class="italic">Beauty.</span></h2></div>
-                <p>Digital products that feel organic. We craft interfaces that users love and systems that owners trust.</p>
+                <span class="service-tag">02 / Workflow</span>
+                <span class="reveal-wrap"><h2>Automated <span class="italic">Fluidity</span></h2></span>
+                <p>Remove operational drag. We design bespoke digital ecosystems that handle the complexity in the background, allowing your team to focus on vision.</p>
             </div>
-            <div class="image-reveal reveal-trigger" style="aspect-ratio: 1/1;">
-                <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200" alt="Aesthetic">
+            <div class="img-mask reveal-trigger">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80" alt="Modern Architecture">
             </div>
         </div>
     </section>
 
-    <footer style="padding: 100px 50px; text-align: center; border-top: 1px solid rgba(0,0,0,0.05);">
-        <div class="logo">ISO</div>
-        <p style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 20px; opacity: 0.5;">© 2026 ISO MARKETING CO.</p>
-    </footer>
+    <section data-bg="light" style="text-align: center; padding: 200px 0;">
+         <div class="reveal-trigger">
+            <span class="reveal-wrap"><h2 style="font-size: 7vw;">“Design that <span class="italic">works</span>.”</h2></span>
+        </div>
+    </section>
 
     <script>
-        // Custom Cursor Movement
+        // Luxury Cursor Logic
         const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', (e) => {
+        const moveCursor = (e) => {
             cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+        }
+        window.addEventListener('mousemove', moveCursor);
+
+        // Cursor Hover Interaction
+        document.querySelectorAll('a, .img-mask').forEach(item => {
+            item.addEventListener('mouseenter', () => cursor.style.transform += ' scale(4)');
+            item.addEventListener('mouseleave', () => cursor.style.transform = cursor.style.transform.replace(' scale(4)', ''));
         });
 
-        // Hover expansions
-        document.querySelectorAll('a, .image-reveal').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.style.transform += ' scale(5)');
-            el.addEventListener('mouseleave', () => cursor.style.transform = cursor.style.transform.replace(' scale(5)', ''));
-        });
-
-        // Scroll Observers for Reveal Animations & Theme Switching
-        const observerOptions = { threshold: 0.25 };
-
-        const revealObserver = new IntersectionObserver((entries) => {
+        // Scroll Reveal & Background Switcher Logic
+        const options = { 
+            threshold: 0.25, 
+            rootMargin: "0px 0px -100px 0px" // Triggers slightly before element hits bottom of screen
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    // Activate the reveal animations
                     entry.target.classList.add('active');
                     
-                    // Logic for Theme Switching
-                    const theme = entry.target.closest('section')?.getAttribute('data-theme');
-                    if (theme === 'dark') {
-                        document.body.classList.add('dark-theme');
-                    } else if (theme === 'light') {
-                        document.body.classList.remove('dark-theme');
+                    // Check if this section needs to change the background color
+                    const bgType = entry.target.closest('section')?.getAttribute('data-bg');
+                    if (bgType === 'dark') {
+                        document.body.classList.add('dark-mode');
+                    } else if (bgType === 'light') {
+                        document.body.classList.remove('dark-mode');
                     }
                 }
             });
-        }, observerOptions);
+        }, options);
 
-        // Apply observer to text and image containers
-        document.querySelectorAll('.reveal-trigger, .hero').forEach(el => {
-            revealObserver.observe(el);
-        });
+        // Target all elements that need to animate
+        document.querySelectorAll('.reveal-trigger, .img-mask').forEach(el => observer.observe(el));
 
-        // Initial trigger for hero
+        // Trigger Hero animation on load
         window.addEventListener('load', () => {
             document.querySelector('.hero').classList.add('active');
         });
