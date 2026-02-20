@@ -3,153 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visions by ISO | Coming Soon</title>
+    <title>Visions by ISO | Marketing & Design Studio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-color: #F7F5F0; /* Soft editorial cream */
-            --text-color: #2C2C2A; /* Warm charcoal */
-            --accent-color: #5A5A58; /* Muted gray */
+            --bg-color: #F8F7F4; /* Signature Duende Cream */
+            --text-dark: #2B2A28; /* Soft Charcoal */
+            --text-muted: #7A7975;
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
+            margin: 0; padding: 0; 
             background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 800px;
-            padding: 40px;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        .subtitle {
+            color: var(--text-dark);
             font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 0.75rem;
-            font-weight: 300;
-            margin-bottom: 20px;
-            color: var(--accent-color);
+            overflow-x: hidden;
         }
 
-        .title {
+        /* --- Typography Basics --- */
+        h1, h2, h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4.5rem;
-            font-weight: 300;
-            margin: 0 0 10px 0;
-            line-height: 1.1;
+            font-weight: 300; margin: 0;
+        }
+        
+        .italic { font-style: italic; }
+        
+        .eyebrow {
+            text-transform: uppercase; letter-spacing: 3px;
+            font-size: 0.7rem; color: var(--text-muted);
+            margin-bottom: 20px; display: block;
         }
 
-        .title i {
-            font-style: italic;
-            color: #4A4A48;
+        /* --- Navigation --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 40px 60px; position: absolute; width: 100%; box-sizing: border-box;
+            z-index: 10;
         }
 
-        .coming-soon {
-            font-family: 'Montserrat', sans-serif;
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-dark);
+            text-transform: uppercase; letter-spacing: 2px;
+            font-size: 0.7rem; transition: opacity 0.3s;
+        }
+        .nav-links a:hover { opacity: 0.5; }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem; letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.85rem;
-            font-weight: 300;
-            margin-top: 40px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 180px 60px 100px;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 60px; align-items: center; min-height: 80vh;
+        }
+
+        .hero-text { max-width: 600px; }
+        
+        .hero-title {
+            font-size: 5.5rem; line-height: 1.05;
+            margin-bottom: 40px;
+        }
+
+        .hero-images {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
             position: relative;
-            display: inline-block;
         }
 
-        .coming-soon::after {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 1px;
-            background-color: var(--text-color);
-            margin: 15px auto 0;
+        .img-placeholder {
+            background-color: #E8E6E1; background-size: cover; background-position: center;
+            width: 100%; transition: transform 0.6s ease;
         }
 
-        /* --- New Form Styling --- */
-        .waitlist-form {
-            margin-top: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            animation: fadeIn 3s ease-in-out;
+        .img-placeholder:hover { transform: scale(0.98); }
+
+        .img-1 { height: 600px; margin-top: 50px; background-image: url('https://images.unsplash.com/photo-1615800098779-1be32e60cca3?q=80&w=1000&auto=format&fit=crop'); }
+        .img-2 { height: 450px; background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop'); }
+
+        /* --- Intro Section --- */
+        .intro {
+            padding: 150px 60px; text-align: center;
+            max-width: 900px; margin: 0 auto;
         }
 
-        .email-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--accent-color);
-            padding: 10px 5px;
-            width: 280px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            color: var(--text-color);
-            text-align: center;
-            outline: none;
-            transition: border-color 0.3s ease;
+        .intro h2 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 30px; }
+        .intro p {
+            font-size: 1rem; line-height: 1.8; color: var(--text-muted);
+            max-width: 600px; margin: 0 auto; font-weight: 300;
         }
 
-        .email-input::placeholder {
-            color: #A0A09D;
-            font-weight: 200;
+        /* --- Offerings Section --- */
+        .offerings {
+            padding: 100px 60px; border-top: 1px solid #E8E6E1;
+            display: grid; grid-template-columns: 1fr 2fr; gap: 100px;
         }
 
-        .email-input:focus {
-            border-bottom: 1px solid var(--text-color);
-        }
-
-        .submit-btn {
-            background: transparent;
-            border: 1px solid var(--text-color);
-            padding: 12px 35px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-color);
+        .offering-item {
+            display: flex; justify-content: space-between;
+            padding: 30px 0; border-bottom: 1px solid #E8E6E1;
+            align-items: baseline; transition: padding-left 0.4s ease;
             cursor: pointer;
-            transition: all 0.4s ease;
         }
 
-        .submit-btn:hover {
-            background: var(--text-color);
-            color: var(--bg-color);
+        .offering-item:hover { padding-left: 20px; }
+        
+        .offering-title { font-size: 2.5rem; }
+        .offering-num { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: var(--text-muted); }
+
+        /* --- Button --- */
+        .btn-primary {
+            display: inline-block; margin-top: 40px; padding: 15px 40px;
+            border: 1px solid var(--text-dark); color: var(--text-dark);
+            text-decoration: none; text-transform: uppercase;
+            letter-spacing: 2px; font-size: 0.7rem; transition: 0.4s;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .btn-primary:hover { background: var(--text-dark); color: var(--bg-color); }
 
-        @media (max-width: 600px) {
-            .title { font-size: 3.5rem; }
-            .email-input { width: 100%; }
+        /* --- Mobile Responsive --- */
+        @media (max-width: 900px) {
+            nav { flex-direction: column; gap: 20px; padding: 30px; text-align: center; }
+            .hero { grid-template-columns: 1fr; padding: 150px 30px 50px; text-align: center; }
+            .hero-title { font-size: 3.5rem; }
+            .hero-text { margin: 0 auto; }
+            .hero-images { margin-top: 40px; }
+            .intro h2 { font-size: 2.5rem; }
+            .offerings { grid-template-columns: 1fr; gap: 50px; padding: 50px 30px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="subtitle">Marketing Design Studio</div>
-        <h1 class="title">Visions by <i>ISO</i></h1>
-        <div class="coming-soon">Coming Soon</div>
 
-        <form class="waitlist-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <input type="email" name="email" class="email-input" placeholder="Join the waitlist" required>
-            <button type="submit" class="submit-btn">Inquire</button>
-        </form>
-    </div>
+    <nav>
+        <div class="nav-links">
+            <a href="#">About</a>
+            <a href="#">Offerings</a>
+        </div>
+        <div class="logo">Visions by ISO</div>
+        <div class="nav-links">
+            <a href="#">Work</a>
+            <a href="#">Inquire</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <span class="eyebrow">Made for the precise & the artfully ambitious</span>
+            <h1 class="hero-title">Let your business live in its most <span class="italic">inspired form.</span></h1>
+            <a href="#" class="btn-primary">Inquire Now</a>
+        </div>
+        <div class="hero-images">
+            <div class="img-placeholder img-1"></div>
+            <div class="img-placeholder img-2"></div>
+        </div>
+    </section>
+
+    <section class="intro">
+        <span class="eyebrow">Welcome to the Studio</span>
+        <h2>Where <span class="italic">systematic purpose</span> becomes art.</h2>
+        <p>Visions by ISO is an independent design studio devoted to building distinctive visual experiences and administrative systems for creative businesses. We blend clinical precision with artistic strategy to build brands that connect, inspire, and endure.</p>
+    </section>
+
+    <section class="offerings">
+        <div>
+            <span class="eyebrow">The Offerings</span>
+            <h2 style="font-size: 3rem; margin-bottom: 20px;">Results that create <span class="italic">meaningful, lasting</span> impact.</h2>
+            <a href="#" class="btn-primary">Explore Our Services</a>
+        </div>
+        <div class="offering-list">
+            <div class="offering-item">
+                <h3 class="offering-title">Creative Direction</h3>
+                <span class="offering-num">/ 01</span>
+            </div>
+            <div class="offering-item">
+                <h3 class="offering-title">Digital Systems & EMR</h3>
+                <span class="offering-num">/ 02</span>
+            </div>
+            <div class="offering-item">
+                <h3 class="offering-title">Video & Photography</h3>
+                <span class="offering-num">/ 03</span>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
