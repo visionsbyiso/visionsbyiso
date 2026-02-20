@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISO | Design & Automations</title>
+    <title>ISO | High-Fidelity Design & Automations</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,180 +11,208 @@
 
     <style>
         :root {
-            /* Exact Duende Color Samples */
-            --color-sand: #e9e4df;  /* Main paper background */
-            --color-stone: #dcd7d0; /* Darker beige sections */
-            --color-charcoal: #1a1a1a; /* Dark sections */
-            --color-cream: #f4f1ee;
-            
-            --text-dark: #1a1a1a;
-            --text-light: #e9e4df;
-            
-            --transition-bg: background-color 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+            --color-paper: #e9e4df;
+            --color-dark: #1a1a1a;
+            --bg: var(--color-paper);
+            --text: var(--color-dark);
+            --transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.8s ease;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
-
-        body {
-            background-color: var(--color-sand);
-            color: var(--text-dark);
+        /* Base Setup */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
             font-family: 'Montserrat', sans-serif;
-            transition: var(--transition-bg);
+            transition: var(--transition);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- THE GRAIN OVERLAY --- */
-        /* This creates that "paper" feel seen on the site */
-        .grain-overlay {
+        body.dark-theme {
+            --bg: var(--color-dark);
+            --text: var(--color-paper);
+        }
+
+        /* Grainy Paper Texture Overlay */
+        .grain {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 9999; opacity: 0.04;
             background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+            opacity: 0.05; pointer-events: none; z-index: 9999;
         }
 
-        /* --- CUSTOM CURSOR --- */
+        /* Custom Cursor (Hidden on Mobile) */
         #cursor {
-            width: 8px; height: 8px; background: currentColor;
+            width: 10px; height: 10px; background: currentColor;
             border-radius: 50%; position: fixed; pointer-events: none;
-            z-index: 10000; transition: transform 0.2s var(--ease-out-expo);
+            z-index: 10000; transition: transform 0.15s ease-out;
+            display: none;
         }
+        @media (min-width: 1024px) { #cursor { display: block; } }
 
-        /* --- NAVIGATION --- */
+        /* Navigation */
         nav {
-            position: fixed; top: 0; width: 100%; display: flex;
-            justify-content: space-between; padding: 40px 60px; z-index: 1000;
-            font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+            position: fixed; top: 0; width: 100%; padding: 30px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
         }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; letter-spacing: 10px; }
+        .nav-links { display: flex; gap: 30px; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 24px; letter-spacing: 8px; font-weight: 300; }
 
-        /* --- HERO --- */
+        /* Typography Reveal Styling */
+        .reveal-container { overflow: hidden; display: block; }
+        .reveal-item { 
+            display: block; transform: translateY(110%); 
+            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); 
+        }
+        .active .reveal-item { transform: translateY(0); }
+
+        /* Hero Section */
         .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            flex-direction: column; text-align: center; position: relative;
+            height: 100vh; width: 100%; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            position: relative;
         }
         .hero video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: -1; opacity: 0.8; mix-blend-mode: multiply;
+            object-fit: cover; z-index: -1; opacity: 0.9;
         }
-        
         h1 { 
-            font-family: 'Cormorant Garamond', serif; font-size: 12vw; 
-            font-weight: 300; line-height: 0.8; letter-spacing: -2px;
+            font-family: 'Cormorant Garamond', serif; font-size: clamp(4rem, 12vw, 10rem); 
+            font-weight: 300; line-height: 0.8; margin: 10px 0;
         }
         .italic { font-style: italic; }
 
-        /* --- DYNAMIC SECTIONS --- */
-        section { 
-            min-height: 100vh; padding: 160px 80px; 
-            display: flex; align-items: center; justify-content: center;
+        /* Sections & Grids */
+        section { padding: 15vw 50px; display: flex; justify-content: center; }
+        .container { max-width: 1400px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        
+        .image-reveal { 
+            width: 100%; aspect-ratio: 4/5; background: #d1cdc7; overflow: hidden;
+            clip-path: inset(100% 0 0 0); transition: clip-path 1.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
+        .image-reveal.active { clip-path: inset(0 0 0 0); }
+        .image-reveal img { width: 100%; height: 100%; object-fit: cover; }
 
-        .container { width: 100%; max-width: 1400px; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
+        .content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 300; margin-bottom: 20px; line-height: 1; }
+        .content p { font-size: 14px; max-width: 400px; font-weight: 300; opacity: 0.8; line-height: 1.8; }
+        .tag { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; display: block; }
 
-        .image-box { 
-            width: 100%; aspect-ratio: 4/5; background: #ccc; overflow: hidden;
-            position: relative;
-        }
-        .image-box img { width: 100%; height: 100%; object-fit: cover; transition: 1.5s var(--ease-out-expo); }
-        .image-box:hover img { transform: scale(1.05); }
+        /* Wide Statement Section */
+        .wide-text { text-align: center; max-width: 1000px; }
+        .wide-text h2 { font-size: 6vw; font-style: italic; }
 
-        /* --- REVEAL ANIMATION --- */
-        .reveal-text { clip-path: inset(0 0 100% 0); transition: clip-path 1.5s var(--ease-out-expo); }
-        .reveal-text.active { clip-path: inset(0 0 0% 0); }
-
-        /* Dark Mode Section Tweak */
-        body.dark-mode { background-color: var(--color-charcoal); color: var(--text-light); }
-        body.dark-mode .image-box { border: 1px solid rgba(255,255,255,0.1); }
-
-        @media (max-width: 768px) {
+        /* Mobile Friendliness */
+        @media (max-width: 900px) {
+            nav { padding: 20px; }
+            .nav-links { display: none; } /* Hide secondary links on mobile */
             .container { grid-template-columns: 1fr; gap: 40px; }
-            section { padding: 80px 30px; }
-            nav { padding: 30px; }
+            section { padding: 100px 20px; }
+            h1 { font-size: 18vw; }
+            .content h2 { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="grain-overlay"></div>
+    <div class="grain"></div>
     <div id="cursor"></div>
 
     <nav>
-        <div>Capabilities</div>
+        <div class="nav-links"><a>Studio</a><a>Work</a></div>
         <div class="logo">ISO</div>
-        <div>Contact</div>
+        <div class="nav-links"><a>Systems</a><a>Contact</a></div>
     </nav>
 
-    <div class="hero" data-bg="var(--color-sand)">
+    <section class="hero" data-theme="light">
         <video autoplay muted loop playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-minimalist-abstract-art-in-motion-41804-large.mp4" type="video/mp4">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-minimalist-abstract-background-41801-large.mp4" type="video/mp4">
         </video>
-        <h1 class="reveal-text">Design <span class="italic">&</span></h1>
-        <h1 class="reveal-text">Systems.</h1>
-    </div>
+        <div class="reveal-container"><h1 class="reveal-item">Creative</h1></div>
+        <div class="reveal-container"><h1 class="reveal-item italic">Infrastructure.</h1></div>
+        <span class="tag reveal-container" style="margin-top:20px"><span class="reveal-item">Design • Systems • Automation</span></span>
+    </section>
 
-    <section data-bg="var(--color-charcoal)">
+    <section data-theme="light">
         <div class="container">
-            <div class="image-box">
-                <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200" alt="Work">
+            <div class="image-reveal reveal-trigger">
+                <img src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&w=1200" alt="Desk">
             </div>
-            <div style="display: flex; flex-direction: column; justify-content: center;">
-                <span style="font-size: 10px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px;">01. Purpose</span>
-                <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 5vw; line-height: 1.1; margin-bottom: 30px;" class="reveal-text">Automated<br><span class="italic">Excellence.</span></h2>
-                <p style="font-size: 14px; max-width: 400px; opacity: 0.8; font-weight: 300;">We provide the structural integrity your creative vision deserves through high-end design and bespoke automations.</p>
+            <div class="content reveal-trigger">
+                <span class="tag">01 / Strategy</span>
+                <div class="reveal-container"><h2>Built for <span class="italic">Speed.</span></h2></div>
+                <p>We redefine how brands operate by merging high-fidelity aesthetics with automated systems that remove the friction of growth.</p>
             </div>
         </div>
     </section>
 
-    <section data-bg="var(--color-stone)">
-        <div class="container" style="display: flex; flex-direction: column; text-align: center; align-items: center;">
-             <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 8vw; font-weight: 300;" class="reveal-text">Experience <span class="italic">ISO</span></h2>
-             <p style="letter-spacing: 5px; text-transform: uppercase; font-size: 11px; margin-top: 20px;">The Marketing Architecture Firm</p>
+    <section data-theme="dark">
+        <div class="wide-text reveal-trigger">
+            <span class="tag">Our Philosophy</span>
+            <div class="reveal-container"><h2>“Aesthetics meet <span class="italic">Logic.”</span></h2></div>
+            <p style="margin: 30px auto;">We believe that great design is only as good as the systems supporting it. ISO creates the digital architecture for the modern age.</p>
         </div>
     </section>
+
+    <section data-theme="light">
+        <div class="container" style="align-items: flex-end;">
+            <div class="content reveal-trigger">
+                <span class="tag">02 / Design</span>
+                <div class="reveal-container"><h2>Systemic <span class="italic">Beauty.</span></h2></div>
+                <p>Digital products that feel organic. We craft interfaces that users love and systems that owners trust.</p>
+            </div>
+            <div class="image-reveal reveal-trigger" style="aspect-ratio: 1/1;">
+                <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200" alt="Aesthetic">
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 100px 50px; text-align: center; border-top: 1px solid rgba(0,0,0,0.05);">
+        <div class="logo">ISO</div>
+        <p style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 20px; opacity: 0.5;">© 2026 ISO MARKETING CO.</p>
+    </footer>
 
     <script>
-        // Custom Cursor
+        // Custom Cursor Movement
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
         });
 
-        // Background Color Switcher & Text Reveal
-        const sections = document.querySelectorAll('section, .hero');
-        const revealTexts = document.querySelectorAll('.reveal-text');
+        // Hover expansions
+        document.querySelectorAll('a, .image-reveal').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.style.transform += ' scale(5)');
+            el.addEventListener('mouseleave', () => cursor.style.transform = cursor.style.transform.replace(' scale(5)', ''));
+        });
 
-        const observerOptions = {
-            threshold: 0.4
-        };
+        // Scroll Observers for Reveal Animations & Theme Switching
+        const observerOptions = { threshold: 0.25 };
 
-        const observer = new IntersectionObserver((entries) => {
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // Change Background Color
                 if (entry.isIntersecting) {
-                    const bgColor = entry.target.getAttribute('data-bg');
-                    document.body.style.backgroundColor = bgColor;
+                    entry.target.classList.add('active');
                     
-                    // Toggle dark-mode class for text color switching
-                    if (bgColor === 'var(--color-charcoal)') {
-                        document.body.classList.add('dark-mode');
-                    } else {
-                        document.body.classList.remove('dark-mode');
+                    // Logic for Theme Switching
+                    const theme = entry.target.closest('section')?.getAttribute('data-theme');
+                    if (theme === 'dark') {
+                        document.body.classList.add('dark-theme');
+                    } else if (theme === 'light') {
+                        document.body.classList.remove('dark-theme');
                     }
-
-                    // Reveal text in that section
-                    entry.target.querySelectorAll('.reveal-text').forEach(text => {
-                        text.classList.add('active');
-                    });
                 }
             });
         }, observerOptions);
 
-        sections.forEach(section => observer.observe(section));
+        // Apply observer to text and image containers
+        document.querySelectorAll('.reveal-trigger, .hero').forEach(el => {
+            revealObserver.observe(el);
+        });
 
-        // Hover Effect
-        document.querySelectorAll('.image-box, nav div').forEach(item => {
-            item.addEventListener('mouseenter', () => cursor.style.transform += ' scale(6)');
-            item.addEventListener('mouseleave', () => cursor.style.transform = cursor.style.transform.replace(' scale(6)', ''));
+        // Initial trigger for hero
+        window.addEventListener('load', () => {
+            document.querySelector('.hero').classList.add('active');
         });
     </script>
 </body>
