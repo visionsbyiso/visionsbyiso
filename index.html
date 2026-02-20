@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISO | Design & Systems</title>
+    <title>ISO | Design & Automations</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,227 +11,180 @@
 
     <style>
         :root {
-            --bg-color: #f6f3f0; /* Duende's specific off-white */
-            --text-main: #1a1a1a;
-            --text-muted: #8c8c8c;
-            --ease: cubic-bezier(0.23, 1, 0.32, 1);
+            /* Exact Duende Color Samples */
+            --color-sand: #e9e4df;  /* Main paper background */
+            --color-stone: #dcd7d0; /* Darker beige sections */
+            --color-charcoal: #1a1a1a; /* Dark sections */
+            --color-cream: #f4f1ee;
+            
+            --text-dark: #1a1a1a;
+            --text-light: #e9e4df;
+            
+            --transition-bg: background-color 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
-        
-        body { 
-            background-color: var(--bg-color); 
-            color: var(--text-main);
+
+        body {
+            background-color: var(--color-sand);
+            color: var(--text-dark);
             font-family: 'Montserrat', sans-serif;
+            transition: var(--transition-bg);
             overflow-x: hidden;
-            line-height: 1.6;
+        }
+
+        /* --- THE GRAIN OVERLAY --- */
+        /* This creates that "paper" feel seen on the site */
+        .grain-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999; opacity: 0.04;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
         }
 
         /* --- CUSTOM CURSOR --- */
         #cursor {
-            width: 12px; height: 12px;
-            background: var(--text-main);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.15s ease-out;
-        }
-
-        /* --- REVEAL ANIMATIONS --- */
-        .reveal {
-            overflow: hidden;
-            display: block;
-        }
-        .reveal span {
-            display: block;
-            transform: translateY(110%);
-            transition: transform 1.2s var(--ease);
-        }
-        .reveal.active span {
-            transform: translateY(0);
+            width: 8px; height: 8px; background: currentColor;
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 10000; transition: transform 0.2s var(--ease-out-expo);
         }
 
         /* --- NAVIGATION --- */
         nav {
-            position: fixed; top: 0; width: 100%;
-            display: flex; justify-content: space-between;
-            padding: 40px 60px; z-index: 1000;
-            font-size: 10px; letter-spacing: 3px;
-            text-transform: uppercase;
+            position: fixed; top: 0; width: 100%; display: flex;
+            justify-content: space-between; padding: 40px 60px; z-index: 1000;
+            font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
         }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 24px; letter-spacing: 8px; }
-        .nav-links { display: flex; gap: 40px; }
-        .nav-links a { text-decoration: none; color: inherit; opacity: 0.6; transition: 0.3s; }
-        .nav-links a:hover { opacity: 1; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; letter-spacing: 10px; }
 
         /* --- HERO --- */
         .hero {
-            height: 100vh;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            position: relative; text-align: center;
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            flex-direction: column; text-align: center; position: relative;
         }
-        .hero-video {
+        .hero video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; filter: sepia(20%) brightness(0.9);
+            object-fit: cover; z-index: -1; opacity: 0.8; mix-blend-mode: multiply;
         }
-        .hero-video video { width: 100%; height: 100%; object-fit: cover; }
         
         h1 { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: clamp(4rem, 15vw, 11rem); 
-            font-weight: 300; line-height: 0.85;
-            margin-bottom: 20px;
+            font-family: 'Cormorant Garamond', serif; font-size: 12vw; 
+            font-weight: 300; line-height: 0.8; letter-spacing: -2px;
         }
-        .hero-tagline { font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: var(--text-muted); }
+        .italic { font-style: italic; }
 
-        /* --- SECTIONS --- */
-        section { padding: 180px 80px; }
-        
-        .grid-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 120px;
-            align-items: start;
+        /* --- DYNAMIC SECTIONS --- */
+        section { 
+            min-height: 100vh; padding: 160px 80px; 
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .image-container {
-            width: 100%;
-            aspect-ratio: 3/4;
-            overflow: hidden;
-            background: #e5e0db;
+        .container { width: 100%; max-width: 1400px; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
+
+        .image-box { 
+            width: 100%; aspect-ratio: 4/5; background: #ccc; overflow: hidden;
             position: relative;
         }
-        .image-container img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transform: scale(1.1);
-            transition: transform 2s var(--ease);
-        }
-        .image-container.active img { transform: scale(1); }
+        .image-box img { width: 100%; height: 100%; object-fit: cover; transition: 1.5s var(--ease-out-expo); }
+        .image-box:hover img { transform: scale(1.05); }
 
-        .content-right { padding-top: 100px; }
-        .eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; display: block; }
-        
-        h2 { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; font-weight: 300; line-height: 1.1; margin-bottom: 40px; }
-        p { max-width: 400px; font-size: 14px; font-weight: 300; color: #444; }
+        /* --- REVEAL ANIMATION --- */
+        .reveal-text { clip-path: inset(0 0 100% 0); transition: clip-path 1.5s var(--ease-out-expo); }
+        .reveal-text.active { clip-path: inset(0 0 0% 0); }
 
-        /* --- FOOTER / LARGE TEXT --- */
-        .giant-text {
-            padding: 100px 0;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            text-align: center;
-        }
-        .giant-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 8vw; font-weight: 300; font-style: italic; }
+        /* Dark Mode Section Tweak */
+        body.dark-mode { background-color: var(--color-charcoal); color: var(--text-light); }
+        body.dark-mode .image-box { border: 1px solid rgba(255,255,255,0.1); }
 
-        @media (max-width: 900px) {
-            .grid-layout { grid-template-columns: 1fr; gap: 60px; }
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; gap: 40px; }
             section { padding: 80px 30px; }
-            nav { padding: 25px; }
-            .nav-links { display: none; }
+            nav { padding: 30px; }
         }
     </style>
 </head>
 <body>
 
+    <div class="grain-overlay"></div>
     <div id="cursor"></div>
 
     <nav>
-        <div class="nav-links">
-            <a href="#">Capabilities</a>
-            <a href="#">Portfolio</a>
-        </div>
+        <div>Capabilities</div>
         <div class="logo">ISO</div>
-        <div class="nav-links">
-            <a href="#">Studio</a>
-            <a href="#">Contact</a>
-        </div>
+        <div>Contact</div>
     </nav>
 
-    <div class="hero">
-        <div class="hero-video">
-            <video autoplay muted loop playsinline>
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-top-view-of-a-person-writing-on-a-notebook-42244-large.mp4" type="video/mp4">
-            </video>
-        </div>
-        <h1 class="reveal"><span>The Modern</span></h1>
-        <h1 class="reveal"><span class="italic">Standard.</span></h1>
-        <div class="hero-tagline reveal"><span>Design • Automations • Systems</span></div>
+    <div class="hero" data-bg="var(--color-sand)">
+        <video autoplay muted loop playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-minimalist-abstract-art-in-motion-41804-large.mp4" type="video/mp4">
+        </video>
+        <h1 class="reveal-text">Design <span class="italic">&</span></h1>
+        <h1 class="reveal-text">Systems.</h1>
     </div>
 
-    <section>
-        <div class="grid-layout">
-            <div class="image-container reveal-img">
-                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80" alt="Minimal Interior">
+    <section data-bg="var(--color-charcoal)">
+        <div class="container">
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200" alt="Work">
             </div>
-            <div class="content-right">
-                <span class="eyebrow reveal"><span>01. Strategy</span></span>
-                <h2 class="reveal"><span>Engineered for</span></h2>
-                <h2 class="reveal"><span>Performance.</span></h2>
-                <p class="reveal"><span>We don't just build websites; we build ecosystems. ISO specializes in high-fidelity design coupled with backend automation that moves the needle.</span></p>
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <span style="font-size: 10px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px;">01. Purpose</span>
+                <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 5vw; line-height: 1.1; margin-bottom: 30px;" class="reveal-text">Automated<br><span class="italic">Excellence.</span></h2>
+                <p style="font-size: 14px; max-width: 400px; opacity: 0.8; font-weight: 300;">We provide the structural integrity your creative vision deserves through high-end design and bespoke automations.</p>
             </div>
         </div>
     </section>
 
-    <section class="giant-text">
-        <h3 class="reveal"><span>“Systems that breathe life into brands.”</span></h3>
-    </section>
-
-    <section>
-        <div class="grid-layout">
-            <div class="content-left">
-                <span class="eyebrow reveal"><span>02. Solutions</span></span>
-                <h2 class="reveal"><span>Intelligent</span></h2>
-                <h2 class="reveal"><span>Automations.</span></h2>
-                <p class="reveal"><span>Scale without the friction. We implement bespoke systems that allow you to focus on the vision while we handle the flow.</span></p>
-            </div>
-            <div class="image-container reveal-img">
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=80" alt="Product Design">
-            </div>
+    <section data-bg="var(--color-stone)">
+        <div class="container" style="display: flex; flex-direction: column; text-align: center; align-items: center;">
+             <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 8vw; font-weight: 300;" class="reveal-text">Experience <span class="italic">ISO</span></h2>
+             <p style="letter-spacing: 5px; text-transform: uppercase; font-size: 11px; margin-top: 20px;">The Marketing Architecture Firm</p>
         </div>
     </section>
 
     <script>
-        // Custom Cursor Movement
+        // Custom Cursor
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
         });
 
-        // Hover effect for cursor
-        document.querySelectorAll('a, .image-container').forEach(link => {
-            link.addEventListener('mouseenter', () => cursor.style.transform = 'scale(4)');
-            link.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
-        });
+        // Background Color Switcher & Text Reveal
+        const sections = document.querySelectorAll('section, .hero');
+        const revealTexts = document.querySelectorAll('.reveal-text');
 
-        // Reveal Observer Logic
         const observerOptions = {
-            threshold: 0.15,
-            rootMargin: "0px 0px -50px 0px"
+            threshold: 0.4
         };
 
-        const revealObserver = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                // Change Background Color
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+                    const bgColor = entry.target.getAttribute('data-bg');
+                    document.body.style.backgroundColor = bgColor;
+                    
+                    // Toggle dark-mode class for text color switching
+                    if (bgColor === 'var(--color-charcoal)') {
+                        document.body.classList.add('dark-mode');
+                    } else {
+                        document.body.classList.remove('dark-mode');
+                    }
+
+                    // Reveal text in that section
+                    entry.target.querySelectorAll('.reveal-text').forEach(text => {
+                        text.classList.add('active');
+                    });
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.reveal, .reveal-img').forEach(el => {
-            revealObserver.observe(el);
-        });
+        sections.forEach(section => observer.observe(section));
 
-        // Simple smooth scroll logic for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        // Hover Effect
+        document.querySelectorAll('.image-box, nav div').forEach(item => {
+            item.addEventListener('mouseenter', () => cursor.style.transform += ' scale(6)');
+            item.addEventListener('mouseleave', () => cursor.style.transform = cursor.style.transform.replace(' scale(6)', ''));
         });
     </script>
 </body>
