@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Visions by ISO | Duende Style</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISO | In Its Most Inspired Form</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400&family=Pinyon+Script&display=swap" rel="stylesheet">
     
@@ -17,209 +17,122 @@
             --font-script: 'Pinyon Script', cursive;
         }
 
-        /* Prevent horizontal scroll on mobile */
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
-            background-color: var(--bg-cream);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-cream); color: var(--text-dark); font-family: var(--font-sans); overflow-x: hidden; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        body {
-            color: var(--text-dark);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* --- THE SIGNATURE TEXTURE --- */
-        .texture-overlay {
+        /* Texture Overlay */
+        .texture {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-            opacity: 0.25; pointer-events: none; z-index: 9999;
+            opacity: 0.2; pointer-events: none; z-index: 999;
         }
 
-        /* --- MOBILE NAVIGATION --- */
+        /* Navigation */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 6%; position: fixed; width: 100%; top: 0; z-index: 1000;
-            background: rgba(252, 250, 247, 0.85); backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            padding: 30px 6%; position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(252, 250, 247, 0.8); backdrop-filter: blur(10px);
         }
 
-        .logo {
-            font-family: var(--font-serif); font-size: 1.2rem;
-            letter-spacing: 4px; text-transform: uppercase; text-decoration: none;
-            color: var(--text-dark); font-weight: 300;
-        }
+        .logo { font-family: var(--font-serif); font-size: 1.5rem; letter-spacing: 5px; text-transform: uppercase; text-decoration: none; color: var(--text-dark); }
 
-        /* Desktop Links (Hidden on Mobile) */
-        .nav-links { display: none; }
-
-        /* Mobile Menu Toggle */
-        .menu-toggle {
-            cursor: pointer; font-size: 0.65rem; letter-spacing: 2px;
-            text-transform: uppercase; font-weight: 400;
-        }
-
-        /* Slide-out Menu */
-        .mobile-nav {
-            position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-            background: var(--bg-cream); z-index: 2000;
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .mobile-nav.active { right: 0; }
-
-        .mobile-nav a {
-            text-decoration: none; color: var(--text-dark);
-            font-family: var(--font-serif); font-size: 2rem;
-            margin: 15px 0; font-weight: 300; letter-spacing: 2px;
-        }
-
-        .close-menu {
-            position: absolute; top: 30px; right: 6%;
-            font-size: 0.7rem; letter-spacing: 2px; cursor: pointer;
-        }
-
-        /* --- HERO SECTION --- */
+        /* Hero */
         .hero {
-            height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            padding: 0 8%; position: relative; color: #fff;
+            height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center; padding: 0 10%;
         }
 
-        .hero-video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: -1; filter: brightness(75%);
+        .hero h1 { font-family: var(--font-serif); font-size: clamp(2rem, 8vw, 4.5rem); font-weight: 300; line-height: 1.1; }
+        .hero h1 span { font-family: var(--font-script); color: var(--accent-gold); display: block; font-size: 0.8em; margin-top: -10px; }
+
+        /* The Grid - FIXED FOR VISIBILITY */
+        .section { padding: 100px 6%; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+        .grid-item { 
+            background: #eee; 
+            aspect-ratio: 4/5; 
+            overflow: hidden; 
+            position: relative;
+            display: block; /* Ensures it takes up space */
         }
 
-        .hero h1 {
-            font-family: var(--font-serif); font-size: clamp(2rem, 10vw, 4.5rem);
-            font-weight: 300; line-height: 1.1; margin-bottom: 20px;
+        img, video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
-        .hero h1 span {
-            font-family: var(--font-script); color: var(--accent-gold);
-            text-transform: lowercase; display: block; font-size: 0.8em; margin-top: -5px;
+        /* FAILSAFE ANIMATION: If JS fails, they stay visible. If JS works, they fade in. */
+        .reveal {
+            opacity: 1; /* Default to visible */
+            transform: translateY(0);
+            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .cta-btn {
-            padding: 14px 35px; border: 1px solid #fff;
-            text-decoration: none; color: #fff; text-transform: uppercase;
-            font-size: 0.65rem; letter-spacing: 3px; margin-top: 30px;
-            transition: 0.4s ease;
+        /* If browser supports IntersectionObserver, we start them at 0 */
+        @supports (opacity: 0) {
+            .js-enabled .reveal {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            .js-enabled .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* --- CONTENT GRIDS --- */
-        .section { padding: 80px 6%; }
-
-        .intro-text { text-align: center; margin-bottom: 60px; }
-
-        .intro-text h3 {
-            font-family: var(--font-serif); text-transform: uppercase;
-            letter-spacing: 5px; font-size: 0.9rem; color: var(--accent-gold);
-            margin-bottom: 20px;
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            nav .nav-links { display: none; }
         }
-
-        .grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
-
-        .grid-item {
-            width: 100%; aspect-ratio: 4/5; overflow: hidden;
-            background: #eee; position: relative;
-        }
-
-        .grid-item img, .grid-item video {
-            width: 100%; height: 100%; object-fit: cover;
-        }
-
-        /* --- FOOTER --- */
-        footer { padding: 80px 6%; text-align: center; border-top: 1px solid #ddd; }
-        .footer-tagline {
-            font-family: var(--font-serif); font-style: italic;
-            font-size: 1.5rem; margin-bottom: 30px; font-weight: 300;
-        }
-
-        /* Desktop Adjustments */
-        @media (min-width: 768px) {
-            .nav-links { display: flex; }
-            .menu-toggle { display: none; }
-            .grid { grid-template-columns: 1fr 1fr; gap: 50px; }
-            .section { padding: 120px 10%; }
-            .logo { font-size: 1.5rem; }
-        }
-
-        /* Animation Classes */
-        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body>
+<body class="js-enabled">
 
-    <div class="texture-overlay"></div>
-
-    <div class="mobile-nav" id="mobileMenu">
-        <div class="close-menu" onclick="toggleMenu()">CLOSE</div>
-        <a href="#" onclick="toggleMenu()">About</a>
-        <a href="#" onclick="toggleMenu()">Offerings</a>
-        <a href="#" onclick="toggleMenu()">Work</a>
-        <a href="#" onclick="toggleMenu()">Inquire</a>
-    </div>
+    <div class="texture"></div>
 
     <nav>
-        <a href="#" class="logo">Duende</a>
-        <div class="nav-links">
-            <a href="#" style="text-decoration: none; color: var(--text-dark); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-left: 30px;">About</a>
-            <a href="#" style="text-decoration: none; color: var(--text-dark); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-left: 30px;">Work</a>
-            <a href="#" style="text-decoration: none; color: var(--text-dark); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-left: 30px;">Inquire</a>
-        </div>
-        <div class="menu-toggle" onclick="toggleMenu()">MENU</div>
+        <a href="#" class="logo">ISO</a>
+        <div style="font-size: 0.6rem; letter-spacing: 2px;">MENU</div>
     </nav>
 
     <main>
         <section class="hero">
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-hand-sketching-a-design-on-paper-42930-large.mp4" type="video/mp4">
-            </video>
             <div class="reveal active">
                 <h1>Made for the Passionate, <br>the intentional, <br>& the artfully <span>ambitious</span></h1>
-                <a href="#" class="cta-btn">Start Here</a>
             </div>
         </section>
 
         <section class="section">
-            <div class="intro-text reveal">
-                <h3>The Creative Studio</h3>
-                <p>An independent design studio building visual experiences that move your business forward.</p>
-            </div>
-            
             <div class="grid">
                 <div class="grid-item reveal">
-                    <video autoplay muted loop playsinline>
-                        <source src="https://assets.mixkit.co/videos/preview/mixkit-minimalist-white-studio-interior-41582-large.mp4" type="video/mp4">
+                    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=500">
+                        <source src="https://v.ftcdn.net/02/95/94/54/700_F_295945415_SUIW60Q7WbKz6C39GUP6q5Z4I8O9B4hO_ST.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="grid-item reveal">
-                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop" alt="Portfolio Image">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80" alt="Design">
                 </div>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="grid-item reveal" style="aspect-ratio: 16/7; width: 100%;">
+                <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1500&q=80" alt="Studio">
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-tagline">In Its Most Inspired Form™</div>
-        <p style="font-size: 0.6rem; letter-spacing: 2px; color: var(--accent-gold);">© VISIONS BY ISO 2026</p>
+    <footer style="padding: 100px 6%; text-align: center; border-top: 1px solid #eee;">
+        <div style="font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; margin-bottom: 20px;">In Its Most Inspired Form™</div>
+        <p style="font-size: 0.6rem; letter-spacing: 2px;">© ISO 2026</p>
     </footer>
 
     <script>
-        // Toggle Mobile Menu
-        function toggleMenu() {
-            document.getElementById('mobileMenu').classList.toggle('active');
-        }
-
-        // Scroll Reveal Animation
+        // Check if the script runs. If it does, we keep the animations. 
+        // If not, the images are already visible due to the CSS failsafe.
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
