@@ -7,242 +7,231 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-color: #F9F8F6; /* Warm Duende Cream */
-            --text-dark: #1A1A1A; 
-            --text-muted: #8C8B88;
-            --border: rgba(0,0,0,0.08);
-            --bezier: cubic-bezier(0.2, 0, 0.2, 1);
+            --bg-color: #f6f3f0; /* Duende's specific off-white */
+            --text-main: #1a1a1a;
+            --text-muted: #8c8c8c;
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        *, *::before, *::after { box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
         
         body { 
-            margin: 0; background-color: var(--bg-color); 
-            color: var(--text-dark); font-family: 'Montserrat', sans-serif; 
-            overflow-x: hidden; -webkit-font-smoothing: antialiased;
+            background-color: var(--bg-color); 
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; margin: 0; }
-        .italic { font-style: italic; font-family: 'Cormorant Garamond', serif; }
-
-        /* --- Navigation --- */
-        nav { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 35px 50px; position: fixed; top: 0; width: 100%; z-index: 1000; 
-            transition: transform 0.6s var(--bezier), background 0.4s;
+        /* --- CUSTOM CURSOR --- */
+        #cursor {
+            width: 12px; height: 12px;
+            background: var(--text-main);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease-out;
         }
-        .nav-scrolled { background: rgba(249, 248, 246, 0.95); padding: 20px 50px; border-bottom: 1px solid var(--border); }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 400; }
+
+        /* --- REVEAL ANIMATIONS --- */
+        .reveal {
+            overflow: hidden;
+            display: block;
+        }
+        .reveal span {
+            display: block;
+            transform: translateY(110%);
+            transition: transform 1.2s var(--ease);
+        }
+        .reveal.active span {
+            transform: translateY(0);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            display: flex; justify-content: space-between;
+            padding: 40px 60px; z-index: 1000;
+            font-size: 10px; letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 24px; letter-spacing: 8px; }
         .nav-links { display: flex; gap: 40px; }
-        .nav-links a { text-decoration: none; color: var(--text-dark); text-transform: uppercase; letter-spacing: 2px; font-size: 0.65rem; font-weight: 400; opacity: 0.7; transition: 0.3s; }
+        .nav-links a { text-decoration: none; color: inherit; opacity: 0.6; transition: 0.3s; }
         .nav-links a:hover { opacity: 1; }
 
-        /* --- Hero Section --- */
+        /* --- HERO --- */
         .hero {
-            height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center;
-            position: relative; overflow: hidden; padding: 0 20px;
+            height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            position: relative; text-align: center;
         }
-        .hero-bg-video {
+        .hero-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: -1; filter: grayscale(30%) brightness(0.9);
+            z-index: -1; filter: sepia(20%) brightness(0.9);
         }
-        .hero-content { text-align: center; max-width: 1100px; }
-        .hero-eyebrow { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 20px; display: block; color: var(--text-muted); }
-        .hero-title { font-size: clamp(3.5rem, 10vw, 7.5rem); line-height: 0.95; margin-bottom: 40px; }
-
-        /* --- Horizontal Scroll Section --- */
-        .horizontal-container { overflow: hidden; background: #111; color: #fff; }
-        .horizontal-scroll-wrapper { display: flex; width: 300%; height: 100vh; }
-        .horizontal-item { 
-            width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; 
-            padding: 80px; position: relative; border-right: 1px solid rgba(255,255,255,0.1);
-        }
-        .horizontal-item img { width: 60%; height: 70%; object-fit: cover; opacity: 0.8; }
-        .horizontal-caption { position: absolute; bottom: 80px; left: 80px; }
-
-        /* --- Reveal Sections --- */
-        section { padding: 140px 80px; max-width: 1400px; margin: 0 auto; }
-        .reveal-box { overflow: hidden; position: relative; }
+        .hero-video video { width: 100%; height: 100%; object-fit: cover; }
         
-        .services-grid {
-            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-top: 80px;
+        h1 { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: clamp(4rem, 15vw, 11rem); 
+            font-weight: 300; line-height: 0.85;
+            margin-bottom: 20px;
         }
-        .service-card { border-top: 1px solid var(--border); padding-top: 30px; }
-        .service-card h3 { font-size: 2rem; margin-bottom: 15px; }
-        .service-card p { font-size: 0.9rem; line-height: 1.8; color: var(--text-muted); }
+        .hero-tagline { font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: var(--text-muted); }
 
-        /* --- Image Reveal Effect --- */
-        .image-reveal { width: 100%; height: 600px; overflow: hidden; margin: 80px 0; background: #eee; }
-        .image-reveal img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.2); }
+        /* --- SECTIONS --- */
+        section { padding: 180px 80px; }
+        
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 120px;
+            align-items: start;
+        }
 
-        /* --- Footer --- */
-        footer { padding: 100px 50px; background: var(--bg-color); border-top: 1px solid var(--border); text-align: center; }
-        .footer-logo { font-size: 5rem; opacity: 0.05; position: absolute; left: 50%; transform: translateX(-50%); pointer-events: none; }
+        .image-container {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #e5e0db;
+            position: relative;
+        }
+        .image-container img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+            transition: transform 2s var(--ease);
+        }
+        .image-container.active img { transform: scale(1); }
+
+        .content-right { padding-top: 100px; }
+        .eyebrow { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; display: block; }
+        
+        h2 { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; font-weight: 300; line-height: 1.1; margin-bottom: 40px; }
+        p { max-width: 400px; font-size: 14px; font-weight: 300; color: #444; }
+
+        /* --- FOOTER / LARGE TEXT --- */
+        .giant-text {
+            padding: 100px 0;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .giant-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 8vw; font-weight: 300; font-style: italic; }
 
         @media (max-width: 900px) {
-            section { padding: 80px 20px; }
-            .services-grid { grid-template-columns: 1fr; }
-            nav { padding: 25px 30px; }
+            .grid-layout { grid-template-columns: 1fr; gap: 60px; }
+            section { padding: 80px 30px; }
+            nav { padding: 25px; }
             .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <nav id="navbar">
+    <div id="cursor"></div>
+
+    <nav>
         <div class="nav-links">
-            <a href="#">Offerings</a>
-            <a href="#">Work</a>
+            <a href="#">Capabilities</a>
+            <a href="#">Portfolio</a>
         </div>
         <div class="logo">ISO</div>
         <div class="nav-links">
-            <a href="#">About</a>
-            <a href="#">Inquire</a>
+            <a href="#">Studio</a>
+            <a href="#">Contact</a>
         </div>
     </nav>
 
-    <main>
-        <section class="hero">
-            <video class="hero-bg-video" autoplay muted loop playsinline>
-                <source src="https://player.vimeo.com/external/494252666.sd.mp4?s=7297312111cf09630560a8b9e6a0d41f391f6308&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
+    <div class="hero">
+        <div class="hero-video">
+            <video autoplay muted loop playsinline>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-top-view-of-a-person-writing-on-a-notebook-42244-large.mp4" type="video/mp4">
             </video>
-            <div class="hero-content">
-                <span class="hero-eyebrow gsap-reveal">Design & Automations Studio</span>
-                <h1 class="hero-title gsap-reveal">Built for the <br><span class="italic">Intentionally</span> Ambitious.</h1>
-            </div>
-        </section>
+        </div>
+        <h1 class="reveal"><span>The Modern</span></h1>
+        <h1 class="reveal"><span class="italic">Standard.</span></h1>
+        <div class="hero-tagline reveal"><span>Design • Automations • Systems</span></div>
+    </div>
 
-        <section>
-            <div style="max-width: 800px;">
-                <span class="hero-eyebrow">Welcome to ISO</span>
-                <h2 style="font-size: 3rem; margin-top: 20px;" class="gsap-reveal">
-                    We blend <span class="italic">artistry</span> with technical precision to build systems that move your business forward.
-                </h2>
+    <section>
+        <div class="grid-layout">
+            <div class="image-container reveal-img">
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80" alt="Minimal Interior">
             </div>
-        </section>
-
-        <div class="horizontal-container">
-            <div class="horizontal-scroll-wrapper">
-                <div class="horizontal-item">
-                    <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=80" alt="Design">
-                    <div class="horizontal-caption">
-                        <span class="hero-eyebrow">01 / Creative</span>
-                        <h3>Visual Identities</h3>
-                    </div>
-                </div>
-                <div class="horizontal-item">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" alt="Systems">
-                    <div class="horizontal-caption">
-                        <span class="hero-eyebrow">02 / Technical</span>
-                        <h3>Automation Systems</h3>
-                    </div>
-                </div>
-                <div class="horizontal-item">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="Growth">
-                    <div class="horizontal-caption">
-                        <span class="hero-eyebrow">03 / Marketing</span>
-                        <h3>Strategic Growth</h3>
-                    </div>
-                </div>
+            <div class="content-right">
+                <span class="eyebrow reveal"><span>01. Strategy</span></span>
+                <h2 class="reveal"><span>Engineered for</span></h2>
+                <h2 class="reveal"><span>Performance.</span></h2>
+                <p class="reveal"><span>We don't just build websites; we build ecosystems. ISO specializes in high-fidelity design coupled with backend automation that moves the needle.</span></p>
             </div>
         </div>
+    </section>
 
-        <section>
-            <span class="hero-eyebrow">Our Offerings</span>
-            <div class="services-grid">
-                <div class="service-card gsap-reveal">
-                    <h3>Design</h3>
-                    <p>Elevated branding and digital homes that capture your vision and position your business for lasting impact.</p>
-                </div>
-                <div class="service-card gsap-reveal">
-                    <h3>Automations</h3>
-                    <p>Removing manual friction by creating seamless workflows that allow you to focus on high-level creativity.</p>
-                </div>
-                <div class="service-card gsap-reveal">
-                    <h3>Systems</h3>
-                    <p>Tailored operational frameworks designed to scale with your ambition and provide absolute clarity.</p>
-                </div>
+    <section class="giant-text">
+        <h3 class="reveal"><span>“Systems that breathe life into brands.”</span></h3>
+    </section>
+
+    <section>
+        <div class="grid-layout">
+            <div class="content-left">
+                <span class="eyebrow reveal"><span>02. Solutions</span></span>
+                <h2 class="reveal"><span>Intelligent</span></h2>
+                <h2 class="reveal"><span>Automations.</span></h2>
+                <p class="reveal"><span>Scale without the friction. We implement bespoke systems that allow you to focus on the vision while we handle the flow.</span></p>
             </div>
-        </section>
-
-        <div class="image-reveal">
-            <img id="parallax-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=80" alt="Studio">
+            <div class="image-container reveal-img">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=80" alt="Product Design">
+            </div>
         </div>
-
-        <footer>
-            <div class="footer-logo">ISO</div>
-            <p class="hero-eyebrow">© 2026 ISO STUDIO / IN ITS MOST EFFICIENT FORM</p>
-            <h2 class="italic" style="font-size: 2.5rem; margin-top: 20px;">Let's build something enduring.</h2>
-        </footer>
-    </main>
+    </section>
 
     <script>
-        // 1. Smooth Scroll (Lenis)
-        const lenis = new Lenis()
-        function raf(time) {
-            lenis.raf(time)
-            requestAnimationFrame(raf)
-        }
-        requestAnimationFrame(raf)
+        // Custom Cursor Movement
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
 
-        // 2. GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
+        // Hover effect for cursor
+        document.querySelectorAll('a, .image-container').forEach(link => {
+            link.addEventListener('mouseenter', () => cursor.style.transform = 'scale(4)');
+            link.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+        });
 
-        // Navbar Scroll Effect
-        ScrollTrigger.create({
-            start: 'top -50',
-            onUpdate: (self) => {
-                if (self.direction === 1) {
-                    gsap.to('#navbar', { y: '-100%', duration: 0.4 });
-                } else {
-                    gsap.to('#navbar', { y: '0%', duration: 0.4, backgroundColor: 'rgba(249, 248, 246, 0.95)' });
+        // Reveal Observer Logic
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
                 }
-            }
-        });
-
-        // Horizontal Scroll
-        const sections = gsap.utils.toArray(".horizontal-item");
-        gsap.to(sections, {
-            xPercent: -100 * (sections.length - 1),
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".horizontal-container",
-                pin: true,
-                scrub: 1,
-                end: () => "+=" + document.querySelector(".horizontal-scroll-wrapper").offsetWidth
-            }
-        });
-
-        // Simple Text/Section Reveals
-        gsap.utils.toArray(".gsap-reveal").forEach(el => {
-            gsap.from(el, {
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 90%",
-                },
-                y: 50,
-                opacity: 0,
-                duration: 1.2,
-                ease: "power4.out"
             });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-img').forEach(el => {
+            revealObserver.observe(el);
         });
 
-        // Parallax Image Effect
-        gsap.to("#parallax-img", {
-            yPercent: 20,
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".image-reveal",
-                scrub: true
-            }
+        // Simple smooth scroll logic for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
     </script>
 </body>
