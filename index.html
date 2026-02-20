@@ -1,310 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visions by ISO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400&family=Pinyon+Script&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #fcfaf7; /* Signature Duende Cream */
-            --text-main: #333333;
-            --text-muted: #7a7a7a;
-            --accent-gold: #a68a64;
-            --transition-smooth: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* --- Navigation --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px 5%;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            background: rgba(252, 250, 247, 0.95);
-        }
-
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-weight: 300;
-            text-decoration: none;
-            color: var(--text-main);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 300;
-            transition: var(--transition-smooth);
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-gold);
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 10%;
-            margin-top: 60px;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        .hero h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 300;
-            font-size: clamp(2rem, 5vw, 4rem);
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero h2 em {
-            font-family: 'Pinyon Script', cursive;
-            text-transform: lowercase;
-            font-size: 1.2em;
-            color: var(--accent-gold);
-            display: block;
-            margin-top: -10px;
-        }
-
-        .cta-btn {
-            margin-top: 30px;
-            padding: 12px 35px;
-            border: 1px solid var(--text-main);
-            text-decoration: none;
-            color: var(--text-main);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.7rem;
-            transition: var(--transition-smooth);
-        }
-
-        .cta-btn:hover {
-            background: var(--text-main);
-            color: #fff;
-        }
-
-        /* --- Content Blocks --- */
-        .section {
-            padding: 100px 10%;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: var(--transition-smooth);
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .intro-text {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .intro-text h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            margin-bottom: 30px;
-            color: var(--accent-gold);
-        }
-
-        .intro-text p {
-            font-size: 1.1rem;
-            font-weight: 300;
-            color: var(--text-muted);
-        }
-
-        /* --- Image Grid --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .grid-item {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 4/5;
-            background: #eee;
-        }
-
-        .grid-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1.2s ease;
-        }
-
-        .grid-item:hover img {
-            transform: scale(1.05);
-        }
-
-        /* --- Footer --- */
-        footer {
-            padding: 80px 5%;
-            text-align: center;
-            border-top: 1px solid #eee;
-        }
-
-        .footer-tagline {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-        }
-
-        .social-links a {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-decoration: none;
-            color: var(--text-main);
-        }
-
-        /* --- Animations --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Mobile Responsiveness --- */
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                padding: 20px;
-            }
-            .nav-links {
-                display: none; /* Mobile menu hidden by default */
-            }
-            .hero {
-                padding: 0 5%;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .section {
-                padding: 60px 5%;
-            }
-        }
-    </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2566">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
 </head>
 <body>
-
-    <nav>
-        <a href="#" class="logo">ISO</a>
-        <div class="nav-links">
-            <a href="#">About</a>
-            <a href="#">Offerings</a>
-            <a href="#">Work</a>
-            <a href="#">Shoppe</a>
-            <a href="#">Inquire</a>
-        </div>
-    </nav>
-
-    <main>
-        <section class="hero">
-            <h2>Made for the Passionate, <br>the intentional, <br>& the artfully <em>ambitious</em></h2>
-            <a href="#" class="cta-btn">Inquire Now</a>
-        </section>
-
-        <section class="section" id="scroll-target">
-            <div class="intro-text">
-                <h3>Welcome to the Studio</h3>
-                <p>Where purpose becomes art. ISO is an independent design studio devoted to building distinctive visual experiences for creative businesses. We blend artistry and strategy to build visual systems that move your business forward.</p>
-            </div>
-            
-            <div class="grid">
-                <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=800&q=80" alt="Dummy Brand Placement">
-                </div>
-                <div class="grid-item">
-                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80" alt="Dummy Mockup Placement">
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="intro-text">
-                <h3>The Offerings</h3>
-                <p>Tailored, strategic, and artfully built for creative businesses.</p>
-            </div>
-            <div class="grid">
-                <div class="grid-item" style="aspect-ratio: 16/9; grid-column: span 2;">
-                    <img src="https://images.unsplash.com/photo-1455849318743-b2233052fcff?auto=format&fit=crop&w=1200&q=80" alt="Full Width Placement">
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-tagline">In Its Most Inspired Form™</div>
-        <div class="social-links">
-            <a href="#">Pinterest</a>
-            <a href="#">Instagram</a>
-            <a href="#">TikTok</a>
-        </div>
-        <p style="font-size: 0.6rem; letter-spacing: 1px;">© ISO 2025 | POLICIES</p>
-    </footer>
-
-    <script>
-        // Simple Scroll Reveal Logic to mimic Duende's animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
-    </script>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Duende Design Co | Replica&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&amp;family=Montserrat:wght@200;300;400&amp;family=Pinyon+Script&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="style.css"&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="texture-overlay"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="#" class="logo"&gt;Duende&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="nav-links"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#"&gt;About&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#"&gt;Offerings&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#"&gt;Work&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#"&gt;Shoppe&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#"&gt;Inquire&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="mobile-menu-btn"&gt;MENU&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;main&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="hero fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1&gt;Made for the Passionate, &lt;br&gt;the intentional, &lt;br&gt;&amp; the artfully &lt;span&gt;ambitious&lt;/span&gt;&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#" class="cta-btn"&gt;Inquire Now&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="section"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="intro-text reveal-up"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Welcome to the Studio&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Where purpose becomes art. We blend artistry and strategy to build visual systems that move your business forward and draw your audience closer.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid-item reveal-up"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;video autoplay muted loop playsinline class="dummy-video"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;source src="https://assets.mixkit.co/videos/preview/mixkit-interior-of-a-modern-living-room-with-a-large-window-44331-large.mp4" type="video/mp4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/video&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid-item reveal-up"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Mockup Placement"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="section"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="full-width-media reveal-up"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&amp;w=1500&amp;auto=format&amp;fit=crop" alt="Office Placement"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="footer-tagline"&gt;In Its Most Inspired Form™&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="social-links"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#"&gt;Pinterest&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#"&gt;Instagram&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#"&gt;TikTok&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="copyright"&gt;© DUENDE 2026 | ALL RIGHTS RESERVED&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const observerOptions = { threshold: 0.1 };</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const observer = new IntersectionObserver((entries) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>entries.forEach(entry =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (entry.isIntersecting) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>entry.target.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}, observerOptions);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.querySelectorAll('.reveal-up').forEach(el =&gt; observer.observe(el));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
 </body>
 </html>

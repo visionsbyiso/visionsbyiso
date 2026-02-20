@@ -1,0 +1,212 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2818
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 /* --- VARIABLES --- */\
+:root \{\
+    --bg-cream: #fcfaf7;\
+    --text-dark: #2a2a2a;\
+    --text-muted: #7a7a7a;\
+    --accent-gold: #a68a64;\
+    --font-serif: 'Cormorant Garamond', serif;\
+    --font-sans: 'Montserrat', sans-serif;\
+    --font-script: 'Pinyon Script', cursive;\
+    --transition-slow: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);\
+\}\
+\
+* \{\
+    margin: 0;\
+    padding: 0;\
+    box-sizing: border-box;\
+\}\
+\
+body \{\
+    background-color: var(--bg-cream);\
+    color: var(--text-dark);\
+    font-family: var(--font-sans);\
+    line-height: 1.6;\
+    overflow-x: hidden;\
+\}\
+\
+/* --- THE TEXTURE --- */\
+.texture-overlay \{\
+    position: fixed;\
+    top: 0;\
+    left: 0;\
+    width: 100%;\
+    height: 100%;\
+    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');\
+    opacity: 0.25;\
+    pointer-events: none;\
+    z-index: 9999;\
+\}\
+\
+/* --- NAVIGATION --- */\
+nav \{\
+    display: flex;\
+    justify-content: space-between;\
+    align-items: center;\
+    padding: 40px 6%;\
+    position: fixed;\
+    width: 100%;\
+    top: 0;\
+    z-index: 1000;\
+    background: rgba(252, 250, 247, 0.8);\
+    backdrop-filter: blur(5px);\
+\}\
+\
+.logo \{\
+    font-family: var(--font-serif);\
+    font-size: 1.6rem;\
+    letter-spacing: 5px;\
+    text-transform: uppercase;\
+    text-decoration: none;\
+    color: var(--text-dark);\
+    font-weight: 300;\
+\}\
+\
+.nav-links a \{\
+    text-decoration: none;\
+    color: var(--text-dark);\
+    font-size: 0.7rem;\
+    text-transform: uppercase;\
+    letter-spacing: 2px;\
+    margin-left: 35px;\
+    font-weight: 300;\
+    transition: 0.3s ease;\
+\}\
+\
+.nav-links a:hover \{ color: var(--accent-gold); \}\
+\
+.mobile-menu-btn \{ display: none; font-size: 0.7rem; letter-spacing: 2px; cursor: pointer; \}\
+\
+/* --- HERO --- */\
+.hero \{\
+    height: 100vh;\
+    display: flex;\
+    flex-direction: column;\
+    justify-content: center;\
+    align-items: center;\
+    text-align: center;\
+    padding: 0 10%;\
+\}\
+\
+.hero h1 \{\
+    font-family: var(--font-serif);\
+    font-size: clamp(2.5rem, 6vw, 4.5rem);\
+    font-weight: 300;\
+    line-height: 1.1;\
+\}\
+\
+.hero h1 span \{\
+    font-family: var(--font-script);\
+    color: var(--accent-gold);\
+    text-transform: lowercase;\
+    display: block;\
+    font-size: 0.8em;\
+    margin-top: -10px;\
+\}\
+\
+.cta-btn \{\
+    margin-top: 40px;\
+    padding: 15px 40px;\
+    border: 1px solid var(--text-dark);\
+    text-decoration: none;\
+    color: var(--text-dark);\
+    text-transform: uppercase;\
+    font-size: 0.7rem;\
+    letter-spacing: 3px;\
+    transition: var(--transition-slow);\
+\}\
+\
+.cta-btn:hover \{ background: var(--text-dark); color: #fff; \}\
+\
+/* --- SECTIONS & GRID --- */\
+.section \{ padding: 100px 10%; \}\
+\
+.intro-text \{ text-align: center; max-width: 700px; margin: 0 auto 80px; \}\
+\
+.intro-text h3 \{\
+    font-family: var(--font-serif);\
+    text-transform: uppercase;\
+    letter-spacing: 5px;\
+    font-size: 1.1rem;\
+    margin-bottom: 25px;\
+    color: var(--accent-gold);\
+\}\
+\
+.grid \{\
+    display: grid;\
+    grid-template-columns: 1fr 1fr;\
+    gap: 50px;\
+\}\
+\
+.grid-item \{ overflow: hidden; background: #f0f0f0; aspect-ratio: 4/5; \}\
+\
+.grid-item img, .grid-item video \{\
+    width: 100%;\
+    height: 100%;\
+    object-fit: cover;\
+    transition: transform 1.5s ease;\
+\}\
+\
+.grid-item:hover img \{ transform: scale(1.05); \}\
+\
+.full-width-media \{ width: 100%; height: 70vh; overflow: hidden; \}\
+\
+.full-width-media img \{ width: 100%; height: 100%; object-fit: cover; \}\
+\
+/* --- FOOTER --- */\
+footer \{ padding: 100px 5%; text-align: center; border-top: 1px solid #eee; \}\
+\
+.footer-tagline \{\
+    font-family: var(--font-serif);\
+    font-style: italic;\
+    font-size: 1.8rem;\
+    margin-bottom: 40px;\
+\}\
+\
+.social-links \{ display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; \}\
+\
+.social-links a \{\
+    text-decoration: none;\
+    color: var(--text-dark);\
+    font-size: 0.7rem;\
+    text-transform: uppercase;\
+    letter-spacing: 2px;\
+\}\
+\
+.copyright \{ font-size: 0.6rem; letter-spacing: 1px; color: var(--text-muted); \}\
+\
+/* --- ANIMATIONS --- */\
+.fade-in \{ animation: fadeIn 2s ease forwards; \}\
+\
+@keyframes fadeIn \{\
+    from \{ opacity: 0; transform: translateY(20px); \}\
+    to \{ opacity: 1; transform: translateY(0); \}\
+\}\
+\
+.reveal-up \{\
+    opacity: 0;\
+    transform: translateY(50px);\
+    transition: var(--transition-slow);\
+\}\
+\
+.reveal-up.active \{\
+    opacity: 1;\
+    transform: translateY(0);\
+\}\
+\
+/* --- MOBILE RESPONSIVE --- */\
+@media (max-width: 768px) \{\
+    nav \{ padding: 25px 5%; \}\
+    .nav-links \{ display: none; \}\
+    .mobile-menu-btn \{ display: block; \}\
+    .hero h1 \{ font-size: 2.8rem; \}\
+    .grid \{ grid-template-columns: 1fr; gap: 30px; \}\
+    .section \{ padding: 60px 5%; \}\
+    .full-width-media \{ height: 50vh; \}\
+\}}
