@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Visions by ISO | Marketing & Design Studio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,12 +16,16 @@
             --text-muted: #7A7975;
         }
 
+        /* Box sizing rules for perfect mobile fit */
+        *, *::before, *::after { box-sizing: border-box; }
+
         body, html {
             margin: 0; padding: 0; 
             background-color: var(--bg-color);
             color: var(--text-dark);
             font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevents side-scrolling */
+            width: 100%;
         }
 
         h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; margin: 0; }
@@ -32,21 +36,12 @@
             margin-bottom: 20px; display: block;
         }
 
-        /* --- THE ANIMATION ENGINE (CSS) --- */
-        /* 1. Elements start invisible and pushed down slightly */
+        /* --- THE ANIMATION ENGINE --- */
         .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Buttery smooth curve */
+            opacity: 0; transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-
-        /* 2. When the JS adds this class, they float up and fade in */
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 3. Staggered delays so they don't all load at the exact same millisecond */
+        .reveal.active { opacity: 1; transform: translateY(0); }
         .delay-1 { transition-delay: 0.1s; }
         .delay-2 { transition-delay: 0.3s; }
         .delay-3 { transition-delay: 0.5s; }
@@ -54,7 +49,7 @@
         /* --- Navigation --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 40px 60px; position: absolute; width: 100%; box-sizing: border-box; z-index: 10;
+            padding: 40px 60px; position: absolute; top: 0; width: 100%; z-index: 10;
         }
         .nav-links { display: flex; gap: 40px; }
         .nav-links a {
@@ -67,19 +62,20 @@
 
         /* --- Hero Section --- */
         .hero {
-            padding: 180px 60px 100px; display: grid; grid-template-columns: 1fr 1fr;
-            gap: 60px; align-items: center; min-height: 80vh;
+            padding: 200px 60px 100px; display: grid; grid-template-columns: 1fr 1fr;
+            gap: 60px; align-items: center; min-height: 80vh; max-width: 1400px; margin: 0 auto;
         }
         .hero-title { font-size: 5.5rem; line-height: 1.05; margin-bottom: 40px; }
         
-        /* Subtle image hover zoom */
-        .hero-images { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; position: relative; }
+        .hero-images { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; position: relative; width: 100%; }
         .img-wrapper { overflow: hidden; width: 100%; }
         .img-placeholder {
             background-color: #E8E6E1; background-size: cover; background-position: center;
             width: 100%; height: 100%; transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .img-wrapper:hover .img-placeholder { transform: scale(1.05); }
+        @media (hover: hover) {
+            .img-wrapper:hover .img-placeholder { transform: scale(1.05); }
+        }
 
         .img-1 { height: 600px; margin-top: 50px; background-image: url('https://images.unsplash.com/photo-1615800098779-1be32e60cca3?q=80&w=1000&auto=format&fit=crop'); }
         .img-2 { height: 450px; background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop'); }
@@ -90,12 +86,14 @@
         .intro p { font-size: 1rem; line-height: 1.8; color: var(--text-muted); max-width: 600px; margin: 0 auto; font-weight: 300; }
 
         /* --- Offerings Section --- */
-        .offerings { padding: 100px 60px; border-top: 1px solid #E8E6E1; display: grid; grid-template-columns: 1fr 2fr; gap: 100px; }
+        .offerings { padding: 100px 60px; border-top: 1px solid #E8E6E1; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; max-width: 1400px; margin: 0 auto; }
         .offering-item {
             display: flex; justify-content: space-between; padding: 30px 0; border-bottom: 1px solid #E8E6E1;
             align-items: baseline; transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: pointer;
         }
-        .offering-item:hover { padding-left: 20px; color: #A8A6A1; }
+        @media (hover: hover) {
+            .offering-item:hover { padding-left: 20px; color: #A8A6A1; }
+        }
         .offering-title { font-size: 2.5rem; transition: color 0.5s ease; }
         .offering-num { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: var(--text-muted); }
 
@@ -106,13 +104,33 @@
         }
         .btn-primary:hover { background: var(--text-dark); color: var(--bg-color); }
 
+        /* =========================================
+           MOBILE & TABLET RESPONSIVE FIXES
+           ========================================= */
         @media (max-width: 900px) {
-            nav { flex-direction: column; gap: 20px; padding: 30px; text-align: center; }
-            .hero { grid-template-columns: 1fr; padding: 150px 30px 50px; text-align: center; }
-            .hero-title { font-size: 3.5rem; }
-            .hero-images { margin-top: 40px; }
-            .intro h2 { font-size: 2.5rem; }
-            .offerings { grid-template-columns: 1fr; gap: 50px; padding: 50px 30px; }
+            /* Fix Navigation Stacking */
+            nav { flex-direction: column; gap: 20px; padding: 30px 20px; position: relative; }
+            .logo { order: -1; font-size: 1.6rem; margin-bottom: 10px; } /* Forces logo to the top */
+            .nav-links { gap: 20px; justify-content: center; width: 100%; flex-wrap: wrap; }
+            
+            /* Fix Hero Spacing & Text */
+            .hero { grid-template-columns: 1fr; padding: 40px 20px 60px; text-align: center; }
+            .hero-title { font-size: 3.2rem; margin-bottom: 30px; }
+            .btn-primary { margin-top: 20px; width: 100%; box-sizing: border-box; }
+            
+            /* Stack Hero Images & Adjust Heights */
+            .hero-images { grid-template-columns: 1fr; margin-top: 40px; gap: 15px; }
+            .img-1 { height: 400px; margin-top: 0; }
+            .img-2 { height: 350px; }
+            
+            /* Fix Intro Section */
+            .intro { padding: 80px 20px; }
+            .intro h2 { font-size: 2.2rem; }
+            
+            /* Fix Offerings Grid */
+            .offerings { grid-template-columns: 1fr; gap: 40px; padding: 80px 20px; }
+            .offering-title { font-size: 1.8rem; }
+            .offering-item { padding: 20px 0; }
         }
     </style>
 </head>
@@ -171,29 +189,20 @@
     </section>
 
     <script>
-        // This script watches the screen. When an element with the class 'reveal' enters the screen, it adds the class 'active'.
         document.addEventListener("DOMContentLoaded", function() {
             const reveals = document.querySelectorAll(".reveal");
-
-            const revealOptions = {
-                threshold: 0.15, // Triggers when 15% of the element is visible
-                rootMargin: "0px 0px -50px 0px" // Adds a slight delay before triggering
-            };
+            const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
 
             const revealOnScroll = new IntersectionObserver(function(entries, observer) {
                 entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
+                    if (entry.isIntersecting) {
                         entry.target.classList.add("active");
-                        observer.unobserve(entry.target); // Stops watching once it has animated
+                        observer.unobserve(entry.target); 
                     }
                 });
             }, revealOptions);
 
-            reveals.forEach(reveal => {
-                revealOnScroll.observe(reveal);
-            });
+            reveals.forEach(reveal => revealOnScroll.observe(reveal));
         });
     </script>
 </body>
