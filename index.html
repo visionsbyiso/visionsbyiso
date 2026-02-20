@@ -11,8 +11,8 @@
     
     <style>
         :root {
-            --bg-color: #F8F7F4; /* Signature Duende Cream */
-            --text-dark: #2B2A28; /* Soft Charcoal */
+            --bg-color: #F8F7F4; 
+            --text-dark: #2B2A28; 
             --text-muted: #7A7975;
         }
 
@@ -24,27 +24,38 @@
             overflow-x: hidden;
         }
 
-        /* --- Typography Basics --- */
-        h1, h2, h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 300; margin: 0;
-        }
-        
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; margin: 0; }
         .italic { font-style: italic; }
-        
         .eyebrow {
             text-transform: uppercase; letter-spacing: 3px;
             font-size: 0.7rem; color: var(--text-muted);
             margin-bottom: 20px; display: block;
         }
 
+        /* --- THE ANIMATION ENGINE (CSS) --- */
+        /* 1. Elements start invisible and pushed down slightly */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Buttery smooth curve */
+        }
+
+        /* 2. When the JS adds this class, they float up and fade in */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 3. Staggered delays so they don't all load at the exact same millisecond */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.5s; }
+
         /* --- Navigation --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 40px 60px; position: absolute; width: 100%; box-sizing: border-box;
-            z-index: 10;
+            padding: 40px 60px; position: absolute; width: 100%; box-sizing: border-box; z-index: 10;
         }
-
         .nav-links { display: flex; gap: 40px; }
         .nav-links a {
             text-decoration: none; color: var(--text-dark);
@@ -52,88 +63,53 @@
             font-size: 0.7rem; transition: opacity 0.3s;
         }
         .nav-links a:hover { opacity: 0.5; }
-
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem; letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; letter-spacing: 2px; text-transform: uppercase; }
 
         /* --- Hero Section --- */
         .hero {
-            padding: 180px 60px 100px;
-            display: grid; grid-template-columns: 1fr 1fr;
+            padding: 180px 60px 100px; display: grid; grid-template-columns: 1fr 1fr;
             gap: 60px; align-items: center; min-height: 80vh;
         }
-
-        .hero-text { max-width: 600px; }
+        .hero-title { font-size: 5.5rem; line-height: 1.05; margin-bottom: 40px; }
         
-        .hero-title {
-            font-size: 5.5rem; line-height: 1.05;
-            margin-bottom: 40px;
-        }
-
-        .hero-images {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-            position: relative;
-        }
-
+        /* Subtle image hover zoom */
+        .hero-images { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; position: relative; }
+        .img-wrapper { overflow: hidden; width: 100%; }
         .img-placeholder {
             background-color: #E8E6E1; background-size: cover; background-position: center;
-            width: 100%; transition: transform 0.6s ease;
+            width: 100%; height: 100%; transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-
-        .img-placeholder:hover { transform: scale(0.98); }
+        .img-wrapper:hover .img-placeholder { transform: scale(1.05); }
 
         .img-1 { height: 600px; margin-top: 50px; background-image: url('https://images.unsplash.com/photo-1615800098779-1be32e60cca3?q=80&w=1000&auto=format&fit=crop'); }
         .img-2 { height: 450px; background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop'); }
 
         /* --- Intro Section --- */
-        .intro {
-            padding: 150px 60px; text-align: center;
-            max-width: 900px; margin: 0 auto;
-        }
-
+        .intro { padding: 150px 60px; text-align: center; max-width: 900px; margin: 0 auto; }
         .intro h2 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 30px; }
-        .intro p {
-            font-size: 1rem; line-height: 1.8; color: var(--text-muted);
-            max-width: 600px; margin: 0 auto; font-weight: 300;
-        }
+        .intro p { font-size: 1rem; line-height: 1.8; color: var(--text-muted); max-width: 600px; margin: 0 auto; font-weight: 300; }
 
         /* --- Offerings Section --- */
-        .offerings {
-            padding: 100px 60px; border-top: 1px solid #E8E6E1;
-            display: grid; grid-template-columns: 1fr 2fr; gap: 100px;
-        }
-
+        .offerings { padding: 100px 60px; border-top: 1px solid #E8E6E1; display: grid; grid-template-columns: 1fr 2fr; gap: 100px; }
         .offering-item {
-            display: flex; justify-content: space-between;
-            padding: 30px 0; border-bottom: 1px solid #E8E6E1;
-            align-items: baseline; transition: padding-left 0.4s ease;
-            cursor: pointer;
+            display: flex; justify-content: space-between; padding: 30px 0; border-bottom: 1px solid #E8E6E1;
+            align-items: baseline; transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: pointer;
         }
-
-        .offering-item:hover { padding-left: 20px; }
-        
-        .offering-title { font-size: 2.5rem; }
+        .offering-item:hover { padding-left: 20px; color: #A8A6A1; }
+        .offering-title { font-size: 2.5rem; transition: color 0.5s ease; }
         .offering-num { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: var(--text-muted); }
 
-        /* --- Button --- */
         .btn-primary {
-            display: inline-block; margin-top: 40px; padding: 15px 40px;
-            border: 1px solid var(--text-dark); color: var(--text-dark);
-            text-decoration: none; text-transform: uppercase;
+            display: inline-block; margin-top: 40px; padding: 15px 40px; border: 1px solid var(--text-dark);
+            color: var(--text-dark); text-decoration: none; text-transform: uppercase;
             letter-spacing: 2px; font-size: 0.7rem; transition: 0.4s;
         }
-
         .btn-primary:hover { background: var(--text-dark); color: var(--bg-color); }
 
-        /* --- Mobile Responsive --- */
         @media (max-width: 900px) {
             nav { flex-direction: column; gap: 20px; padding: 30px; text-align: center; }
             .hero { grid-template-columns: 1fr; padding: 150px 30px 50px; text-align: center; }
             .hero-title { font-size: 3.5rem; }
-            .hero-text { margin: 0 auto; }
             .hero-images { margin-top: 40px; }
             .intro h2 { font-size: 2.5rem; }
             .offerings { grid-template-columns: 1fr; gap: 50px; padding: 50px 30px; }
@@ -142,7 +118,7 @@
 </head>
 <body>
 
-    <nav>
+    <nav class="reveal">
         <div class="nav-links">
             <a href="#">About</a>
             <a href="#">Offerings</a>
@@ -155,44 +131,70 @@
     </nav>
 
     <section class="hero">
-        <div class="hero-text">
+        <div class="hero-text reveal delay-1">
             <span class="eyebrow">Made for the precise & the artfully ambitious</span>
             <h1 class="hero-title">Let your business live in its most <span class="italic">inspired form.</span></h1>
             <a href="#" class="btn-primary">Inquire Now</a>
         </div>
         <div class="hero-images">
-            <div class="img-placeholder img-1"></div>
-            <div class="img-placeholder img-2"></div>
+            <div class="img-wrapper reveal delay-2"><div class="img-placeholder img-1"></div></div>
+            <div class="img-wrapper reveal delay-3"><div class="img-placeholder img-2"></div></div>
         </div>
     </section>
 
     <section class="intro">
-        <span class="eyebrow">Welcome to the Studio</span>
-        <h2>Where <span class="italic">systematic purpose</span> becomes art.</h2>
-        <p>Visions by ISO is an independent design studio devoted to building distinctive visual experiences and administrative systems for creative businesses. We blend clinical precision with artistic strategy to build brands that connect, inspire, and endure.</p>
+        <span class="eyebrow reveal">Welcome to the Studio</span>
+        <h2 class="reveal delay-1">Where <span class="italic">systematic purpose</span> becomes art.</h2>
+        <p class="reveal delay-2">Visions by ISO is an independent design studio devoted to building distinctive visual experiences and administrative systems for creative businesses. We blend clinical precision with artistic strategy to build brands that connect, inspire, and endure.</p>
     </section>
 
     <section class="offerings">
-        <div>
+        <div class="reveal">
             <span class="eyebrow">The Offerings</span>
             <h2 style="font-size: 3rem; margin-bottom: 20px;">Results that create <span class="italic">meaningful, lasting</span> impact.</h2>
             <a href="#" class="btn-primary">Explore Our Services</a>
         </div>
         <div class="offering-list">
-            <div class="offering-item">
+            <div class="offering-item reveal delay-1">
                 <h3 class="offering-title">Creative Direction</h3>
                 <span class="offering-num">/ 01</span>
             </div>
-            <div class="offering-item">
+            <div class="offering-item reveal delay-2">
                 <h3 class="offering-title">Digital Systems & EMR</h3>
                 <span class="offering-num">/ 02</span>
             </div>
-            <div class="offering-item">
+            <div class="offering-item reveal delay-3">
                 <h3 class="offering-title">Video & Photography</h3>
                 <span class="offering-num">/ 03</span>
             </div>
         </div>
     </section>
 
+    <script>
+        // This script watches the screen. When an element with the class 'reveal' enters the screen, it adds the class 'active'.
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const revealOptions = {
+                threshold: 0.15, // Triggers when 15% of the element is visible
+                rootMargin: "0px 0px -50px 0px" // Adds a slight delay before triggering
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target); // Stops watching once it has animated
+                    }
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
 </body>
 </html>
