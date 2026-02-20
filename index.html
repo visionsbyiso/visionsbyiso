@@ -276,32 +276,60 @@
     }
 
     /* WORK */
-    .work-section { padding: var(--sp-4xl) 0; background: var(--parchment); }
+    .work-section { padding: var(--sp-4xl) var(--sp-2xl); background: var(--parchment); }
 
     .work-header {
       max-width: var(--max-w); margin: 0 auto;
-      padding: 0 var(--sp-2xl) var(--sp-2xl);
+      padding: 0 0 var(--sp-3xl);
       display: flex; align-items: flex-end; justify-content: space-between;
     }
 
     .work-grid {
-      max-width: var(--max-w); margin: 0 auto; padding: 0 var(--sp-2xl);
-      display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px;
+      display: flex;
+      gap: var(--sp-md);
+      margin-top: var(--sp-lg);
+      animation: scroll 40s linear infinite;
+      width: fit-content;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .work-grid:hover {
+      animation-play-state: paused;
     }
 
     .work-card {
-      position: relative; overflow: hidden;
-      border-radius: var(--radius); cursor: none;
+      flex: 0 0 280px;
+      position: relative; 
+      overflow: hidden;
+      border-radius: var(--radius); 
+      cursor: grab;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease) forwards;
+      transition: transform 0.3s var(--ease);
     }
-    .work-card:nth-child(1) { grid-column: span 7; }
-    .work-card:nth-child(2) { grid-column: span 5; }
-    .work-card:nth-child(3) { grid-column: span 4; }
-    .work-card:nth-child(4) { grid-column: span 5; }
-    .work-card:nth-child(5) { grid-column: span 3; }
 
-    .wc-img { width: 100%; padding-top: 78%; position: relative; overflow: hidden; }
-    .work-card:nth-child(1) .wc-img,
-    .work-card:nth-child(2) .wc-img { padding-top: 85%; }
+    .work-card:active {
+      cursor: grabbing;
+    }
+
+    .work-card:nth-child(1) { animation-delay: 0.1s; }
+    .work-card:nth-child(2) { animation-delay: 0.2s; }
+    .work-card:nth-child(3) { animation-delay: 0.3s; }
+    .work-card:nth-child(4) { animation-delay: 0.4s; }
+    .work-card:nth-child(5) { animation-delay: 0.5s; }
+    .work-card:nth-child(6) { animation-delay: 0.6s; }
+    .work-card:nth-child(7) { animation-delay: 0.7s; }
+    .work-card:nth-child(8) { animation-delay: 0.8s; }
+
+    .wc-img { width: 100%; aspect-ratio: 3/4; position: relative; overflow: hidden; }
 
     .wc-bg {
       position: absolute; inset: 0;
@@ -679,6 +707,51 @@
       <div class="wc-img"><div class="wc-bg bg5"></div><div class="wc-overlay"><p class="wc-cat">Identity</p><h3 class="wc-title">Arunava</h3></div></div>
       <div class="wc-label"><p class="cat">Visual Identity</p><h3>Arunava</h3></div>
     </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg1"></div><div class="wc-overlay"><p class="wc-cat">Brand Strategy</p><h3 class="wc-title">Lumina Co.</h3></div></div>
+      <div class="wc-label"><p class="cat">Brand Strategy · Design</p><h3>Lumina Co.</h3></div>
+    </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg3"></div><div class="wc-overlay"><p class="wc-cat">Visual Design</p><h3 class="wc-title">Essence Studio</h3></div></div>
+      <div class="wc-label"><p class="cat">Visual Design · Identity</p><h3>Essence Studio</h3></div>
+    </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg4"></div><div class="wc-overlay"><p class="wc-cat">Brand Development</p><h3 class="wc-title">Meridian</h3></div></div>
+      <div class="wc-label"><p class="cat">Brand Development</p><h3>Meridian</h3></div>
+    </div>
+    <!-- Duplicated cards for infinite scroll -->
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg1"></div><div class="wc-overlay"><p class="wc-cat">Brand Identity</p><h3 class="wc-title">Blair Skincare</h3></div></div>
+      <div class="wc-label"><p class="cat">Brand Identity · Packaging</p><h3>Blair Skincare</h3></div>
+    </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg2"></div><div class="wc-overlay"><p class="wc-cat">Visual Identity</p><h3 class="wc-title">Studio Petall</h3></div></div>
+      <div class="wc-label"><p class="cat">Visual Identity</p><h3>Studio Petall</h3></div>
+    </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg3"></div><div class="wc-overlay"><p class="wc-cat">Web Design</p><h3 class="wc-title">Hart &amp; Hill Interiors</h3></div></div>
+      <div class="wc-label"><p class="cat">Web Design</p><h3>Hart &amp; Hill Interiors</h3></div>
+    </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg4"></div><div class="wc-overlay"><p class="wc-cat">Branding</p><h3 class="wc-title">Nava Media House</h3></div></div>
+      <div class="wc-label"><p class="cat">Branding · Strategy</p><h3>Nava Media House</h3></div>
+    </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg5"></div><div class="wc-overlay"><p class="wc-cat">Identity</p><h3 class="wc-title">Arunava</h3></div></div>
+      <div class="wc-label"><p class="cat">Visual Identity</p><h3>Arunava</h3></div>
+    </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg1"></div><div class="wc-overlay"><p class="wc-cat">Brand Strategy</p><h3 class="wc-title">Lumina Co.</h3></div></div>
+      <div class="wc-label"><p class="cat">Brand Strategy · Design</p><h3>Lumina Co.</h3></div>
+    </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg3"></div><div class="wc-overlay"><p class="wc-cat">Visual Design</p><h3 class="wc-title">Essence Studio</h3></div></div>
+      <div class="wc-label"><p class="cat">Visual Design · Identity</p><h3>Essence Studio</h3></div>
+    </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg4"></div><div class="wc-overlay"><p class="wc-cat">Brand Development</p><h3 class="wc-title">Meridian</h3></div></div>
+      <div class="wc-label"><p class="cat">Brand Development</p><h3>Meridian</h3></div>
+    </div>
   </div>
 </section>
 
@@ -831,6 +904,18 @@
   }, { threshold: 0.15 });
 
   document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+
+  // Work grid carousel pause on hover
+  const workGrid = document.querySelector('.work-grid');
+  if (workGrid) {
+    workGrid.addEventListener('mouseenter', () => {
+      workGrid.style.animationPlayState = 'paused';
+    });
+
+    workGrid.addEventListener('mouseleave', () => {
+      workGrid.style.animationPlayState = 'running';
+    });
+  }
 </script>
 
 </body>
