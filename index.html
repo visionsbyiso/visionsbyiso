@@ -1,54 +1,155 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2566">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visions by ISO | Coming Soon</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #F7F5F0; /* Soft editorial cream */
+            --text-color: #2C2C2A; /* Warm charcoal */
+            --accent-color: #5A5A58; /* Muted gray */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 40px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.75rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 300;
+            margin: 0 0 10px 0;
+            line-height: 1.1;
+        }
+
+        .title i {
+            font-style: italic;
+            color: #4A4A48;
+        }
+
+        .coming-soon {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            font-weight: 300;
+            margin-top: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .coming-soon::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background-color: var(--text-color);
+            margin: 15px auto 0;
+        }
+
+        /* --- New Form Styling --- */
+        .waitlist-form {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        .email-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--accent-color);
+            padding: 10px 5px;
+            width: 280px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-color);
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .email-input::placeholder {
+            color: #A0A09D;
+            font-weight: 200;
+        }
+
+        .email-input:focus {
+            border-bottom: 1px solid var(--text-color);
+        }
+
+        .submit-btn {
+            background: transparent;
+            border: 1px solid var(--text-color);
+            padding: 12px 35px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .title { font-size: 3.5rem; }
+            .email-input { width: 100%; }
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Visions by ISO | Creative &amp; Administrative Studio&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&amp;family=Inter:wght@300;400&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>:root { --cream: #f9f7f2; --dark: #1a1a1a; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body { background: var(--cream); color: var(--dark); font-family: 'Inter', sans-serif; margin: 0; line-height: 1.6; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>h1, h2 { font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>header { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-title { font-size: 4rem; margin-bottom: 10px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-sub { font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 100px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.work-item { background: #fff; height: 400px; display: flex; align-items: center; justify-content: center; border: 1px solid #eee; transition: 0.4s; grayscale: 100%; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.work-item:hover { transform: translateY(-10px); filter: grayscale(0%); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.contact-btn { margin-top: 50px; padding: 15px 40px; border: 1px solid var(--dark); text-decoration: none; color: var(--dark); text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.contact-btn:hover { background: var(--dark); color: var(--cream); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="hero-sub"&gt;Creative Direction &amp; Administrative Systems&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="hero-title"&gt;Visions by ISO&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="mailto:hello@visionsbyiso.com" class="contact-btn"&gt;Inquire Now&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="portfolio-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="work-item"&gt;Creative Project 01&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="work-item"&gt;Admin Automation 02&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="work-item"&gt;Visual Design 03&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+    <div class="container">
+        <div class="subtitle">Marketing Design Studio</div>
+        <h1 class="title">Visions by <i>ISO</i></h1>
+        <div class="coming-soon">Coming Soon</div>
+
+        <form class="waitlist-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <input type="email" name="email" class="email-input" placeholder="Join the waitlist" required>
+            <button type="submit" class="submit-btn">Inquire</button>
+        </form>
+    </div>
 </body>
 </html>
