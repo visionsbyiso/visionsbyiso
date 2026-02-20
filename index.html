@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Visions by ISO | In its Most Inspired Form</title>
+    <title>Visions by ISO | Marketing & Design Studio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,159 +15,125 @@
             --text-dark: #2B2A28; 
             --text-muted: #7A7975;
             --border: #E8E6E1;
-            --transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --bezier: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         *, *::before, *::after { box-sizing: border-box; }
-        body, html { margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-dark); font-family: 'Montserrat', sans-serif; overflow-x: hidden; width: 100%; scroll-behavior: smooth; }
+        body, html { 
+            margin: 0; padding: 0; background-color: var(--bg-color); 
+            color: var(--text-dark); font-family: 'Montserrat', sans-serif; 
+            overflow-x: hidden; width: 100%; scroll-behavior: smooth; 
+        }
 
-        /* --- Typography --- */
         h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; margin: 0; line-height: 1.1; }
         .italic { font-style: italic; }
-        .eyebrow { text-transform: uppercase; letter-spacing: 4px; font-size: 0.65rem; color: var(--text-muted); margin-bottom: 25px; display: block; font-weight: 400; }
-        p { font-size: 0.95rem; line-height: 1.8; font-weight: 300; }
+        .eyebrow { text-transform: uppercase; letter-spacing: 4px; font-size: 0.65rem; color: var(--text-muted); margin-bottom: 25px; display: block; }
 
-        /* --- Animations --- */
-        .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
+        /* Reveal Animation Engine */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s var(--bezier); }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .delay-1 { transition-delay: 0.2s; }
-        .delay-2 { transition-delay: 0.4s; }
 
-        /* --- Navigation --- */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 40px 60px; position: fixed; top: 0; width: 100%; z-index: 1000; background: var(--bg-color); border-bottom: 1px solid transparent; transition: 0.3s; }
-        .nav-scrolled { padding: 20px 60px; border-bottom: 1px solid var(--border); }
-        .nav-links { display: flex; gap: 40px; width: 33%; }
+        /* Navigation */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 40px 60px; position: fixed; top: 0; width: 100%; z-index: 1000; 
+            background: transparent; transition: 0.3s ease; 
+        }
+        .nav-scrolled { background: var(--bg-color); padding: 25px 60px; border-bottom: 1px solid var(--border); }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; letter-spacing: 3px; text-transform: uppercase; text-align: center; flex: 1; }
+        .nav-links { display: flex; gap: 40px; flex: 1; }
         .nav-links.right { justify-content: flex-end; }
-        .nav-links a { text-decoration: none; color: var(--text-dark); text-transform: uppercase; letter-spacing: 2px; font-size: 0.65rem; transition: 0.3s; }
-        .nav-links a:hover { opacity: 0.4; }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; letter-spacing: 3px; text-transform: uppercase; width: 33%; text-align: center; cursor: pointer; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); text-transform: uppercase; letter-spacing: 2px; font-size: 0.65rem; }
 
-        /* --- Hero Section --- */
-        section { padding: 120px 80px; position: relative; }
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding-top: 180px; }
-        .hero-container { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; max-width: 1400px; width: 100%; }
-        .hero-title { font-size: 6rem; margin-bottom: 30px; }
+        /* --- VIDEO HERO --- */
+        .hero-video-container {
+            position: relative; height: 100vh; width: 100%;
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
+        }
         
-        .image-frame { width: 100%; background: #EAE8E3; overflow: hidden; position: relative; }
-        .image-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 2s ease; }
-        .image-frame:hover img { transform: scale(1.08); }
-        .hero-img-primary { height: 700px; }
-        .hero-img-secondary { height: 450px; width: 80%; margin-top: -100px; margin-left: auto; }
+        #heroVideo {
+            position: absolute; top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -1; filter: brightness(0.9); /* Darkens slightly for text readability */
+        }
 
-        /* --- Services/Offerings --- */
-        .offerings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; border-top: 1px solid var(--border); padding-top: 80px; }
-        .service-row { display: flex; justify-content: space-between; align-items: baseline; padding: 35px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; transition: 0.4s; }
-        .service-row:hover { padding-left: 25px; color: var(--text-muted); }
-        .service-row h3 { font-size: 2.8rem; }
-        .service-num { font-size: 0.7rem; letter-spacing: 1px; }
+        .hero-content {
+            text-align: center; z-index: 1; color: var(--text-dark);
+            max-width: 900px; padding: 20px;
+        }
+        .hero-title { font-size: 5.5rem; margin-bottom: 40px; }
 
-        /* --- Overlay Form --- */
-        #contactOverlay { position: fixed; inset: 0; background: var(--bg-color); z-index: 2000; display: none; opacity: 0; transition: 0.6s; align-items: center; justify-content: center; }
-        .close-btn { position: absolute; top: 40px; right: 60px; font-size: 2rem; cursor: pointer; font-weight: 200; }
-        .form-container { width: 100%; max-width: 500px; text-align: center; }
-        input, textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border); padding: 15px 0; margin-bottom: 30px; font-family: 'Montserrat'; outline: none; transition: 0.3s; }
-        input:focus { border-bottom: 1px solid var(--text-dark); }
-        .btn { display: inline-block; padding: 18px 45px; border: 1px solid var(--text-dark); background: transparent; color: var(--text-dark); text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; cursor: pointer; transition: 0.4s; }
+        /* Sections & Buttons */
+        section { padding: 120px 80px; max-width: 1400px; margin: 0 auto; }
+        .btn { 
+            display: inline-block; padding: 18px 45px; border: 1px solid var(--text-dark); 
+            background: transparent; color: var(--text-dark); text-transform: uppercase; 
+            letter-spacing: 3px; font-size: 0.7rem; cursor: pointer; transition: 0.4s;
+            text-decoration: none;
+        }
         .btn:hover { background: var(--text-dark); color: var(--bg-color); }
 
-        /* --- Mobile --- */
+        /* Contact Overlay */
+        #contactOverlay { position: fixed; inset: 0; background: var(--bg-color); z-index: 2000; display: none; opacity: 0; transition: 0.6s; align-items: center; justify-content: center; }
+        .form-container { width: 100%; max-width: 500px; padding: 40px; text-align: center; }
+        input, textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border); padding: 15px 0; margin-bottom: 30px; font-family: 'Montserrat'; outline: none; }
+        
         @media (max-width: 900px) {
-            nav { padding: 25px 30px; }
+            nav { padding: 25px 20px; }
             .nav-links { display: none; }
-            .logo { width: 100%; font-size: 1.4rem; }
-            section { padding: 80px 30px; }
-            .hero-container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-            .hero-title { font-size: 3.8rem; }
-            .hero-img-secondary { display: none; }
-            .offerings-grid { grid-template-columns: 1fr; gap: 60px; }
-            .service-row h3 { font-size: 2rem; }
+            .hero-title { font-size: 3.2rem; }
+            section { padding: 80px 20px; }
         }
     </style>
 </head>
 <body>
 
     <nav id="navbar">
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#work">Work</a>
-        </div>
-        <div class="logo" onclick="window.scrollTo(0,0)">Visions by ISO</div>
-        <div class="nav-links right">
-            <a href="#offerings">Offerings</a>
-            <a href="#" onclick="openContact()">Inquire</a>
-        </div>
+        <div class="nav-links"><a href="#about">About</a></div>
+        <div class="logo">Visions by ISO</div>
+        <div class="nav-links right"><a href="#" onclick="openContact()">Inquire</a></div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-text reveal">
-                <span class="eyebrow">Made for the Passionate & Intentional</span>
-                <h1 class="hero-title">Let your business live in its most <span class="italic">inspired form.</span></h1>
-                <button class="btn" onclick="openContact()">Inquire Now</button>
-            </div>
-            <div class="hero-visuals reveal delay-1">
-                <div class="image-frame hero-img-primary">
-                    </div>
-                <div class="image-frame hero-img-secondary">
-                    </div>
-            </div>
+    <div class="hero-video-container">
+        <video autoplay muted loop playsinline id="heroVideo">
+            <source src="source src="videobg.mp4"" type="video/mp4">
+        </video>
+        
+        <div class="hero-content reveal">
+            <span class="eyebrow">Precise Systems. Inspired Design.</span>
+            <h1 class="hero-title">In its most <span class="italic">inspired form.</span></h1>
+            <a href="#" class="btn" onclick="openContact()">Inquire Now</a>
         </div>
-    </section>
+    </div>
 
-    <section id="about">
-        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <span class="eyebrow reveal">Welcome to the Studio</span>
-            <h2 class="hero-title reveal delay-1" style="font-size: 4rem;">Where <span class="italic">purpose</span> becomes art.</h2>
-            <p class="reveal delay-2">Visions by ISO is an independent design studio devoted to building distinctive visual experiences for creative businesses. Guided by clinical precision, we blend artistry and strategy to build visual systems that move your business forward.</p>
-        </div>
-    </section>
-
-    <section id="offerings">
-        <div class="offerings-grid">
-            <div class="reveal">
-                <span class="eyebrow">The Offerings</span>
-                <h2 style="font-size: 3.5rem;">Results that create <span class="italic">meaningful</span> impact.</h2>
-                <button class="btn" style="margin-top: 40px;" onclick="openContact()">Explore Services</button>
-            </div>
-            <div class="reveal delay-1">
-                <a href="#" class="service-row">
-                    <h3>Brand ID</h3>
-                    <span class="service-num">/ 01</span>
-                </a>
-                <a href="#" class="service-row">
-                    <h3>Digital Home</h3>
-                    <span class="service-num">/ 02</span>
-                </a>
-                <a href="#" class="service-row">
-                    <h3>Studio Days</h3>
-                    <span class="service-num">/ 03</span>
-                </a>
-            </div>
-        </div>
+    <section id="about" style="text-align: center; padding: 150px 20px;">
+        <span class="eyebrow reveal">The Philosophy</span>
+        <h2 class="reveal delay-1" style="font-size: 4rem; max-width: 900px; margin: 0 auto;">Where <span class="italic">clinical precision</span> meets art.</h2>
+        <p class="reveal delay-2" style="max-width: 600px; margin: 40px auto 0;">Visions by ISO is a design studio devoted to building distinctive visual experiences. We bridge the gap between organized systems and high-end creativity.</p>
     </section>
 
     <div id="contactOverlay">
-        <span class="close-btn" onclick="closeContact()">&times;</span>
+        <span style="position: absolute; top: 40px; right: 40px; cursor: pointer; font-size: 2rem;" onclick="closeContact()">&times;</span>
         <div class="form-container">
-            <span class="eyebrow">Contact</span>
+            <span class="eyebrow">The Inquiry</span>
             <h2 style="font-size: 3rem; margin-bottom: 40px;">Let's <span class="italic">begin.</span></h2>
             <form action="https://formspree.io/f/mqldaqwx" method="POST">
                 <input type="text" name="name" placeholder="Name" required>
                 <input type="email" name="email" placeholder="Email" required>
-                <textarea name="message" placeholder="Tell me about your vision..."></textarea>
+                <textarea name="message" placeholder="Project details..."></textarea>
                 <button type="submit" class="btn">Send Inquiry</button>
             </form>
         </div>
     </div>
 
     <script>
-        // Intersection Observer for Scroll Reveals
+        // Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // Navbar Scroll Effect
@@ -178,16 +144,8 @@
         };
 
         // Overlay Logic
-        function openContact() {
-            const el = document.getElementById('contactOverlay');
-            el.style.display = 'flex';
-            setTimeout(() => el.style.opacity = '1', 10);
-        }
-        function closeContact() {
-            const el = document.getElementById('contactOverlay');
-            el.style.opacity = '0';
-            setTimeout(() => el.style.display = 'none', 600);
-        }
+        function openContact() { const el = document.getElementById('contactOverlay'); el.style.display = 'flex'; setTimeout(() => el.style.opacity = '1', 10); }
+        function closeContact() { const el = document.getElementById('contactOverlay'); el.style.opacity = '0'; setTimeout(() => el.style.display = 'none', 600); }
     </script>
 </body>
 </html>
