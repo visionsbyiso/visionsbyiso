@@ -1,147 +1,837 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISO | In Its Most Inspired Form</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400&family=Pinyon+Script&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-cream: #fcfaf7;
-            --text-dark: #2a2a2a;
-            --accent-gold: #a68a64;
-            --font-serif: 'Cormorant Garamond', serif;
-            --font-sans: 'Montserrat', sans-serif;
-            --font-script: 'Pinyon Script', cursive;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISO — See Deeply. Shape Intentionally.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-cream); color: var(--text-dark); font-family: var(--font-sans); overflow-x: hidden; }
+    :root {
+      --parchment:   #E8E2D6;
+      --warm-white:  #F5F1EB;
+      --dark-earth:  #2E2418;
+      --terracotta:  #A0522D;
+      --olive-dusk:  #6B6B4E;
+      --sand:        #D4C9B8;
+      --clay:        #C4956A;
+      --stone:       #9C9485;
 
-        /* Texture Overlay */
-        .texture {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-            opacity: 0.2; pointer-events: none; z-index: 999;
-        }
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
 
-        /* Navigation */
-        nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 30px 6%; position: fixed; width: 100%; top: 0; z-index: 1000;
-            background: rgba(252, 250, 247, 0.8); backdrop-filter: blur(10px);
-        }
+      --sp-xs:  8px;
+      --sp-sm:  16px;
+      --sp-md:  24px;
+      --sp-lg:  40px;
+      --sp-xl:  60px;
+      --sp-2xl: 80px;
+      --sp-3xl: 120px;
+      --sp-4xl: 160px;
 
-        .logo { font-family: var(--font-serif); font-size: 1.5rem; letter-spacing: 5px; text-transform: uppercase; text-decoration: none; color: var(--text-dark); }
+      --radius: 3px;
+      --border: 1px solid var(--sand);
+      --shadow: 0 8px 30px rgba(46,36,24,0.06);
+      --shadow-md: 0 16px 50px rgba(46,36,24,0.12);
+      --ease: cubic-bezier(0.25, 0, 0, 1);
+      --max-w: 1200px;
+    }
 
-        /* Hero */
-        .hero {
-            height: 100vh; display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; padding: 0 10%;
-        }
+    body {
+      background: var(--parchment);
+      color: var(--dark-earth);
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.8;
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-        .hero h1 { font-family: var(--font-serif); font-size: clamp(2rem, 8vw, 4.5rem); font-weight: 300; line-height: 1.1; }
-        .hero h1 span { font-family: var(--font-script); color: var(--accent-gold); display: block; font-size: 0.8em; margin-top: -10px; }
+    /* CURSOR */
+    .cursor {
+      position: fixed;
+      width: 10px; height: 10px;
+      background: var(--terracotta);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s var(--ease), height 0.3s var(--ease), background 0.3s, opacity 0.3s;
+      mix-blend-mode: multiply;
+    }
+    .cursor.expand { width: 40px; height: 40px; background: var(--clay); opacity: 0.45; }
 
-        /* The Grid - FIXED FOR VISIBILITY */
-        .section { padding: 100px 6%; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    /* GRAIN */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      z-index: 8888; pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px;
+    }
 
-        .grid-item { 
-            background: #eee; 
-            aspect-ratio: 4/5; 
-            overflow: hidden; 
-            position: relative;
-            display: block; /* Ensures it takes up space */
-        }
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 30px var(--sp-2xl);
+      transition: background 0.4s var(--ease), padding 0.4s var(--ease);
+    }
+    nav.scrolled {
+      background: rgba(232,226,214,0.95);
+      backdrop-filter: blur(14px);
+      padding: 18px var(--sp-2xl);
+      border-bottom: var(--border);
+    }
 
-        img, video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.15rem; font-weight: 500;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      text-decoration: none; color: var(--dark-earth);
+    }
+    .nav-logo span {
+      display: block;
+      font-style: italic; font-weight: 300; font-size: 0.72rem;
+      letter-spacing: 0.16em; color: var(--stone); margin-top: -2px;
+    }
 
-        /* FAILSAFE ANIMATION: If JS fails, they stay visible. If JS works, they fade in. */
-        .reveal {
-            opacity: 1; /* Default to visible */
-            transform: translateY(0);
-            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+    .nav-links { display: flex; gap: 38px; list-style: none; }
+    .nav-links a {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.32em; text-transform: uppercase;
+      text-decoration: none; color: var(--dark-earth);
+      position: relative; padding-bottom: 3px;
+      transition: color 0.25s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 100%; height: 1px;
+      background: var(--terracotta);
+      transition: right 0.3s var(--ease);
+    }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-links a:hover::after { right: 0; }
 
-        /* If browser supports IntersectionObserver, we start them at 0 */
-        @supports (opacity: 0) {
-            .js-enabled .reveal {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            .js-enabled .reveal.active {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 5fr 7fr;
+      overflow: hidden; position: relative;
+    }
 
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
-            nav .nav-links { display: none; }
-        }
-    </style>
+    .hero-left {
+      padding: var(--sp-4xl) var(--sp-2xl) var(--sp-3xl);
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; z-index: 1;
+    }
+
+    .overline {
+      font-size: 9px; font-weight: 500;
+      letter-spacing: 0.52em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: var(--sp-lg);
+      opacity: 0; animation: fadeUp 0.9s 0.2s var(--ease) forwards;
+    }
+
+    .hero-left h1 {
+      font-family: var(--serif);
+      font-size: clamp(50px, 5.5vw, 76px);
+      font-weight: 300; line-height: 1.06;
+      opacity: 0; animation: fadeUp 1s 0.4s var(--ease) forwards;
+    }
+    .hero-left h1 em { font-style: italic; color: var(--terracotta); }
+
+    .hero-body {
+      font-size: 14px; line-height: 1.9; color: var(--stone);
+      max-width: 370px; margin-top: var(--sp-lg);
+      opacity: 0; animation: fadeUp 0.9s 0.62s var(--ease) forwards;
+    }
+
+    .hero-actions {
+      display: flex; align-items: center; gap: var(--sp-lg);
+      margin-top: var(--sp-xl);
+      opacity: 0; animation: fadeUp 0.9s 0.82s var(--ease) forwards;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 15px 38px;
+      background: var(--terracotta); color: var(--warm-white);
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      text-decoration: none; border-radius: var(--radius);
+      transition: background 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s;
+    }
+    .btn-primary:hover { background: var(--dark-earth); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+    .btn-text {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      text-decoration: none; color: var(--dark-earth);
+      border-bottom: 1px solid var(--sand); padding-bottom: 3px;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .btn-text:hover { color: var(--terracotta); border-color: var(--terracotta); }
+
+    /* hero image cluster */
+    .hero-right {
+      position: relative; overflow: hidden;
+      opacity: 0; animation: fadeIn 1.3s 0.5s var(--ease) forwards;
+    }
+
+    .h-img {
+      position: absolute; border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow-md);
+    }
+    .h-img-a { top: 14%; right: 7%; width: 54%; aspect-ratio: 3/4; }
+    .h-img-b { bottom: 8%; left: 6%; width: 42%; aspect-ratio: 4/5; }
+    .h-img-c { top: 7%; left: 4%; width: 30%; aspect-ratio: 5/6; }
+
+    .img-inner {
+      width: 100%; height: 100%;
+      background: linear-gradient(145deg, var(--sand) 0%, var(--clay) 55%, #7a5a42 100%);
+    }
+    .img-inner.v2 { background: linear-gradient(155deg, var(--parchment), var(--sand), var(--olive-dusk) 140%); }
+    .img-inner.v3 { background: linear-gradient(165deg, var(--clay), var(--terracotta) 80%, var(--dark-earth)); }
+
+    .img-wrap {
+      width: 100%; height: 100%;
+      background: var(--warm-white); padding: 7px;
+      border-radius: var(--radius);
+    }
+    .img-wrap-inner { width: 100%; height: 100%; border-radius: 1px; overflow: hidden; }
+
+    .hero-scroll {
+      position: absolute; bottom: var(--sp-lg); left: var(--sp-2xl);
+      display: flex; align-items: center; gap: 14px;
+      opacity: 0; animation: fadeIn 1s 1.4s forwards;
+    }
+    .hero-scroll-line { width: 44px; height: 1px; background: var(--sand); }
+    .hero-scroll span { font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--stone); }
+
+    /* MARQUEE */
+    .marquee-strip {
+      background: var(--dark-earth);
+      padding: 22px 0; overflow: hidden; white-space: nowrap;
+    }
+    .marquee-track { display: inline-flex; animation: marquee 30s linear infinite; }
+    .marquee-item {
+      font-family: var(--serif); font-size: 1.5rem;
+      font-weight: 300; font-style: italic;
+      color: var(--parchment); padding: 0 52px;
+    }
+    .marquee-dot { color: var(--clay); font-size: 0.5rem; vertical-align: middle; opacity: 0.55; }
+
+    /* SHARED SECTION */
+    .section-label {
+      font-size: 9px; font-weight: 500;
+      letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--terracotta); margin-bottom: var(--sp-md);
+    }
+
+    h2.display {
+      font-family: var(--serif);
+      font-size: clamp(38px, 4vw, 54px);
+      font-weight: 400; line-height: 1.14;
+    }
+    h2.display em { font-style: italic; font-weight: 300; }
+
+    /* ABOUT */
+    .about-section { padding: var(--sp-4xl) 0; background: var(--warm-white); }
+
+    .about-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 var(--sp-2xl);
+      display: grid; grid-template-columns: 7fr 5fr;
+      gap: var(--sp-2xl); align-items: center;
+    }
+
+    .about-images { position: relative; height: 540px; }
+    .ab-img-a { position: absolute; top: 0; left: 0; width: 63%; aspect-ratio: 3/4; }
+    .ab-img-b { position: absolute; bottom: 0; right: 0; width: 52%; aspect-ratio: 4/5; }
+
+    .about-text { padding-left: var(--sp-lg); }
+    .about-text h2 {
+      font-family: var(--serif);
+      font-size: clamp(34px, 3.5vw, 48px);
+      font-weight: 300; line-height: 1.2;
+      margin-bottom: var(--sp-lg);
+    }
+    .about-text h2 em { font-style: italic; color: var(--terracotta); }
+    .about-text p {
+      font-size: 14px; line-height: 1.87; color: var(--stone);
+      margin-bottom: var(--sp-lg); max-width: 420px;
+    }
+
+    .pull-quote {
+      font-family: var(--serif); font-size: 1.1rem;
+      font-weight: 300; font-style: italic;
+      color: var(--olive-dusk); line-height: 1.65;
+      border-left: 2px solid var(--clay);
+      padding-left: var(--sp-md); margin: var(--sp-lg) 0;
+    }
+
+    /* WORK */
+    .work-section { padding: var(--sp-4xl) 0; background: var(--parchment); }
+
+    .work-header {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 0 var(--sp-2xl) var(--sp-2xl);
+      display: flex; align-items: flex-end; justify-content: space-between;
+    }
+
+    .work-grid {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 var(--sp-2xl);
+      display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px;
+    }
+
+    .work-card {
+      position: relative; overflow: hidden;
+      border-radius: var(--radius); cursor: none;
+    }
+    .work-card:nth-child(1) { grid-column: span 7; }
+    .work-card:nth-child(2) { grid-column: span 5; }
+    .work-card:nth-child(3) { grid-column: span 4; }
+    .work-card:nth-child(4) { grid-column: span 5; }
+    .work-card:nth-child(5) { grid-column: span 3; }
+
+    .wc-img { width: 100%; padding-top: 78%; position: relative; overflow: hidden; }
+    .work-card:nth-child(1) .wc-img,
+    .work-card:nth-child(2) .wc-img { padding-top: 85%; }
+
+    .wc-bg {
+      position: absolute; inset: 0;
+      transition: transform 0.65s var(--ease);
+    }
+    .work-card:hover .wc-bg { transform: scale(1.05); }
+
+    .bg1 { background: linear-gradient(145deg, #d4b89a, var(--clay), #8B6B55); }
+    .bg2 { background: linear-gradient(155deg, var(--olive-dusk), #3e3e2c); }
+    .bg3 { background: linear-gradient(135deg, var(--parchment), var(--sand), #b8a888); }
+    .bg4 { background: linear-gradient(150deg, var(--clay), var(--terracotta), #6b3018); }
+    .bg5 { background: linear-gradient(145deg, var(--dark-earth), var(--olive-dusk)); }
+
+    .wc-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(46,36,24,0.78) 0%, transparent 55%);
+      display: flex; flex-direction: column;
+      justify-content: flex-end; padding: var(--sp-md);
+      opacity: 0; transition: opacity 0.3s var(--ease);
+    }
+    .work-card:hover .wc-overlay { opacity: 1; }
+
+    .wc-cat { font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--clay); margin-bottom: 6px; }
+    .wc-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 300; font-style: italic; color: var(--warm-white); }
+
+    .wc-label { padding: 12px 0 0; }
+    .wc-label .cat { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--stone); margin-bottom: 4px; }
+    .wc-label h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; }
+
+    /* OFFERINGS */
+    .offerings-section { padding: var(--sp-4xl) 0; background: var(--warm-white); }
+
+    .offerings-header {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 0 var(--sp-2xl) var(--sp-2xl);
+    }
+
+    .offerings-grid {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 var(--sp-2xl);
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+    }
+
+    .offering-card {
+      padding: 50px 42px 56px;
+      background: var(--parchment);
+      border-top: 2px solid var(--sand);
+      transition: background 0.35s var(--ease);
+    }
+    .offering-card:hover { background: var(--sand); }
+    .offering-card:hover .off-num { color: var(--terracotta); }
+
+    .off-num {
+      font-size: 9px; font-weight: 500;
+      letter-spacing: 0.42em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: var(--sp-lg);
+      transition: color 0.3s;
+    }
+
+    .offering-card h3 {
+      font-family: var(--serif);
+      font-size: clamp(26px, 2.5vw, 34px);
+      font-weight: 300; line-height: 1.2;
+      margin-bottom: var(--sp-md);
+    }
+
+    .offering-card p {
+      font-size: 13.5px; line-height: 1.88; color: var(--stone);
+      margin-bottom: var(--sp-lg);
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-section { padding: var(--sp-4xl) 0; background: var(--dark-earth); color: var(--parchment); }
+    .testimonials-section .section-label { color: var(--clay); }
+
+    .testimonials-header {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 0 var(--sp-2xl) var(--sp-2xl);
+    }
+    .testimonials-header h2 {
+      font-family: var(--serif);
+      font-size: clamp(34px, 4vw, 50px);
+      font-weight: 300; line-height: 1.18; max-width: 500px;
+    }
+    .testimonials-header h2 em { font-style: italic; }
+
+    .testimonials-grid {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 var(--sp-2xl);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 52px var(--sp-2xl);
+    }
+
+    .testimonial-item { border-top: 1px solid rgba(212,201,184,0.18); padding-top: var(--sp-lg); }
+
+    .t-text {
+      font-family: var(--serif); font-size: 1.1rem;
+      font-weight: 300; font-style: italic;
+      line-height: 1.75; color: var(--sand); margin-bottom: var(--sp-md);
+    }
+
+    .t-attr { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--clay); }
+
+    /* FOUNDER */
+    .founder-section {
+      display: grid; grid-template-columns: 5fr 7fr;
+      min-height: 68vh; background: var(--olive-dusk);
+    }
+
+    .founder-text {
+      padding: var(--sp-4xl) var(--sp-2xl);
+      display: flex; flex-direction: column; justify-content: center;
+      color: var(--parchment);
+    }
+    .founder-text .section-label { color: var(--clay); }
+    .founder-text h2 {
+      font-family: var(--serif);
+      font-size: clamp(30px, 3.5vw, 44px);
+      font-weight: 300; line-height: 1.22;
+      color: var(--warm-white); margin-bottom: var(--sp-lg);
+    }
+    .founder-text h2 em { font-style: italic; }
+    .founder-text p { font-size: 14px; line-height: 1.88; color: rgba(212,201,184,0.75); margin-bottom: var(--sp-lg); }
+
+    .btn-light {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      text-decoration: none; color: var(--clay);
+      border-bottom: 1px solid rgba(196,149,106,0.45); padding-bottom: 3px;
+      transition: color 0.25s, border-color 0.25s; align-self: flex-start;
+    }
+    .btn-light:hover { color: var(--parchment); border-color: var(--parchment); }
+
+    .founder-images { position: relative; overflow: hidden; }
+    .founder-img-fill {
+      position: absolute; inset: 0;
+      background: linear-gradient(145deg, #3e2e20, var(--dark-earth));
+      opacity: 0.65;
+    }
+
+    /* CTA */
+    .cta-section { padding: var(--sp-4xl) var(--sp-2xl); background: var(--parchment); text-align: center; }
+    .cta-section h2 {
+      font-family: var(--serif);
+      font-size: clamp(42px, 6vw, 70px);
+      font-weight: 300; font-style: italic; line-height: 1.1;
+      max-width: 700px; margin: 0 auto var(--sp-xl);
+    }
+    .cta-section h2 strong { font-weight: 500; font-style: normal; }
+
+    /* FOOTER */
+    footer { background: var(--dark-earth); color: var(--parchment); padding: var(--sp-2xl) var(--sp-2xl) var(--sp-lg); }
+
+    .footer-grid {
+      max-width: var(--max-w); margin: 0 auto;
+      display: grid; grid-template-columns: 2.5fr 1fr 1fr 1.5fr;
+      gap: var(--sp-2xl); padding-bottom: var(--sp-2xl);
+      border-bottom: 1px solid rgba(212,201,184,0.1);
+      margin-bottom: var(--sp-lg);
+    }
+
+    .footer-brand-name { display: block; font-family: var(--serif); font-size: 1.1rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--parchment); margin-bottom: 3px; }
+    .footer-brand-tag { display: block; font-family: var(--serif); font-size: 0.8rem; font-style: italic; font-weight: 300; color: var(--stone); margin-bottom: var(--sp-md); }
+    .footer-brand p { font-size: 13px; line-height: 1.75; color: var(--stone); max-width: 260px; }
+
+    .footer-col h4 { font-size: 9px; letter-spacing: 0.44em; text-transform: uppercase; color: var(--clay); margin-bottom: var(--sp-md); }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: 13px; color: var(--stone); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--parchment); }
+
+    .footer-newsletter p { font-size: 13px; line-height: 1.7; color: var(--stone); margin-bottom: var(--sp-sm); }
+
+    .footer-form { display: flex; margin-top: var(--sp-sm); }
+    .footer-form input {
+      flex: 1; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,201,184,0.18); border-right: none;
+      border-radius: var(--radius) 0 0 var(--radius);
+      padding: 10px 14px; font-family: var(--sans); font-size: 12px;
+      color: var(--parchment); outline: none;
+      transition: border-color 0.3s;
+    }
+    .footer-form input::placeholder { color: var(--stone); }
+    .footer-form input:focus { border-color: var(--clay); }
+    .footer-form button {
+      background: var(--terracotta); border: none;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 10px 20px; font-family: var(--sans);
+      font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--warm-white); cursor: none;
+      transition: background 0.3s;
+    }
+    .footer-form button:hover { background: var(--clay); }
+
+    .footer-bottom { max-width: var(--max-w); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); }
+    .footer-motto { font-family: var(--serif); font-size: 0.88rem; font-style: italic; font-weight: 300; color: var(--clay); }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+    }
+    .reveal.left  { transform: translateX(-28px); }
+    .reveal.right { transform: translateX(28px); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    .stagger > * {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+    }
+    .stagger.visible > *:nth-child(1) { opacity:1;transform:none;transition-delay:0s; }
+    .stagger.visible > *:nth-child(2) { opacity:1;transform:none;transition-delay:0.12s; }
+    .stagger.visible > *:nth-child(3) { opacity:1;transform:none;transition-delay:0.24s; }
+    .stagger.visible > *:nth-child(4) { opacity:1;transform:none;transition-delay:0.36s; }
+    .stagger.visible > *:nth-child(5) { opacity:1;transform:none;transition-delay:0.48s; }
+
+    @keyframes fadeUp  { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
+    @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+    @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      nav, nav.scrolled { padding-left: var(--sp-lg); padding-right: var(--sp-lg); }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 120px var(--sp-lg) var(--sp-2xl); }
+      .hero-right { min-height: 440px; }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-text { padding-left: 0; }
+      .about-images { height: 380px; }
+      .offerings-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .founder-section { grid-template-columns: 1fr; }
+      .founder-images { min-height: 300px; }
+      .work-grid { grid-template-columns: 1fr 1fr; }
+      .work-card:nth-child(n) { grid-column: span 1; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--sp-lg); }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero-left { padding: 100px var(--sp-md) var(--sp-xl); }
+      .work-header, .offerings-header, .testimonials-header { padding-inline: var(--sp-md); }
+      .work-grid, .offerings-grid, .testimonials-grid { padding-inline: var(--sp-md); }
+      .work-grid { grid-template-columns: 1fr; }
+      .about-inner { padding-inline: var(--sp-md); }
+      .footer-grid { grid-template-columns: 1fr; }
+      footer { padding: var(--sp-xl) var(--sp-md) var(--sp-lg); }
+    }
+  </style>
 </head>
-<body class="js-enabled">
+<body>
 
-    <div class="texture"></div>
+<div class="cursor" id="cursor"></div>
 
-    <nav>
-        <a href="#" class="logo">ISO</a>
-        <div style="font-size: 0.6rem; letter-spacing: 2px;">MENU</div>
-    </nav>
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#">
+    ISO
+    <span>vision by iso</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#offerings">Offerings</a></li>
+    <li><a href="#journal">Journal</a></li>
+    <li><a href="#inquire">Inquire</a></li>
+  </ul>
+</nav>
 
-    <main>
-        <section class="hero">
-            <div class="reveal active">
-                <h1>Made for the Passionate, <br>the intentional, <br>& the artfully <span>ambitious</span></h1>
-            </div>
-        </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="overline">Independent Design Studio</p>
+    <h1>
+      Made for the<br>
+      <em>Passionate,</em><br>
+      the Intentional,<br>
+      &amp; the Artfully<br>
+      Ambitious
+    </h1>
+    <p class="hero-body">
+      We build distinctive visual experiences for creative businesses — guided by over a 
+      decade of industry experience, blending artistry and strategy to create brands that 
+      connect, inspire, and endure.
+    </p>
+    <div class="hero-actions">
+      <a href="#inquire" class="btn-primary">Inquire Now</a>
+      <a href="#work" class="btn-text">View Work →</a>
+    </div>
+  </div>
 
-        <section class="section">
-            <div class="grid">
-                <div class="grid-item reveal">
-                    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=500">
-                        <source src="https://v.ftcdn.net/02/95/94/54/700_F_295945415_SUIW60Q7WbKz6C39GUP6q5Z4I8O9B4hO_ST.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="grid-item reveal">
-                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80" alt="Design">
-                </div>
-            </div>
-        </section>
+  <div class="hero-right">
+    <div class="h-img h-img-c">
+      <div class="img-wrap"><div class="img-wrap-inner"><div class="img-inner v3"></div></div></div>
+    </div>
+    <div class="h-img h-img-a">
+      <div class="img-wrap"><div class="img-wrap-inner"><div class="img-inner"></div></div></div>
+    </div>
+    <div class="h-img h-img-b">
+      <div class="img-wrap"><div class="img-wrap-inner"><div class="img-inner v2"></div></div></div>
+    </div>
+  </div>
 
-        <section class="section" style="padding-top: 0;">
-            <div class="grid-item reveal" style="aspect-ratio: 16/7; width: 100%;">
-                <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1500&q=80" alt="Studio">
-            </div>
-        </section>
-    </main>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll to explore</span>
+  </div>
+</section>
 
-    <footer style="padding: 100px 6%; text-align: center; border-top: 1px solid #eee;">
-        <div style="font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; margin-bottom: 20px;">In Its Most Inspired Form™</div>
-        <p style="font-size: 0.6rem; letter-spacing: 2px;">© ISO 2026</p>
-    </footer>
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Brand Identity</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Visual Strategy</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Web Design</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Creative Direction</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Visual Systems</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">See Deeply · Shape Intentionally</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Brand Identity</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Visual Strategy</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Web Design</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Creative Direction</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Visual Systems</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">See Deeply · Shape Intentionally</span><span class="marquee-dot">✦</span>
+  </div>
+</div>
 
-    <script>
-        // Check if the script runs. If it does, we keep the animations. 
-        // If not, the images are already visible due to the CSS failsafe.
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-inner">
+    <div class="about-images reveal left">
+      <div class="ab-img-a h-img" style="position:absolute;">
+        <div class="img-wrap" style="height:100%"><div class="img-wrap-inner"><div class="img-inner"></div></div></div>
+      </div>
+      <div class="ab-img-b h-img" style="position:absolute;">
+        <div class="img-wrap" style="height:100%"><div class="img-wrap-inner"><div class="img-inner v2"></div></div></div>
+      </div>
+    </div>
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
+    <div class="about-text">
+      <p class="section-label reveal">Welcome to the Studio</p>
+      <h2 class="reveal">Where purpose<br><em>becomes art</em></h2>
+      <p class="reveal">An independent design studio devoted to building distinctive visual experiences for creative businesses. Guided by over a decade of industry experience, we blend artistry and strategy to build visual systems that move your business forward and draw your audience closer — crafted to connect, inspire, and endure.</p>
+      <blockquote class="pull-quote reveal">"These weren't just projects — they were stories I got to help shape."</blockquote>
+      <a href="#about" class="btn-text reveal">More About Us →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work-section" id="work">
+  <div class="work-header reveal">
+    <div>
+      <p class="section-label">Selected Work</p>
+      <h2 class="display">The work that<br><em>moved them forward</em></h2>
+    </div>
+    <a href="#work" class="btn-text">Explore All Work →</a>
+  </div>
+
+  <div class="work-grid stagger">
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg1"></div><div class="wc-overlay"><p class="wc-cat">Brand Identity</p><h3 class="wc-title">Blair Skincare</h3></div></div>
+      <div class="wc-label"><p class="cat">Brand Identity · Packaging</p><h3>Blair Skincare</h3></div>
+    </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg2"></div><div class="wc-overlay"><p class="wc-cat">Visual Identity</p><h3 class="wc-title">Studio Petall</h3></div></div>
+      <div class="wc-label"><p class="cat">Visual Identity</p><h3>Studio Petall</h3></div>
+    </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg3"></div><div class="wc-overlay"><p class="wc-cat">Web Design</p><h3 class="wc-title">Hart &amp; Hill Interiors</h3></div></div>
+      <div class="wc-label"><p class="cat">Web Design</p><h3>Hart &amp; Hill Interiors</h3></div>
+    </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg4"></div><div class="wc-overlay"><p class="wc-cat">Branding</p><h3 class="wc-title">Nava Media House</h3></div></div>
+      <div class="wc-label"><p class="cat">Branding · Strategy</p><h3>Nava Media House</h3></div>
+    </div>
+    <div class="work-card">
+      <div class="wc-img"><div class="wc-bg bg5"></div><div class="wc-overlay"><p class="wc-cat">Identity</p><h3 class="wc-title">Arunava</h3></div></div>
+      <div class="wc-label"><p class="cat">Visual Identity</p><h3>Arunava</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERINGS -->
+<section class="offerings-section" id="offerings">
+  <div class="offerings-header">
+    <p class="section-label reveal">The Offerings</p>
+    <h2 class="display reveal">Results that create<br><em>meaningful, lasting impact</em></h2>
+  </div>
+  <div class="offerings-grid stagger">
+    <div class="offering-card">
+      <p class="off-num">/ 01</p>
+      <h3>Brand<br>Identity</h3>
+      <p>A strategic, artfully built visual identity system for creative businesses. Every mark, palette, and typographic choice is made with intention — designed to move your brand forward and create lasting impact.</p>
+      <a href="#inquire" class="btn-text">Learn More →</a>
+    </div>
+    <div class="offering-card">
+      <p class="off-num">/ 02</p>
+      <h3>Digital<br>Home</h3>
+      <p>Your website is your 24/7 storefront, portfolio, and brand ambassador. We design digital experiences that reflect the depth of your work and convert your audience into loyal, lasting clients.</p>
+      <a href="#inquire" class="btn-text">Learn More →</a>
+    </div>
+    <div class="offering-card">
+      <p class="off-num">/ 03</p>
+      <h3>Studio<br>Days</h3>
+      <p>An intensive, focused design session where we tackle your most pressing visual challenges together. Walk away with polished assets, templates, and tools that make using your new brand easy.</p>
+      <a href="#inquire" class="btn-text">Learn More →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="testimonials-header">
+    <p class="section-label reveal">The Experience</p>
+    <h2 class="reveal">Words from<br><em>the studio</em></h2>
+  </div>
+  <div class="testimonials-grid stagger">
+    <div class="testimonial-item">
+      <p class="t-text">"Her design brought cohesiveness to chaos and allowed us to posture ourselves in a luxury market we would have never been able to visualize or achieve on our own."</p>
+      <p class="t-attr">David Swidrak — Swidrak &amp; Co.</p>
+    </div>
+    <div class="testimonial-item">
+      <p class="t-text">"Going through this exploratory process helped me become even more clear on the path I envision for our brand. I felt supported, heard, and understood throughout every step."</p>
+      <p class="t-attr">Rachel Leslie — Lāer Studio</p>
+    </div>
+    <div class="testimonial-item">
+      <p class="t-text">"She not only met our expectations but exceeded them in every aspect. If you're looking for a designer who can deliver something you can be immensely proud to stand behind — she is the choice."</p>
+      <p class="t-attr">Blair Hayes — Blair Skincare</p>
+    </div>
+    <div class="testimonial-item">
+      <p class="t-text">"I have been getting constant praises for how luxe my new branding looks. I'm entering the new year feeling so confident about what I have to offer my clients and what's to come."</p>
+      <p class="t-attr">Valerie Faleiro — LBV Design House</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder-section">
+  <div class="founder-text">
+    <p class="section-label reveal">Meet the Artist</p>
+    <h2 class="reveal">Creative Director<br><em>&amp; Studio Founder</em></h2>
+    <p class="reveal">A West Virginia native now based in Raleigh, North Carolina. After several years in the design agency world, the studio was founded in 2019 and has since partnered with a diverse range of industries — creating brands defined by meaningful storytelling, expressive visuals, and lasting positive impact.</p>
+    <a href="#about" class="btn-light reveal">More About Us →</a>
+  </div>
+  <div class="founder-images reveal right">
+    <div class="founder-img-fill"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="inquire">
+  <h2 class="reveal">Let your business live<br>in its most <strong>inspired</strong> form</h2>
+  <a href="#inquire" class="btn-primary reveal">Inquire Now</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-brand-name">ISO</span>
+      <span class="footer-brand-tag">See Deeply. Shape Intentionally.</span>
+      <p>An independent design studio devoted to building distinctive visual experiences — guided by artistry, strategy, and over a decade of industry experience.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#offerings">Offerings</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#journal">Journal</a></li>
+        <li><a href="#inquire">Inquire</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Keep In Touch</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Pinterest</a></li>
+        <li><a href="#">TikTok</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Education</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-newsletter">
+      <h4>The Journal</h4>
+      <p>Notes from the studio desk on inspiration, practice, and the creative life.</p>
+      <div class="footer-form">
+        <input type="email" placeholder="hello@yourbrand.com" />
+        <button>Join</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">©ISO 2025 &nbsp;/&nbsp; Policies &nbsp;/&nbsp; Version 1.0</p>
+    <p class="footer-motto">In Its Most Inspired Form™</p>
+  </div>
+</footer>
+
+<script>
+  // Smooth custom cursor
+  const cursor = document.getElementById('cursor');
+  let mx = 0, my = 0, cx = 0, cy = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function tick() {
+    cx += (mx - cx) * 0.11;
+    cy += (my - cy) * 0.11;
+    cursor.style.left = cx + 'px';
+    cursor.style.top  = cy + 'px';
+    requestAnimationFrame(tick);
+  })();
+  document.querySelectorAll('a, button, .work-card, .offering-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+  });
+
+  // Sticky nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+  // Scroll reveal — threshold 0.15 per brand spec
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+</script>
+
 </body>
 </html>
