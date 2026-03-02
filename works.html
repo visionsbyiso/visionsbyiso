@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISO - Selected Works</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --parchment: #E8E2D6;
+      --warm-white: #F5F1EB;
+      --dark-earth: #2E2418;
+      --terracotta: #A0522D;
+      --olive-dusk: #6B6B4E;
+      --sand: #D4C9B8;
+      --clay: #C4956A;
+      --stone: #9C9485;
+
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "DM Sans", system-ui, sans-serif;
+
+      --sp-xs: 8px;
+      --sp-sm: 16px;
+      --sp-md: 24px;
+      --sp-lg: 40px;
+      --sp-xl: 60px;
+      --sp-2xl: 80px;
+      --sp-3xl: 120px;
+      --sp-4xl: 160px;
+
+      --radius: 4px;
+      --border: 1px solid var(--sand);
+      --shadow: 0 8px 30px rgba(46, 36, 24, 0.06);
+      --shadow-md: 0 16px 50px rgba(46, 36, 24, 0.12);
+      --ease: cubic-bezier(0.25, 0, 0, 1);
+      --max-w: 1200px;
+    }
+
+    body {
+      font-family: var(--sans);
+      color: var(--dark-earth);
+      background: radial-gradient(circle at 15% 10%, #f2ebe0 0%, var(--parchment) 55%, #e2dacd 100%);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px;
+      pointer-events: none;
+    }
+
+    .container {
+      width: min(var(--max-w), 100% - 2 * var(--sp-2xl));
+      margin: 0 auto;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px var(--sp-2xl);
+      transition: background 0.35s var(--ease), padding 0.35s var(--ease), border-color 0.35s var(--ease);
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(232, 226, 214, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 18px var(--sp-2xl);
+      border-bottom-color: var(--sand);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--dark-earth);
+      text-decoration: none;
+      line-height: 1.1;
+    }
+
+    .nav-logo span {
+      display: block;
+      margin-top: 3px;
+      font-size: 0.7rem;
+      font-style: italic;
+      letter-spacing: 0.16em;
+      color: var(--stone);
+      text-transform: lowercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--dark-earth);
+      padding-bottom: 3px;
+      border-bottom: 1px solid transparent;
+      transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--terracotta);
+      border-bottom-color: var(--terracotta);
+    }
+
+    main { padding-top: calc(var(--sp-3xl) + var(--sp-xl)); }
+
+    .section-label {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.44em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: var(--sp-md);
+    }
+
+    .works-hero {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: var(--sp-2xl);
+      align-items: end;
+      padding-bottom: var(--sp-2xl);
+    }
+
+    .works-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(42px, 6vw, 82px);
+      font-weight: 300;
+      line-height: 1.03;
+      max-width: 780px;
+    }
+
+    .works-hero h1 em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .hero-note {
+      background: rgba(245, 241, 235, 0.65);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: var(--sp-lg);
+      margin-bottom: var(--sp-sm);
+    }
+
+    .hero-note p {
+      color: var(--stone);
+      font-size: 14px;
+      max-width: 360px;
+    }
+
+    .hero-note strong {
+      color: var(--dark-earth);
+      font-weight: 500;
+    }
+
+    .work-controls {
+      border-top: var(--border);
+      border-bottom: var(--border);
+      padding: var(--sp-md) 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-lg);
+      margin-bottom: var(--sp-2xl);
+      flex-wrap: wrap;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-sm);
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      border: var(--border);
+      background: transparent;
+      color: var(--dark-earth);
+      padding: 12px 20px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
+    }
+
+    .filter-btn:hover {
+      border-color: var(--terracotta);
+      color: var(--terracotta);
+      transform: translateY(-1px);
+    }
+
+    .filter-btn.active {
+      background: var(--dark-earth);
+      border-color: var(--dark-earth);
+      color: var(--warm-white);
+    }
+
+    .work-count {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--sp-xl) var(--sp-md);
+      padding-bottom: var(--sp-3xl);
+    }
+
+    .work-card {
+      background: rgba(245, 241, 235, 0.58);
+      border: var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+      opacity: 0;
+      animation: fadeUp 0.7s var(--ease) forwards;
+    }
+
+    .work-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: #c2b6a4;
+    }
+
+    .work-cover {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--sand);
+    }
+
+    .work-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.001);
+      transition: transform 0.65s var(--ease), filter 0.4s var(--ease);
+      filter: saturate(0.94);
+    }
+
+    .work-card:hover .work-cover img {
+      transform: scale(1.05);
+      filter: saturate(1);
+    }
+
+    .work-cover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(46, 36, 24, 0.6) 0%, transparent 62%);
+      pointer-events: none;
+    }
+
+    .work-title-overlay {
+      position: absolute;
+      left: var(--sp-md);
+      right: var(--sp-md);
+      bottom: var(--sp-md);
+      z-index: 1;
+      color: var(--warm-white);
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+
+    .work-content {
+      padding: var(--sp-md);
+    }
+
+    .work-services {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 8px;
+    }
+
+    .work-summary {
+      color: #6a6256;
+      font-size: 14px;
+      margin-bottom: var(--sp-md);
+      min-height: 3.5em;
+    }
+
+    .work-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: var(--sp-sm);
+    }
+
+    .work-badges span {
+      border: var(--border);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--olive-dusk);
+      background: rgba(107, 107, 78, 0.08);
+    }
+
+    .empty-state {
+      display: none;
+      margin: var(--sp-xl) 0 var(--sp-3xl);
+      padding: var(--sp-lg);
+      border: var(--border);
+      border-radius: var(--radius);
+      text-align: center;
+      color: var(--stone);
+      background: rgba(245, 241, 235, 0.5);
+    }
+
+    .cta-section {
+      border-top: var(--border);
+      padding: var(--sp-3xl) 0;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: var(--sp-md);
+    }
+
+    .cta-section h2 em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .cta-section p {
+      color: var(--stone);
+      max-width: 560px;
+      margin: 0 auto var(--sp-lg);
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 15px 38px;
+      background: var(--terracotta);
+      color: var(--warm-white);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: background 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+
+    .btn-primary:hover {
+      background: var(--dark-earth);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    footer {
+      border-top: var(--border);
+      padding: var(--sp-xl) 0;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--sp-md);
+      flex-wrap: wrap;
+      color: var(--stone);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 1100px) {
+      .container { width: min(var(--max-w), 100% - 2 * var(--sp-lg)); }
+      nav, nav.scrolled { padding-left: var(--sp-lg); padding-right: var(--sp-lg); }
+      .works-hero { grid-template-columns: 1fr; gap: var(--sp-lg); }
+      .hero-note { margin-bottom: 0; }
+      .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(var(--max-w), 100% - 2 * var(--sp-sm)); }
+      nav, nav.scrolled { padding-left: var(--sp-sm); padding-right: var(--sp-sm); }
+      .nav-links { display: none; }
+      main { padding-top: calc(var(--sp-2xl) + var(--sp-xl)); }
+      .work-controls { align-items: flex-start; }
+      .work-grid { grid-template-columns: 1fr; gap: var(--sp-lg); }
+      .work-summary { min-height: 0; }
+      .footer-row { font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <a class="nav-logo" href="index.html">
+      ISO
+      <span>visions by iso</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a class="active" href="works.html" aria-current="page">Work</a></li>
+      <li><a href="index.html#offerings">Offerings</a></li>
+      <li><a href="index.html#journal">Journal</a></li>
+      <li><a href="index.html#inquire">Inquire</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="container works-hero">
+      <div class="reveal">
+        <p class="section-label">Selected Work</p>
+        <h1>The projects that <em>shape brands</em> and sustain momentum</h1>
+      </div>
+      <aside class="hero-note reveal">
+        <p>
+          A focused collection of social media management, content creation, and brand identity work.
+          Each engagement is built to help clients <strong>show up clearly</strong> and convert attention into trust.
+        </p>
+      </aside>
+    </section>
+
+    <section class="container" aria-label="Work archive">
+      <div class="work-controls reveal">
+        <div class="filter-group" role="group" aria-label="Filter works by service">
+          <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All Work</button>
+          <button class="filter-btn" type="button" data-filter="social" aria-pressed="false">Social + Content</button>
+          <button class="filter-btn" type="button" data-filter="identity" aria-pressed="false">Brand Identity</button>
+        </div>
+        <p class="work-count" id="workCount">7 Projects</p>
+      </div>
+
+      <div class="work-grid" id="workGrid"></div>
+      <p class="empty-state" id="emptyState">No projects match this filter yet.</p>
+    </section>
+
+    <section class="container cta-section reveal" id="inquire">
+      <h2>Ready to build your <em>next chapter</em>?</h2>
+      <p>Tell us where your brand is now and where it needs to go next. We will shape a focused plan for content, design, and long-term visual consistency.</p>
+      <a class="btn-primary" href="index.html#inquire">Start an Inquiry</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <p>ISO - Visions by ISO</p>
+      <p>Selected Works - 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const works = [
+      {
+        title: "Sunday Skin Center",
+        services: "Social Media Management, Content Creation & Brand Identity",
+        summary: "Developed a cohesive digital presence with ongoing social management, original content systems, and a stronger brand identity foundation.",
+        image: "assets/Sunday Skin Center.webp",
+        categories: ["social", "identity"]
+      },
+      {
+        title: "Noontalk Nail Lounge",
+        services: "Social Media Management & Content Creation",
+        summary: "Built a consistent publishing rhythm and visual content direction to increase brand clarity across social touchpoints.",
+        image: "assets/Noontalk Nail Lounge.webp",
+        categories: ["social"]
+      },
+      {
+        title: "The White Drip",
+        services: "Social Media Management & Content Creation",
+        summary: "Refined content output and channel consistency to keep messaging aligned and recognizable from post to post.",
+        image: "assets/The White Drip.webp",
+        categories: ["social"]
+      },
+      {
+        title: "Salt & Stone Wellness Spa",
+        services: "Social Media Management & Content Creation",
+        summary: "Created a calm, premium visual cadence through managed content planning and brand-aligned social storytelling.",
+        image: "assets/Salt & Stone Wellness Spa.webp",
+        categories: ["social"]
+      },
+      {
+        title: "Umi Hillside Villa",
+        services: "Social Media Management, Content Creation & Brand Identity",
+        summary: "Combined identity work with social execution to present a more elevated hospitality narrative across digital channels.",
+        image: "assets/UMI Hillside Villa.webp",
+        categories: ["social", "identity"]
+      },
+      {
+        title: "June and July",
+        services: "Social Media Management & Content Creation",
+        summary: "Structured editorial content and management workflows to keep the brand visible, consistent, and conversion-ready.",
+        image: "assets/June and July.webp",
+        categories: ["social"]
+      },
+      {
+        title: "Lala & Co",
+        services: "Social Media Management & Content Creation",
+        summary: "Delivered social and content support with a focused visual voice tailored to the brand's audience and goals.",
+        image: "assets/Lala & Co.webp",
+        categories: ["social"]
+      }
+    ];
+
+    const nav = document.getElementById("nav");
+    const workGrid = document.getElementById("workGrid");
+    const workCount = document.getElementById("workCount");
+    const emptyState = document.getElementById("emptyState");
+    const filterButtons = Array.from(document.querySelectorAll(".filter-btn"));
+
+    function formatCount(count) {
+      return `${count} ${count === 1 ? "Project" : "Projects"}`;
+    }
+
+    function createBadge(label) {
+      const badge = document.createElement("span");
+      badge.textContent = label;
+      return badge;
+    }
+
+    function createWorkCard(work, index) {
+      const card = document.createElement("article");
+      card.className = "work-card";
+      card.style.animationDelay = `${index * 70}ms`;
+
+      const cover = document.createElement("figure");
+      cover.className = "work-cover";
+
+      const image = document.createElement("img");
+      image.src = work.image;
+      image.alt = `${work.title} project cover`;
+      image.loading = "lazy";
+      image.decoding = "async";
+      cover.appendChild(image);
+
+      const titleOverlay = document.createElement("figcaption");
+      titleOverlay.className = "work-title-overlay";
+      titleOverlay.textContent = work.title;
+      cover.appendChild(titleOverlay);
+
+      const content = document.createElement("div");
+      content.className = "work-content";
+
+      const services = document.createElement("p");
+      services.className = "work-services";
+      services.textContent = work.services;
+      content.appendChild(services);
+
+      const summary = document.createElement("p");
+      summary.className = "work-summary";
+      summary.textContent = work.summary;
+      content.appendChild(summary);
+
+      const badges = document.createElement("div");
+      badges.className = "work-badges";
+      badges.appendChild(createBadge("Social + Content"));
+      if (work.categories.includes("identity")) {
+        badges.appendChild(createBadge("Brand Identity"));
+      }
+      content.appendChild(badges);
+
+      card.appendChild(cover);
+      card.appendChild(content);
+      return card;
+    }
+
+    function renderWorks(filter = "all") {
+      const filteredWorks = works.filter(work => filter === "all" || work.categories.includes(filter));
+      workGrid.innerHTML = "";
+
+      filteredWorks.forEach((work, index) => {
+        workGrid.appendChild(createWorkCard(work, index));
+      });
+
+      workCount.textContent = formatCount(filteredWorks.length);
+      emptyState.style.display = filteredWorks.length ? "none" : "block";
+    }
+
+    function updateActiveFilter(selectedFilter) {
+      filterButtons.forEach(button => {
+        const isActive = button.dataset.filter === selectedFilter;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+    }
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const selectedFilter = button.dataset.filter || "all";
+        updateActiveFilter(selectedFilter);
+        renderWorks(selectedFilter);
+      });
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    window.addEventListener("scroll", () => {
+      nav.classList.toggle("scrolled", window.scrollY > 60);
+    }, { passive: true });
+
+    renderWorks("all");
+  </script>
+</body>
+</html>
