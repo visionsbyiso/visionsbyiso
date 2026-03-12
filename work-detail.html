@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Project detail page for Visions by ISO client work in social media management, content creation, and brand identity." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#E8E2D6" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Visions by ISO — Case Study" />
+  <meta property="og:description" content="Detailed process and outcomes for selected client projects by Visions by ISO." />
+  <meta property="og:image" content="https://visionsbyiso.com/assets/Sunday%20Skin%20Center.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>ISO — Work Detail</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --parchment: #E8E2D6;
+      --warm-white: #F5F1EB;
+      --dark-earth: #2E2418;
+      --terracotta: #A0522D;
+      --olive-dusk: #6B6B4E;
+      --sand: #D4C9B8;
+      --clay: #C4956A;
+      --stone: #9C9485;
+
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "DM Sans", system-ui, sans-serif;
+
+      --sp-xs: 8px;
+      --sp-sm: 16px;
+      --sp-md: 24px;
+      --sp-lg: 40px;
+      --sp-xl: 60px;
+      --sp-2xl: 80px;
+      --sp-3xl: 120px;
+
+      --radius: 6px;
+      --border: 1px solid rgba(156, 148, 133, 0.32);
+      --shadow: 0 10px 36px rgba(46, 36, 24, 0.08);
+      --ease: cubic-bezier(0.25, 0, 0, 1);
+      --max-w: 1180px;
+
+      --accent: var(--terracotta);
+      --scroll-progress: 0;
+      --drift-x: 0px;
+      --drift-y: 0px;
+    }
+
+    body {
+      background: var(--parchment);
+      color: var(--dark-earth);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -12vh -8vw;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(55% 60% at calc(18% + var(--drift-x)) calc(12% + var(--drift-y)), rgba(196,149,106,0.40) 0%, rgba(196,149,106,0) 72%),
+        radial-gradient(45% 52% at calc(82% - var(--drift-x)) calc(8% + var(--drift-y)), rgba(107,107,78,0.30) 0%, rgba(107,107,78,0) 70%),
+        linear-gradient(140deg, #f6f1e9 0%, #e8e2d6 52%, #ddd1c1 100%);
+      transform: translate3d(0, calc(var(--scroll-progress) * -60px), 0) scale(1.04) rotate(calc(var(--scroll-progress) * -2.4deg));
+      animation: breathe 18s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px;
+    }
+
+    .container {
+      width: min(var(--max-w), calc(100% - 2 * var(--sp-2xl)));
+      margin: 0 auto;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-sm);
+      padding: 26px var(--sp-2xl);
+      transition: background 0.3s var(--ease), border-color 0.3s var(--ease), padding 0.3s var(--ease);
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(232, 226, 214, 0.92);
+      border-bottom-color: rgba(156, 148, 133, 0.34);
+      backdrop-filter: blur(12px);
+      padding: 16px var(--sp-2xl);
+    }
+
+    .brand {
+      text-decoration: none;
+      color: var(--dark-earth);
+      font-family: var(--serif);
+      font-size: 1.12rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.67rem;
+      letter-spacing: 0.16em;
+      text-transform: lowercase;
+      color: var(--stone);
+      font-style: italic;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: var(--border);
+      border-radius: 999px;
+      background: rgba(245,241,235,0.66);
+      color: var(--dark-earth);
+      text-decoration: none;
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      padding: 12px 18px;
+      transition: border-color 0.25s var(--ease), color 0.25s var(--ease), transform 0.25s var(--ease), background 0.25s var(--ease);
+    }
+
+    .nav-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    main {
+      padding-top: calc(var(--sp-3xl) + var(--sp-lg));
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 5.2fr 6.8fr;
+      gap: var(--sp-2xl);
+      align-items: end;
+      padding-bottom: var(--sp-2xl);
+      border-bottom: var(--border);
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: var(--sp-md);
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(42px, 5.8vw, 82px);
+      font-weight: 300;
+      line-height: 0.98;
+      margin-bottom: var(--sp-md);
+      text-wrap: balance;
+    }
+
+    h1 em {
+      color: var(--accent);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-copy {
+      color: #696255;
+      font-size: 15px;
+      max-width: 520px;
+      margin-bottom: var(--sp-lg);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      border: var(--border);
+      background: rgba(245,241,235,0.55);
+      color: var(--olive-dusk);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .hero-media {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+      min-height: 520px;
+      background: rgba(245,241,235,0.38);
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.96);
+      transition: transform 0.9s var(--ease), filter 0.5s var(--ease);
+    }
+
+    .hero-media:hover img {
+      transform: scale(1.03);
+      filter: saturate(1);
+    }
+
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(46,36,24,0.58), transparent 56%);
+      pointer-events: none;
+    }
+
+    .hero-media-caption {
+      position: absolute;
+      left: var(--sp-md);
+      right: var(--sp-md);
+      bottom: var(--sp-md);
+      z-index: 2;
+      color: var(--warm-white);
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: var(--sp-xl) 0 var(--sp-2xl);
+    }
+
+    .meta-card {
+      border: var(--border);
+      border-radius: var(--radius);
+      background: rgba(245,241,235,0.58);
+      padding: 16px 18px;
+      min-height: 96px;
+      box-shadow: 0 5px 20px rgba(46,36,24,0.04);
+    }
+
+    .meta-card .label {
+      font-size: 9px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 8px;
+    }
+
+    .meta-card .value {
+      font-family: var(--serif);
+      font-size: 1.12rem;
+      line-height: 1.3;
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: 4fr 8fr;
+      gap: var(--sp-xl);
+      margin-bottom: var(--sp-2xl);
+      padding-bottom: var(--sp-xl);
+      border-bottom: var(--border);
+    }
+
+    .story h2 {
+      font-family: var(--serif);
+      font-size: clamp(32px, 3.2vw, 46px);
+      font-weight: 300;
+      line-height: 1.06;
+      text-wrap: balance;
+    }
+
+    .story h2 em { color: var(--accent); font-style: italic; }
+
+    .story p {
+      font-size: 15px;
+      color: #696255;
+      margin-bottom: var(--sp-md);
+      max-width: 760px;
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: var(--sp-lg);
+    }
+
+    .approach-card {
+      border: var(--border);
+      background: rgba(245,241,235,0.6);
+      border-radius: var(--radius);
+      padding: 18px;
+      transition: transform 0.28s var(--ease), border-color 0.28s var(--ease);
+    }
+
+    .approach-card:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--accent) 44%, var(--sand));
+    }
+
+    .approach-card .step {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 8px;
+    }
+
+    .approach-card h3 {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .approach-card p {
+      color: #6a6357;
+      font-size: 14px;
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: var(--sp-lg);
+    }
+
+    .metric {
+      border-radius: var(--radius);
+      border: var(--border);
+      background: linear-gradient(145deg, rgba(245,241,235,0.56), rgba(232,226,214,0.8));
+      padding: 20px;
+      box-shadow: 0 6px 24px rgba(46,36,24,0.05);
+    }
+
+    .metric .num {
+      font-family: var(--serif);
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .metric .txt {
+      font-size: 11px;
+      letter-spacing: 0.21em;
+      text-transform: uppercase;
+      color: var(--stone);
+      line-height: 1.6;
+    }
+
+    .gallery {
+      margin-top: var(--sp-lg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .gallery figure {
+      border: var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      min-height: 280px;
+      background: rgba(245,241,235,0.62);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s var(--ease), filter 0.5s var(--ease);
+      filter: saturate(0.95);
+    }
+
+    .gallery figure:hover img {
+      transform: scale(1.03);
+      filter: saturate(1);
+    }
+
+    .gallery figcaption {
+      position: absolute;
+      left: var(--sp-sm);
+      bottom: var(--sp-sm);
+      background: rgba(46,36,24,0.62);
+      color: var(--warm-white);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 9px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .more-works {
+      margin-top: var(--sp-2xl);
+      padding-top: var(--sp-xl);
+      border-top: var(--border);
+      padding-bottom: var(--sp-2xl);
+    }
+
+    .more-works h2 {
+      font-family: var(--serif);
+      font-size: clamp(30px, 3vw, 42px);
+      font-weight: 300;
+      margin-bottom: var(--sp-md);
+    }
+
+    .work-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 14px;
+    }
+
+    .work-link {
+      text-decoration: none;
+      color: var(--dark-earth);
+      border: var(--border);
+      border-radius: var(--radius);
+      background: rgba(245,241,235,0.58);
+      padding: 12px 14px;
+      transition: border-color 0.25s var(--ease), transform 0.25s var(--ease), color 0.25s var(--ease);
+      min-height: 62px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .work-link:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .work-link small {
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+
+    .work-link strong {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    @keyframes breathe {
+      0% { filter: saturate(1.01) hue-rotate(0deg); }
+      100% { filter: saturate(1.08) hue-rotate(-6deg); }
+    }
+
+    @media (max-width: 1120px) {
+      .container { width: min(var(--max-w), calc(100% - 2 * var(--sp-lg))); }
+      nav, nav.scrolled { padding-left: var(--sp-lg); padding-right: var(--sp-lg); }
+      .hero { grid-template-columns: 1fr; }
+      .hero-media { min-height: 460px; }
+      .meta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .story { grid-template-columns: 1fr; gap: var(--sp-md); }
+      .approach-grid { grid-template-columns: 1fr 1fr; }
+      .metrics { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(var(--max-w), calc(100% - 2 * var(--sp-sm))); }
+      nav, nav.scrolled { padding-left: var(--sp-sm); padding-right: var(--sp-sm); }
+      .nav-actions { gap: 8px; }
+      .nav-btn { padding: 10px 12px; letter-spacing: 0.18em; }
+      main { padding-top: calc(var(--sp-2xl) + var(--sp-lg)); }
+      .hero-media { min-height: 380px; }
+      .meta-grid { grid-template-columns: 1fr; }
+      .approach-grid { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
+      .work-links { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav" aria-label="Primary">
+    <a class="brand" href="index.html">
+      ISO
+      <span>visions by iso</span>
+    </a>
+    <div class="nav-actions">
+      <a class="nav-btn" href="works.html">Back to Works</a>
+      <a class="nav-btn" href="index.html#inquire">Inquire</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="container hero reveal">
+      <div>
+        <p class="eyebrow">Case Study</p>
+        <h1 id="projectTitle">Sunday Skin Center <em>Case Study</em></h1>
+        <p class="hero-copy" id="projectSummary"></p>
+        <div class="chips" id="serviceChips"></div>
+      </div>
+
+      <figure class="hero-media">
+        <img id="heroImage" src="assets/Sunday Skin Center.webp" alt="Project cover" loading="eager" decoding="async" />
+        <figcaption class="hero-media-caption" id="heroCaption">Sunday Skin Center</figcaption>
+      </figure>
+    </section>
+
+    <section class="container meta-grid reveal" id="metaGrid"></section>
+
+    <section class="container story reveal">
+      <h2>The challenge <em>we solved</em></h2>
+      <div>
+        <p id="challengeText"></p>
+      </div>
+    </section>
+
+    <section class="container story reveal">
+      <h2>The creative <em>approach</em></h2>
+      <div>
+        <div class="approach-grid" id="approachGrid"></div>
+      </div>
+    </section>
+
+    <section class="container story reveal">
+      <h2>Execution and <em>assets</em></h2>
+      <div>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+
+    <section class="container story reveal">
+      <h2>Measured <em>outcomes</em></h2>
+      <div>
+        <p id="outcomeText"></p>
+        <div class="metrics" id="metrics"></div>
+      </div>
+    </section>
+
+    <section class="container more-works reveal">
+      <h2>Explore More Projects</h2>
+      <div class="work-links" id="moreWorks"></div>
+    </section>
+  </main>
+
+  <script>
+    const projects = {
+      "sunday-skin-center": {
+        title: "Sunday Skin Center",
+        services: ["Social Media Management", "Content Creation", "Brand Identity"],
+        summary: "A full-scope engagement focused on clarifying the visual brand, building a consistent publishing cadence, and elevating day-to-day content quality across channels.",
+        challenge: "The brand had strong service quality but an inconsistent online presence. Messaging, visuals, and social cadence were fragmented, making it difficult for new clients to understand the value quickly and trust the brand at first impression.",
+        approach: [
+          { title: "Brand Alignment", body: "Refined core visual direction and voice so every social touchpoint felt cohesive and premium." },
+          { title: "Content System", body: "Built repeatable post structures and content pillars to speed up production without losing quality." },
+          { title: "Channel Rhythm", body: "Introduced a stable publishing cadence with clear weekly themes to improve consistency." }
+        ],
+        outcomes: "The project created stronger visual consistency, faster content turnaround, and a cleaner connection between social visibility and inquiry intent.",
+        metrics: [
+          { value: "3x", label: "Faster content pipeline" },
+          { value: "100%", label: "Brand-consistent feed system" },
+          { value: "Weekly", label: "Structured publishing cadence" }
+        ],
+        meta: [
+          { label: "Industry", value: "Skincare + Wellness" },
+          { label: "Engagement", value: "Retained Partnership" },
+          { label: "Scope", value: "Social + Content + Identity" },
+          { label: "Year", value: "2025" }
+        ],
+        cover: "assets/Sunday Skin Center.webp",
+        accent: "#A0522D"
+      },
+      "noontalk-nail-lounge": {
+        title: "Noontalk Nail Lounge",
+        services: ["Social Media Management", "Content Creation"],
+        summary: "A content-led social management project centered on polished visibility and channel consistency.",
+        challenge: "Brand visuals and posting behavior were inconsistent, which reduced recognizability and weakened trust with first-time viewers.",
+        approach: [
+          { title: "Visual Cleanup", body: "Defined a cleaner visual language for day-to-day social assets." },
+          { title: "Editorial Planning", body: "Mapped recurring content types around audience intent and service highlights." },
+          { title: "Execution Quality", body: "Improved design polish, pacing, and consistency in weekly publishing." }
+        ],
+        outcomes: "The channel now communicates a clearer brand point of view and presents a more premium, dependable experience.",
+        metrics: [
+          { value: "2x", label: "More structured weekly output" },
+          { value: "1", label: "Unified visual direction" },
+          { value: "Always-On", label: "Consistent channel presence" }
+        ],
+        meta: [
+          { label: "Industry", value: "Beauty + Nails" },
+          { label: "Engagement", value: "Retained Social Support" },
+          { label: "Scope", value: "Social + Content" },
+          { label: "Year", value: "2025" }
+        ],
+        cover: "assets/Noontalk Nail Lounge.webp",
+        accent: "#8B5E3C"
+      },
+      "the-white-drip": {
+        title: "The White Drip",
+        services: ["Social Media Management", "Content Creation"],
+        summary: "A social content partnership focused on sharper storytelling, format consistency, and stronger day-to-day brand clarity.",
+        challenge: "The brand lacked a reliable system for posting and visual consistency, making its unique positioning harder to read.",
+        approach: [
+          { title: "Message Framing", body: "Refined captions and content angles to communicate value more clearly." },
+          { title: "Creative Direction", body: "Introduced a more consistent visual pace and cleaner design hierarchy." },
+          { title: "Operational Rhythm", body: "Built a practical workflow for recurring production and approval." }
+        ],
+        outcomes: "The account now feels cohesive and intentional, with better continuity across posts and stronger first-impression trust.",
+        metrics: [
+          { value: "4", label: "Core recurring content formats" },
+          { value: "Weekly", label: "Planned production schedule" },
+          { value: "Higher", label: "Visual cohesion across feed" }
+        ],
+        meta: [
+          { label: "Industry", value: "Lifestyle + Service" },
+          { label: "Engagement", value: "Retained Social Support" },
+          { label: "Scope", value: "Social + Content" },
+          { label: "Year", value: "2025" }
+        ],
+        cover: "assets/The White Drip.webp",
+        accent: "#9A5B3B"
+      },
+      "salt-and-stone-wellness-spa": {
+        title: "Salt & Stone Wellness Spa",
+        services: ["Social Media Management", "Content Creation"],
+        summary: "A premium-content and social management engagement designed to reflect calm, elevated service quality online.",
+        challenge: "The in-person brand experience felt premium, but digital expression lacked the same level of consistency and emotional tone.",
+        approach: [
+          { title: "Atmosphere Transfer", body: "Translated the spa's in-person feeling into a consistent digital visual language." },
+          { title: "Narrative Flow", body: "Built post sequencing that moved naturally between education, trust, and offer visibility." },
+          { title: "Creative Guardrails", body: "Defined lightweight rules for tone, image treatment, and layout rhythm." }
+        ],
+        outcomes: "Digital presentation now mirrors the quality of the in-studio experience, improving perception and consistency.",
+        metrics: [
+          { value: "1", label: "Unified calming art direction" },
+          { value: "Steady", label: "Weekly publishing cadence" },
+          { value: "Clear", label: "Service-to-content mapping" }
+        ],
+        meta: [
+          { label: "Industry", value: "Wellness + Spa" },
+          { label: "Engagement", value: "Retained Social Support" },
+          { label: "Scope", value: "Social + Content" },
+          { label: "Year", value: "2025" }
+        ],
+        cover: "assets/Salt & Stone Wellness Spa.webp",
+        accent: "#A16B49"
+      },
+      "umi-hillside-villa": {
+        title: "Umi Hillside Villa",
+        services: ["Social Media Management", "Content Creation", "Brand Identity"],
+        summary: "A hybrid identity and social project that positioned the villa as a premium hospitality destination with a distinct visual story.",
+        challenge: "The property needed stronger brand differentiation and a more polished, trust-building digital presence for discovery audiences.",
+        approach: [
+          { title: "Identity Foundation", body: "Defined a stronger visual identity system to support long-term brand consistency." },
+          { title: "Hospitality Storytelling", body: "Focused content on atmosphere, experience, and place-based narrative." },
+          { title: "Channel Consistency", body: "Applied identity rules to social execution for high-end, cohesive presentation." }
+        ],
+        outcomes: "The brand now appears more intentional and premium across channels, with clearer positioning and stronger visual recognition.",
+        metrics: [
+          { value: "End-to-End", label: "Identity + social integration" },
+          { value: "Premium", label: "Elevated visual positioning" },
+          { value: "Higher", label: "Brand recognizability" }
+        ],
+        meta: [
+          { label: "Industry", value: "Hospitality" },
+          { label: "Engagement", value: "Hybrid Build" },
+          { label: "Scope", value: "Social + Content + Identity" },
+          { label: "Year", value: "2025" }
+        ],
+        cover: "assets/UMI Hillside Villa.webp",
+        accent: "#935434"
+      },
+      "june-and-july": {
+        title: "June and July",
+        services: ["Social Media Management", "Content Creation"],
+        summary: "A social and content system engagement designed for consistency, polish, and stronger audience conversion readiness.",
+        challenge: "The brand had quality offerings but needed clearer digital structure and more consistent visual communication.",
+        approach: [
+          { title: "Content Architecture", body: "Defined recurring formats that align with buyer stages and content goals." },
+          { title: "Visual Cohesion", body: "Standardized image direction, typography hierarchy, and post framing." },
+          { title: "Operational Clarity", body: "Introduced a practical production workflow to maintain pace and quality." }
+        ],
+        outcomes: "Publishing is now more predictable and polished, with stronger continuity between brand voice and visual presentation.",
+        metrics: [
+          { value: "Consistent", label: "Always-on weekly cadence" },
+          { value: "Clear", label: "Content pillar structure" },
+          { value: "Stronger", label: "Brand-to-audience clarity" }
+        ],
+        meta: [
+          { label: "Industry", value: "Lifestyle + Retail" },
+          { label: "Engagement", value: "Retained Social Support" },
+          { label: "Scope", value: "Social + Content" },
+          { label: "Year", value: "2025" }
+        ],
+        cover: "assets/June and July.webp",
+        accent: "#9E6140"
+      },
+      "lala-and-co": {
+        title: "Lala & Co",
+        services: ["Social Media Management", "Content Creation"],
+        summary: "A social-first partnership focused on strengthening visibility through consistent, high-quality content execution.",
+        challenge: "The brand needed tighter social consistency and a stronger visual system to support audience trust and conversion.",
+        approach: [
+          { title: "Brand Readability", body: "Clarified content hierarchy so viewers can understand offerings faster." },
+          { title: "Creative Consistency", body: "Aligned recurring post treatments for a more recognizable feed." },
+          { title: "Sustainable Output", body: "Built a manageable cadence with quality control across deliverables." }
+        ],
+        outcomes: "The account now feels more cohesive and intentional, with improved continuity across messaging and design.",
+        metrics: [
+          { value: "Higher", label: "Consistency across posts" },
+          { value: "Reliable", label: "Weekly content rhythm" },
+          { value: "Stronger", label: "Visual brand recognition" }
+        ],
+        meta: [
+          { label: "Industry", value: "Beauty + Lifestyle" },
+          { label: "Engagement", value: "Retained Social Support" },
+          { label: "Scope", value: "Social + Content" },
+          { label: "Year", value: "2025" }
+        ],
+        cover: "assets/Lala & Co.webp",
+        accent: "#A35D3A"
+      }
+    };
+
+    const defaultSlug = "sunday-skin-center";
+    const slug = (new URLSearchParams(window.location.search).get("project") || defaultSlug).toLowerCase();
+    const project = projects[slug] || projects[defaultSlug];
+
+    const nav = document.getElementById("nav");
+    const root = document.documentElement;
+
+    const projectTitle = document.getElementById("projectTitle");
+    const projectSummary = document.getElementById("projectSummary");
+    const serviceChips = document.getElementById("serviceChips");
+    const heroImage = document.getElementById("heroImage");
+    const heroCaption = document.getElementById("heroCaption");
+    const metaGrid = document.getElementById("metaGrid");
+    const challengeText = document.getElementById("challengeText");
+    const approachGrid = document.getElementById("approachGrid");
+    const outcomeText = document.getElementById("outcomeText");
+    const metrics = document.getElementById("metrics");
+    const gallery = document.getElementById("gallery");
+    const moreWorks = document.getElementById("moreWorks");
+
+    function withAssetFallback(imgEl, source) {
+      imgEl.src = source;
+      imgEl.addEventListener("error", () => {
+        if (!source.startsWith("assets/") || imgEl.dataset.fallback === "1") return;
+        imgEl.dataset.fallback = "1";
+        imgEl.src = source.replace("assets/", "");
+      });
+    }
+
+    function setContent() {
+      document.title = `ISO — ${project.title} Case Study`;
+      root.style.setProperty("--accent", project.accent || "#A0522D");
+
+      projectTitle.innerHTML = `${project.title} <em>Case Study</em>`;
+      projectSummary.textContent = project.summary;
+      heroCaption.textContent = project.title;
+      withAssetFallback(heroImage, project.cover);
+      heroImage.alt = `${project.title} project cover`;
+
+      serviceChips.innerHTML = "";
+      project.services.forEach(service => {
+        const chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = service;
+        serviceChips.appendChild(chip);
+      });
+
+      metaGrid.innerHTML = "";
+      project.meta.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "meta-card";
+        card.innerHTML = `<p class="label">${item.label}</p><p class="value">${item.value}</p>`;
+        metaGrid.appendChild(card);
+      });
+
+      challengeText.textContent = project.challenge;
+
+      approachGrid.innerHTML = "";
+      project.approach.forEach((item, i) => {
+        const card = document.createElement("article");
+        card.className = "approach-card";
+        card.innerHTML = `<span class="step">Step 0${i + 1}</span><h3>${item.title}</h3><p>${item.body}</p>`;
+        approachGrid.appendChild(card);
+      });
+
+      outcomeText.textContent = project.outcomes;
+
+      metrics.innerHTML = "";
+      project.metrics.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "metric";
+        card.innerHTML = `<p class="num">${item.value}</p><p class="txt">${item.label}</p>`;
+        metrics.appendChild(card);
+      });
+
+      gallery.innerHTML = "";
+      const galleryLabels = ["Primary Direction", "Content System"];
+      [0, 1].forEach(i => {
+        const figure = document.createElement("figure");
+        const img = document.createElement("img");
+        withAssetFallback(img, project.cover);
+        img.alt = `${project.title} preview ${i + 1}`;
+        img.loading = "lazy";
+        img.decoding = "async";
+        if (i === 1) img.style.objectPosition = "center 28%";
+
+        const figcaption = document.createElement("figcaption");
+        figcaption.textContent = galleryLabels[i];
+
+        figure.appendChild(img);
+        figure.appendChild(figcaption);
+        gallery.appendChild(figure);
+      });
+
+      moreWorks.innerHTML = "";
+      Object.entries(projects).forEach(([key, data]) => {
+        if (key === slug) return;
+        const link = document.createElement("a");
+        link.className = "work-link";
+        link.href = `work-detail.html?project=${encodeURIComponent(key)}`;
+        link.innerHTML = `<small>${data.services.slice(0, 2).join(" + ")}</small><strong>${data.title}</strong>`;
+        moreWorks.appendChild(link);
+      });
+    }
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reveals = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window && !prefersReducedMotion) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      reveals.forEach(el => observer.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add("visible"));
+    }
+
+    let latestScrollY = window.scrollY;
+    let ticking = false;
+
+    function updateScrollFx() {
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const progress = Math.min(1, latestScrollY / maxScroll);
+      const driftX = (progress - 0.5) * 52;
+      const driftY = progress * 40;
+
+      root.style.setProperty("--scroll-progress", progress.toFixed(4));
+      root.style.setProperty("--drift-x", `${driftX.toFixed(1)}px`);
+      root.style.setProperty("--drift-y", `${driftY.toFixed(1)}px`);
+
+      nav.classList.toggle("scrolled", latestScrollY > 50);
+      ticking = false;
+    }
+
+    function onScroll() {
+      latestScrollY = window.scrollY;
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateScrollFx);
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", () => {
+      latestScrollY = window.scrollY;
+      updateScrollFx();
+    });
+
+    setContent();
+    updateScrollFx();
+  </script>
+</body>
+</html>

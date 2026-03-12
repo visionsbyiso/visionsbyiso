@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Salt &amp; Stone Wellness Spa case study by Visions by ISO featuring social media management and content creation.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Visions by ISO">
+<meta name="theme-color" content="#E8E2D6">
+<link rel="canonical" href="https://visionsbyiso.com/salt-and-stone-wellness-spa.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Salt &amp; Stone Wellness Spa — Visions by ISO">
+<meta property="og:description" content="Case study for Salt &amp; Stone Wellness Spa: social media management and content creation by Visions by ISO.">
+<meta property="og:url" content="https://visionsbyiso.com/salt-and-stone-wellness-spa.html">
+<meta property="og:image" content="https://visionsbyiso.com/assets/Salt%20%26%20Stone%20Wellness%20Spa.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Salt &amp; Stone Wellness Spa — Visions by ISO">
+<meta name="twitter:description" content="Case study for Salt &amp; Stone Wellness Spa: social media management and content creation by Visions by ISO.">
+<meta name="twitter:image" content="https://visionsbyiso.com/assets/Salt%20%26%20Stone%20Wellness%20Spa.webp">
+<title>Salt &amp; Stone Wellness Spa — Visions by ISO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #E8E2D6;
+    --warm-white: #F5F1EB;
+    --brown: #6B5B4B;
+    --dark-earth: #2E2418;
+    --stone: #9C9485;
+    --sand: #D4C9B8;
+    --terracotta: #A0522D;
+    --olive: #6B6B4E;
+    --sage: #8A8B6E;
+    --clay: #C4956A;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark-earth);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ========== NAV ========== */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.4s ease, padding 0.3s ease;
+  }
+
+  .nav.scrolled {
+    background: rgba(245, 241, 235, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 16px 48px;
+    box-shadow: 0 1px 0 var(--sand);
+  }
+
+  .nav-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .nav-logo .iso {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: var(--dark-earth);
+  }
+
+  .nav-logo .sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 11px;
+    color: var(--stone);
+    letter-spacing: 1px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dark-earth);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--dark-earth);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav:not(.scrolled) .nav-logo .iso { color: var(--warm-white); }
+  .nav:not(.scrolled) .nav-logo .sub { color: rgba(245,241,235,0.75); }
+  .nav:not(.scrolled) .nav-links a { color: rgba(245,241,235,0.9); }
+  .nav:not(.scrolled) .nav-links a::after { background: var(--warm-white); }
+
+  /* ========== HERO ========== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 48px 80px;
+    position: relative;
+    background: #2b1f16;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(62% 72% at 18% 50%, rgba(160,82,45,0.28) 0%, rgba(160,82,45,0) 72%),
+      linear-gradient(90deg, rgba(40,26,17,0.46) 0%, rgba(28,18,12,0.3) 36%, rgba(20,13,9,0.17) 62%, rgba(20,13,9,0.56) 100%),
+      linear-gradient(180deg, rgba(18,12,8,0.18) 0%, rgba(18,12,8,0.58) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("assets/salt-and-stone-hero.webp");
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: saturate(0.95) contrast(1.03);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+  }
+
+  .hero-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(245,241,235,0.8);
+    text-decoration: none;
+    margin-bottom: 60px;
+    transition: color 0.3s ease;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-back:hover { color: var(--warm-white); }
+
+  .hero-back svg { width: 16px; height: 16px; stroke: currentColor; }
+
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+  }
+
+  .hero-tag {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(245,241,235,0.92);
+    padding: 6px 14px;
+    border: 1px solid rgba(245,241,235,0.35);
+    background: rgba(10,7,5,0.16);
+    backdrop-filter: blur(3px);
+    border-radius: 100px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(48px, 7vw, 80px);
+    color: var(--warm-white);
+    text-shadow: 0 8px 26px rgba(0,0,0,0.35);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 20px;
+    color: rgba(245,241,235,0.9);
+    line-height: 1.6;
+    max-width: 500px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-info {
+    display: flex;
+    gap: 60px;
+    margin-top: 50px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.7s forwards;
+  }
+
+  .hero-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hero-info-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(245,241,235,0.62);
+  }
+
+  .hero-info-value {
+    font-size: 13px;
+    color: var(--warm-white);
+  }
+
+  /* ========== SECTION SHARED ========== */
+  .section {
+    padding: 120px 48px;
+  }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: var(--sand);
+    margin-bottom: 8px;
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 42px;
+    color: var(--dark-earth);
+    letter-spacing: -0.3px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 40px;
+  }
+
+  /* ========== 1.1 CLIENT BRIEF ========== */
+  .brief-section {
+    background: var(--warm-white);
+  }
+
+  .brief-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .brief-left {
+    position: sticky;
+    top: 120px;
+  }
+
+  .brief-item {
+    margin-bottom: 40px;
+  }
+
+  .brief-item-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--dark-earth);
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+
+  .brief-item-label::after {
+    content: ':';
+  }
+
+  .brief-item p {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--brown);
+  }
+
+  .brief-right {
+    position: relative;
+  }
+
+  .brief-image-main {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(160deg, var(--sand), var(--clay));
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .brief-image-main .img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .brief-image-caption {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 11px;
+    color: var(--stone);
+    line-height: 1.6;
+  }
+
+  /* ========== 1.2 VISUAL DIRECTION ========== */
+  .visual-section {
+    background: var(--cream);
+  }
+
+  .visual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 50px;
+  }
+
+  .visual-card {
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.25,0,0,1);
+  }
+
+  .visual-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .visual-card .card-img {
+    aspect-ratio: 4/5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .visual-card .card-info {
+    padding: 16px 18px;
+    background: white;
+  }
+
+  .visual-card .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--dark-earth);
+    margin-bottom: 3px;
+  }
+
+  .visual-card .card-desc {
+    font-size: 11px;
+    color: var(--stone);
+    line-height: 1.5;
+  }
+
+  .visual-narrative {
+    margin-top: 50px;
+    max-width: 700px;
+  }
+
+  .visual-narrative p {
+    font-size: 14.5px;
+    line-height: 2;
+    color: var(--brown);
+  }
+
+  /* ========== PALETTE STRIP ========== */
+  .palette-strip {
+    padding: 60px 48px;
+    background: var(--warm-white);
+  }
+
+  .palette-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .palette-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .palette-chip {
+    flex: 1;
+    height: 80px;
+    border-radius: 4px;
+    display: flex;
+    align-items: flex-end;
+    padding: 10px 12px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+  }
+
+  .palette-chip:hover { transform: translateY(-3px); }
+
+  .palette-chip.light-text { color: rgba(46,36,24,0.5); }
+
+  /* ========== 2.1 THE WORK ========== */
+  .work-section {
+    background: var(--dark-earth);
+    padding: 120px 48px;
+  }
+
+  .work-section .section-num { color: var(--brown); }
+  .work-section .section-heading { color: var(--cream); }
+  .work-section .section-label { color: var(--stone); }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+    margin-top: 50px;
+  }
+
+  .work-item {
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.25,0,0,1), box-shadow 0.4s ease;
+  }
+
+  .work-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+
+  .work-item .work-img {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .work-item:nth-child(1) { grid-column: 1 / 5; }
+  .work-item:nth-child(2) { grid-column: 5 / 9; }
+  .work-item:nth-child(3) { grid-column: 9 / 13; }
+  .work-item:nth-child(4) { grid-column: 1 / 7; }
+  .work-item:nth-child(4) .work-img { aspect-ratio: 16/10; }
+  .work-item:nth-child(5) { grid-column: 7 / 13; }
+  .work-item:nth-child(5) .work-img { aspect-ratio: 16/10; }
+  .work-item:nth-child(6) { grid-column: 1 / 5; }
+  .work-item:nth-child(7) { grid-column: 5 / 9; }
+  .work-item:nth-child(8) { grid-column: 9 / 13; }
+
+  .work-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.5));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .work-item:hover .work-caption { opacity: 1; }
+
+  .work-caption span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* ========== 2.2 GLIMPSE ========== */
+  .glimpse-section {
+    background: var(--warm-white);
+    padding: 120px 48px;
+  }
+
+  .glimpse-gallery {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto auto;
+    gap: 20px;
+    margin-top: 50px;
+  }
+
+  .glimpse-img {
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.4s ease;
+  }
+
+  .glimpse-img:hover { transform: scale(1.02); }
+
+  .glimpse-img .g-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* Polaroid-style frame */
+  .glimpse-img.framed {
+    background: white;
+    padding: 10px 10px 36px;
+    border-radius: 2px;
+    box-shadow: 0 4px 20px rgba(46,36,24,0.08);
+  }
+
+  .glimpse-img.framed .g-placeholder {
+    border-radius: 1px;
+  }
+
+  .glimpse-img:nth-child(1) { grid-column: 1 / 4; grid-row: 1 / 2; }
+  .glimpse-img:nth-child(1) .g-placeholder { aspect-ratio: 3/4; }
+
+  .glimpse-img:nth-child(2) { grid-column: 4 / 8; grid-row: 1 / 2; }
+  .glimpse-img:nth-child(2) .g-placeholder { aspect-ratio: 4/3; }
+
+  .glimpse-img:nth-child(3) { grid-column: 8 / 11; grid-row: 1 / 2; }
+  .glimpse-img:nth-child(3) .g-placeholder { aspect-ratio: 3/4; }
+
+  .glimpse-img:nth-child(4) { grid-column: 11 / 13; grid-row: 1 / 3; }
+  .glimpse-img:nth-child(4) .g-placeholder { aspect-ratio: 2/3; height: 100%; }
+
+  .glimpse-img:nth-child(5) { grid-column: 2 / 5; grid-row: 2 / 3; }
+  .glimpse-img:nth-child(5) .g-placeholder { aspect-ratio: 4/3; }
+
+  .glimpse-img:nth-child(6) { grid-column: 5 / 8; grid-row: 2 / 3; }
+  .glimpse-img:nth-child(6) .g-placeholder { aspect-ratio: 1; }
+
+  .glimpse-img:nth-child(7) { grid-column: 8 / 11; grid-row: 2 / 3; }
+  .glimpse-img:nth-child(7) .g-placeholder { aspect-ratio: 4/3; }
+
+  /* ========== QUOTE ========== */
+  .quote-section {
+    background: var(--olive);
+    padding: 120px 48px;
+    text-align: center;
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(24px, 3.5vw, 36px);
+    color: var(--cream);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 30px;
+  }
+
+  .quote-attr {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+
+  /* ========== NEXT PROJECT ========== */
+  .next-project {
+    background: var(--cream);
+    padding: 120px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .next-label {
+    font-size: 9px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 20px;
+  }
+
+  .next-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(40px, 6vw, 72px);
+    color: var(--dark-earth);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .next-title:hover { color: var(--terracotta); }
+
+  .next-role {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+
+  .next-arrow {
+    margin-top: 40px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--sand);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .next-arrow:hover {
+    background: var(--dark-earth);
+    border-color: var(--dark-earth);
+  }
+
+  .next-arrow svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--dark-earth);
+    transition: stroke 0.3s ease;
+  }
+
+  .next-arrow:hover svg { stroke: var(--cream); }
+
+  /* ========== FOOTER ========== */
+  .footer {
+    background: var(--dark-earth);
+    padding: 80px 48px 40px;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 60px;
+  }
+
+  .footer-logo .f-iso {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .footer-logo .f-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--stone);
+  }
+
+  .footer-col h4 {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 20px;
+  }
+
+  .footer-col a {
+    display: block;
+    font-size: 13px;
+    color: var(--stone);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+  }
+
+  .footer-col a:hover { color: var(--cream); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(232,226,214,0.08);
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: rgba(232,226,214,0.25);
+  }
+
+  /* ========== ANIMATIONS ========== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1024px) {
+    .nav { padding: 20px 28px; }
+    .nav.scrolled { padding: 14px 28px; }
+    .nav-links { display: none; }
+    .hero { padding: 0 28px 60px; }
+    .section { padding: 80px 28px; }
+    .brief-grid { grid-template-columns: 1fr; gap: 50px; }
+    .brief-left { position: static; }
+    .visual-grid { grid-template-columns: 1fr 1fr; }
+    .work-section { padding: 80px 28px; }
+    .work-grid { grid-template-columns: 1fr 1fr; }
+    .work-item:nth-child(n) { grid-column: auto; }
+    .work-item .work-img { aspect-ratio: 1 !important; }
+    .glimpse-section { padding: 80px 28px; }
+    .glimpse-gallery { grid-template-columns: 1fr 1fr; }
+    .glimpse-img:nth-child(n) { grid-column: auto; grid-row: auto; }
+    .hero-info { gap: 30px; flex-wrap: wrap; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .palette-strip { padding: 40px 28px; }
+    .quote-section { padding: 80px 28px; }
+    .next-project { padding: 80px 28px; }
+  }
+
+  @media (max-width: 640px) {
+    .hero::after {
+      background:
+        radial-gradient(70% 78% at 20% 44%, rgba(160,82,45,0.24) 0%, rgba(160,82,45,0) 74%),
+        linear-gradient(180deg, rgba(18,12,8,0.42) 0%, rgba(18,12,8,0.68) 100%),
+        linear-gradient(90deg, rgba(28,18,12,0.44) 0%, rgba(18,12,8,0.32) 50%, rgba(18,12,8,0.62) 100%);
+    }
+    .visual-grid { grid-template-columns: 1fr; }
+    .work-grid { grid-template-columns: 1fr; }
+    .glimpse-gallery { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    .palette-row { flex-wrap: wrap; }
+    .palette-chip { min-width: calc(50% - 6px); }
+    .hero-info { flex-direction: column; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">
+    <span class="iso">I S O</span>
+    <span class="sub">visions by iso</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="works.html">Work</a></li>
+    <li><a href="index.html#offerings">Offerings</a></li>
+    <li><a href="index.html#journal">Journal</a></li>
+    <li><a href="index.html#inquire">Inquire</a></li>
+  </ul>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <a href="works.html" class="hero-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M19 12H5M5 12L12 19M5 12L12 5"></path></svg>
+      Back to Work
+    </a>
+    <div class="hero-meta">
+      <span class="hero-tag">Social Media</span>
+      <span class="hero-tag">Content Creation</span>
+    </div>
+    <h1 class="hero-title">Salt &amp; Stone<br>Wellness Spa</h1>
+    <p class="hero-subtitle">A premium spa brand known for its grounding rituals, warm-toned interiors, and sensory-focused treatments.</p>
+    <div class="hero-info">
+      <div class="hero-info-item">
+        <span class="hero-info-label">Client</span>
+        <span class="hero-info-value">Salt &amp; Stone Wellness Spa</span>
+      </div>
+      <div class="hero-info-item">
+        <span class="hero-info-label">Role</span>
+        <span class="hero-info-value">Social Media Management &amp; Content Creation</span>
+      </div>
+      <div class="hero-info-item">
+        <span class="hero-info-label">Year</span>
+        <span class="hero-info-value">2020 – 2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 1.1 CLIENT BRIEF ========== -->
+<section class="section brief-section">
+  <div class="section-inner">
+    <div class="brief-grid">
+      <div class="brief-left reveal">
+        <span class="section-num">1.1</span>
+        <h2 class="section-heading">Client's Brief</h2>
+
+        <div class="brief-item">
+          <div class="brief-item-label">Brand</div>
+          <p>Salt &amp; Stone is a premium wellness spa known for its grounding rituals, warm-toned interiors, and sensory-focused treatments. The brand carries a sense of stillness and calm that sets it apart from faster-paced competitors.</p>
+        </div>
+
+        <div class="brief-item">
+          <div class="brief-item-label">Purpose</div>
+          <p>To create content that mirrors the actual experience of being inside Salt &amp; Stone. The brand's philosophy centers on slow, sensory wellness, and every post, story, and visual needed to carry that same quiet energy across social media.</p>
+        </div>
+
+        <div class="brief-item">
+          <div class="brief-item-label">Background</div>
+          <p>Salt &amp; Stone had a clear identity in person. The interiors, the rituals, the pace of the treatments all communicated something specific. But the digital presence didn't carry that weight. The brand needed cohesive content that communicated its offerings with the same depth and calm that clients felt when they walked through the door.</p>
+        </div>
+
+        <div class="brief-item">
+          <div class="brief-item-label">Creative Direction</div>
+          <p>Refined, slow-paced, and grounded in warmth. Visuals are styled with natural textures, muted earthy tones, and spacious compositions. Photography focuses on hands, materials, and the sensory details of the spa experience. The copy is minimal and measured. Nothing is loud. Everything breathes.</p>
+        </div>
+      </div>
+
+      <div class="brief-right reveal" style="animation-delay: 0.2s;">
+        <div class="brief-image-main">
+          <div class="img-placeholder">Hero image — treatment close-up</div>
+        </div>
+        <div class="brief-image-caption">A curated set of reference visuals,<br>shaped around tone, pace, and composition.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 1.2 VISUAL DIRECTION ========== -->
+<section class="section visual-section">
+  <div class="section-inner">
+    <span class="section-num reveal">1.2</span>
+    <h2 class="section-heading reveal">Visual Direction</h2>
+    <div class="section-label reveal">Tone, texture &amp; composition references</div>
+
+    <div class="visual-grid">
+      <div class="visual-card reveal">
+        <div class="card-img" style="background: linear-gradient(145deg, #A0826D, #C4956A);">Warm tones</div>
+        <div class="card-info">
+          <div class="card-title">Earthy Warmth</div>
+          <div class="card-desc">Warm stone, linen, terracotta drawn from the spa's own interiors.</div>
+        </div>
+      </div>
+      <div class="visual-card reveal" style="transition-delay: 0.1s;">
+        <div class="card-img" style="background: linear-gradient(145deg, #8A8B6E, #6B6B4E);">Soft textures</div>
+        <div class="card-info">
+          <div class="card-title">Natural Textures</div>
+          <div class="card-desc">Close-up details of hands, materials, and the sensory ritual.</div>
+        </div>
+      </div>
+      <div class="visual-card reveal" style="transition-delay: 0.2s;">
+        <div class="card-img" style="background: linear-gradient(145deg, #D4C9B8, #E8E2D6);">Breathing room</div>
+        <div class="card-info">
+          <div class="card-title">Spacious Compositions</div>
+          <div class="card-desc">Images shot in natural light with soft shadows. Compositions leave room.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="visual-narrative reveal">
+      <p>Earthy palette drawn from the spa's own interiors: warm stone, linen, terracotta, and olive tones. Images are shot in natural light with soft shadows. Compositions leave room. The feed reads like a visual meditation, each post designed to slow the viewer down before they've even read the caption.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PALETTE ========== -->
+<div class="palette-strip">
+  <div class="palette-inner">
+    <div class="section-label">Brand Palette</div>
+    <div class="palette-row">
+      <div class="palette-chip light-text" style="background: #F5F1EB;">Ivory</div>
+      <div class="palette-chip light-text" style="background: #D4C9B8;">Sand</div>
+      <div class="palette-chip" style="background: #A0522D;">Terracotta</div>
+      <div class="palette-chip" style="background: #6B6B4E;">Olive</div>
+      <div class="palette-chip" style="background: #5C4A3A;">Dark Earth</div>
+      <div class="palette-chip" style="background: #2E2418;">Deep Night</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 2.1 THE WORK ========== -->
+<section class="work-section">
+  <div class="section-inner">
+    <span class="section-num reveal">2.1</span>
+    <h2 class="section-heading reveal">The Work</h2>
+    <div class="section-label reveal">Selected deliverables from this project</div>
+
+    <div class="work-grid">
+      <div class="work-item reveal">
+        <div class="work-img" style="background: linear-gradient(135deg, #8A7A6A, #A09080);">Social Post 01</div>
+        <div class="work-caption"><span>Instagram Feed Post</span></div>
+      </div>
+      <div class="work-item reveal">
+        <div class="work-img" style="background: linear-gradient(135deg, #6B6B4E, #8A8B6E);">Social Post 02</div>
+        <div class="work-caption"><span>Carousel Design</span></div>
+      </div>
+      <div class="work-item reveal">
+        <div class="work-img" style="background: linear-gradient(135deg, #A0522D, #C4956A);">Social Post 03</div>
+        <div class="work-caption"><span>Story Template</span></div>
+      </div>
+      <div class="work-item reveal">
+        <div class="work-img" style="background: linear-gradient(135deg, #5C4A3A, #8A7A6A);">Content Direction</div>
+        <div class="work-caption"><span>Content Grid</span></div>
+      </div>
+      <div class="work-item reveal">
+        <div class="work-img" style="background: linear-gradient(135deg, #D4C9B8, #B8A898);">Visual System</div>
+        <div class="work-caption"><span>Visual Guidelines</span></div>
+      </div>
+      <div class="work-item reveal">
+        <div class="work-img" style="background: linear-gradient(135deg, #9C9485, #6B5B4B);">Reel Cover</div>
+        <div class="work-caption"><span>Reels Cover</span></div>
+      </div>
+      <div class="work-item reveal">
+        <div class="work-img" style="background: linear-gradient(135deg, #6B6B4E, #4A4A38);">Promo Post</div>
+        <div class="work-caption"><span>Promo Design</span></div>
+      </div>
+      <div class="work-item reveal">
+        <div class="work-img" style="background: linear-gradient(135deg, #A0826D, #C4956A);">Highlight Cover</div>
+        <div class="work-caption"><span>Highlight Covers</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 2.2 GLIMPSE ========== -->
+<section class="glimpse-section">
+  <div class="section-inner">
+    <span class="section-num reveal">2.2</span>
+    <h2 class="section-heading reveal">Glimpse of the Brand</h2>
+    <div class="section-label reveal">Behind the visuals</div>
+
+    <div class="glimpse-gallery">
+      <div class="glimpse-img framed reveal">
+        <div class="g-placeholder" style="background: linear-gradient(145deg, #C4956A, #A0826D);">Hands &amp; ritual</div>
+      </div>
+      <div class="glimpse-img reveal">
+        <div class="g-placeholder" style="background: linear-gradient(145deg, #D4C9B8, #B8A898);">Spa interiors</div>
+      </div>
+      <div class="glimpse-img framed reveal">
+        <div class="g-placeholder" style="background: linear-gradient(145deg, #8A8B6E, #6B6B4E);">Oil pouring</div>
+      </div>
+      <div class="glimpse-img reveal">
+        <div class="g-placeholder" style="background: linear-gradient(145deg, #A0522D, #7A3B1E);">Close-up texture</div>
+      </div>
+      <div class="glimpse-img framed reveal">
+        <div class="g-placeholder" style="background: linear-gradient(145deg, #9C9485, #6B5B4B);">Treatment detail</div>
+      </div>
+      <div class="glimpse-img reveal">
+        <div class="g-placeholder" style="background: linear-gradient(145deg, #E8E2D6, #D4C9B8);">Linen &amp; stone</div>
+      </div>
+      <div class="glimpse-img framed reveal">
+        <div class="g-placeholder" style="background: linear-gradient(145deg, #5C4A3A, #8A7A6A);">Candle &amp; warmth</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== QUOTE ========== -->
+<section class="quote-section">
+  <div class="quote-text reveal">"The content finally felt like us. Like someone had walked through our doors and understood what we were trying to say before we could find the words for it."</div>
+  <div class="quote-attr reveal">— Salt &amp; Stone Wellness Spa</div>
+</section>
+
+<!-- ========== NEXT PROJECT ========== -->
+<section class="next-project">
+  <div class="next-label">Next Project</div>
+  <a class="next-title" href="umi-hillside-villa.html">Umi Hillside<br>Villa</a>
+  <div class="next-role">Social Media Management, Content Creation &amp; Brand Identity</div>
+  <div class="next-arrow">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M5 12H19M19 12L12 5M19 12L12 19"></path></svg>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="f-iso">I S O</div>
+      <div class="f-tagline">See deeply. Shape clearly.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#offerings">Offerings</a>
+      <a href="works.html">Work</a>
+      <a href="index.html#journal">Journal</a>
+      <a href="index.html#inquire">Inquire</a>
+    </div>
+    <div class="footer-col">
+      <h4>Keep in Touch</h4>
+      <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://pinterest.com/" target="_blank" rel="noopener noreferrer">Pinterest</a>
+      <a href="https://behance.net/" target="_blank" rel="noopener noreferrer">Behance</a>
+    </div>
+    <div class="footer-col">
+      <h4>The Journal</h4>
+      <a href="index.html#journal" style="line-height: 1.6;">Notes from the studio desk on design, process, and the creative life.</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>©Visions by ISO 2026</span>
+    <span>Manila, Philippines</span>
+    <span>In Its Most Inspired Form™</span>
+  </div>
+</footer>
+
+<!-- ========== SCRIPTS ========== -->
+<script>
+  const nav = document.getElementById('nav');
+  const revealItems = document.querySelectorAll('.reveal');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function updateNavState() {
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
+  }
+
+  window.addEventListener('scroll', updateNavState, { passive: true });
+  updateNavState();
+
+  if ('IntersectionObserver' in window && !prefersReducedMotion) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealItems.forEach((el) => observer.observe(el));
+  } else {
+    revealItems.forEach((el) => el.classList.add('visible'));
+  }
+</script>
+
+
+
+</body></html>

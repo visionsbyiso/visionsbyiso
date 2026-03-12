@@ -3,11 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Visions by ISO is an independent design studio crafting brand identity, social media management, content creation, and web design for creative businesses." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Visions by ISO" />
+  <meta name="theme-color" content="#E8E2D6" />
+  <link rel="canonical" href="https://visionsbyiso.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ISO — See Deeply. Shape Intentionally." />
+  <meta property="og:description" content="Independent design studio for intentional brands, social media systems, and meaningful digital experiences." />
+  <meta property="og:url" content="https://visionsbyiso.com/" />
+  <meta property="og:image" content="https://visionsbyiso.com/assets/Sunday%20Skin%20Center.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ISO — See Deeply. Shape Intentionally." />
+  <meta name="twitter:description" content="Independent design studio for intentional brands, social media systems, and meaningful digital experiences." />
+  <meta name="twitter:image" content="https://visionsbyiso.com/assets/Sunday%20Skin%20Center.webp" />
   <title>ISO — See Deeply. Shape Intentionally.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Visions by ISO",
+    "url": "https://visionsbyiso.com/",
+    "description": "Independent design studio specializing in brand identity, social media management, content creation, and web design.",
+    "areaServed": "US"
+  }
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+
+    h1, h2, h3 { text-wrap: balance; }
 
     :root {
       --parchment:   #E8E2D6;
@@ -37,6 +65,9 @@
       --shadow-md: 0 16px 50px rgba(46,36,24,0.12);
       --ease: cubic-bezier(0.25, 0, 0, 1);
       --max-w: 1200px;
+      --scroll-progress: 0;
+      --drift-x: 0px;
+      --drift-y: 0px;
     }
 
     body {
@@ -48,6 +79,25 @@
       line-height: 1.8;
       overflow-x: hidden;
       cursor: none;
+      position: relative;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: -15vh -10vw;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(56% 62% at calc(18% + var(--drift-x)) calc(12% + var(--drift-y)), rgba(196,149,106,0.40) 0%, rgba(196,149,106,0) 74%),
+        radial-gradient(48% 54% at calc(82% - var(--drift-x)) calc(10% + var(--drift-y)), rgba(107,107,78,0.32) 0%, rgba(107,107,78,0) 72%),
+        radial-gradient(60% 70% at 50% 82%, rgba(212,201,184,0.48) 0%, rgba(212,201,184,0) 72%),
+        linear-gradient(135deg, #f5f1eb 0%, #e8e2d6 48%, #ded3c3 100%);
+      transform: translate3d(0, calc(var(--scroll-progress) * -70px), 0) scale(1.08) rotate(calc(var(--scroll-progress) * -2.8deg));
+      transform-origin: center;
+      animation: gradientBreathe 16s ease-in-out infinite alternate;
+      will-change: transform;
     }
 
     /* CURSOR */
@@ -117,6 +167,78 @@
     }
     .nav-links a:hover { color: var(--terracotta); }
     .nav-links a:hover::after { right: 0; }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--terracotta);
+      outline-offset: 3px;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: var(--border);
+      background: rgba(245,241,235,0.7);
+      border-radius: 999px;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      flex-direction: column;
+      cursor: pointer;
+      transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+    .menu-toggle:hover { border-color: var(--terracotta); transform: translateY(-1px); }
+    .menu-toggle span {
+      width: 16px;
+      height: 1.5px;
+      background: var(--dark-earth);
+      transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+      transform-origin: center;
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(3px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) { transform: translateY(-3px) rotate(-45deg); }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 480;
+      background: rgba(46,36,24,0.34);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s var(--ease), visibility 0.3s var(--ease);
+      pointer-events: none;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .mobile-menu-panel {
+      width: min(86vw, 360px);
+      height: 100%;
+      margin-left: auto;
+      background: rgba(245,241,235,0.98);
+      border-left: var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 110px var(--sp-md) var(--sp-lg);
+      transform: translateX(18px);
+      transition: transform 0.35s var(--ease);
+    }
+    .mobile-menu.open .mobile-menu-panel { transform: translateX(0); }
+    .mobile-menu a {
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--dark-earth);
+      text-decoration: none;
+      border-bottom: var(--border);
+      padding: 14px 2px;
+    }
+    .mobile-menu a:hover { color: var(--terracotta); }
+
+    body.menu-open { overflow: hidden; }
 
     /* HERO */
     .hero {
@@ -550,6 +672,10 @@
     @keyframes fadeUp  { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
     @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
     @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+    @keyframes gradientBreathe {
+      0% { filter: saturate(1.02) hue-rotate(0deg); }
+      100% { filter: saturate(1.1) hue-rotate(-6deg); }
+    }
 
     /* RESPONSIVE */
     @media (max-width: 1024px) {
@@ -567,8 +693,11 @@
       .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--sp-lg); }
       .work-card { flex: 0 0 240px; }
     }
-    @media (max-width: 640px) {
+    @media (max-width: 860px) {
       .nav-links { display: none; }
+      .menu-toggle { display: inline-flex; }
+    }
+    @media (max-width: 640px) {
       .hero-left { padding: 100px var(--sp-md) var(--sp-xl); }
       .work-header, .offerings-header, .testimonials-header { padding-inline: var(--sp-md); }
       .work-section { padding: var(--sp-3xl) var(--sp-md); }
@@ -576,10 +705,33 @@
       .about-inner { padding-inline: var(--sp-md); }
       .footer-grid { grid-template-columns: 1fr; }
       footer { padding: var(--sp-xl) var(--sp-md) var(--sp-lg); }
-      .work-card { flex: 0 0 200px; }
+      .work-grid {
+        width: 100%;
+        animation: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 8px;
+      }
+      .work-grid::-webkit-scrollbar { height: 6px; }
+      .work-grid::-webkit-scrollbar-thumb { background: rgba(156,148,133,0.45); border-radius: 999px; }
+      .work-grid .work-card { scroll-snap-align: start; }
+      .work-grid .work-card:nth-child(n+8) { display: none; }
+      .work-card { flex: 0 0 min(78vw, 280px); }
       .wc-label { padding: 8px 0 0; }
       .wc-label h3 { font-size: 0.9rem; }
       .wc-cat { font-size: 8px; }
+      .mobile-menu-panel { width: min(92vw, 380px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body::after, .marquee-track, .work-grid { animation: none !important; }
+      .work-card { animation: none; opacity: 1; }
+      .reveal, .stagger > * { transition-duration: 0.01ms; }
+    }
+    @media (hover: none), (pointer: coarse) {
+      body { cursor: auto; }
+      .cursor { display: none; }
+      .footer-form button, .work-card, .menu-toggle { cursor: pointer; }
+      body::before { opacity: 0.015; }
     }
   </style>
 </head>
@@ -588,7 +740,7 @@
 <div class="cursor" id="cursor"></div>
 
 <!-- NAV -->
-<nav id="nav">
+<nav id="nav" aria-label="Primary">
   <a class="nav-logo" href="#">
     ISO
     <span>visions by iso</span>
@@ -600,8 +752,22 @@
     <li><a href="#journal">Journal</a></li>
     <li><a href="#inquire">Inquire</a></li>
   </ul>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileMenu">
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-panel">
+    <a href="#about" data-close-menu>About</a>
+    <a href="works.html" data-close-menu>Work</a>
+    <a href="#offerings" data-close-menu>Offerings</a>
+    <a href="#journal" data-close-menu>Journal</a>
+    <a href="#inquire" data-close-menu>Inquire</a>
+  </div>
+</div>
 
+<main>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
@@ -825,6 +991,7 @@
   <h2 class="reveal">Let your business live<br>in its most <strong>inspired</strong> form</h2>
   <a href="#inquire" class="btn-primary reveal">Inquire Now</a>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -855,7 +1022,7 @@
         <li><a href="#">Education</a></li>
       </ul>
     </div>
-    <div class="footer-col footer-newsletter">
+    <div class="footer-col footer-newsletter" id="journal">
       <h4>The Journal</h4>
       <p>Notes from the studio desk on inspiration, practice, and the creative life.</p>
       <div class="footer-form">
@@ -871,41 +1038,114 @@
 </footer>
 
 <script>
-  // Smooth custom cursor
+  const nav = document.getElementById('nav');
+  const root = document.documentElement;
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileLinks = document.querySelectorAll('[data-close-menu]');
   const cursor = document.getElementById('cursor');
-  let mx = 0, my = 0, cx = 0, cy = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  (function tick() {
-    cx += (mx - cx) * 0.11;
-    cy += (my - cy) * 0.11;
-    cursor.style.left = cx + 'px';
-    cursor.style.top  = cy + 'px';
-    requestAnimationFrame(tick);
-  })();
-  document.querySelectorAll('a, button, .work-card, .offering-card').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setMenuState(isOpen) {
+    if (!menuToggle || !mobileMenu) return;
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    mobileMenu.classList.toggle('open', isOpen);
+    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    document.body.classList.toggle('menu-open', isOpen);
+  }
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      setMenuState(!isOpen);
+    });
+
+    mobileMenu.addEventListener('click', e => {
+      if (e.target === mobileMenu) setMenuState(false);
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => setMenuState(false));
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') setMenuState(false);
+    });
+  }
+
+  if (cursor && hasFinePointer && !prefersReducedMotion) {
+    let mx = 0, my = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX;
+      my = e.clientY;
+    });
+    (function tick() {
+      cx += (mx - cx) * 0.11;
+      cy += (my - cy) * 0.11;
+      cursor.style.left = cx + 'px';
+      cursor.style.top = cy + 'px';
+      requestAnimationFrame(tick);
+    })();
+    document.querySelectorAll('a, button, .work-card, .offering-card').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+    });
+  } else if (cursor) {
+    cursor.style.display = 'none';
+    document.body.style.cursor = 'auto';
+  }
+
+  let latestScrollY = window.scrollY;
+  let bgTicking = false;
+
+  function updateBackgroundMotion() {
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const progress = Math.min(1, latestScrollY / maxScroll);
+    const driftX = (progress - 0.5) * 58;
+    const driftY = progress * 46;
+
+    root.style.setProperty('--scroll-progress', progress.toFixed(4));
+    root.style.setProperty('--drift-x', `${driftX.toFixed(1)}px`);
+    root.style.setProperty('--drift-y', `${driftY.toFixed(1)}px`);
+    bgTicking = false;
+  }
+
+  function onScroll() {
+    latestScrollY = window.scrollY;
+    nav.classList.toggle('scrolled', latestScrollY > 60);
+
+    if (!bgTicking) {
+      bgTicking = true;
+      window.requestAnimationFrame(updateBackgroundMotion);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => {
+    latestScrollY = window.scrollY;
+    updateBackgroundMotion();
+    if (window.innerWidth > 860) setMenuState(false);
   });
 
-  // Sticky nav
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+  const revealNodes = document.querySelectorAll('.reveal, .stagger');
+  if ('IntersectionObserver' in window && !prefersReducedMotion) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
 
-  // Scroll reveal — threshold 0.15 per brand spec
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
+    revealNodes.forEach(el => io.observe(el));
+  } else {
+    revealNodes.forEach(el => el.classList.add('visible'));
+  }
 
-  document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
-
-  // Work grid carousel pause on hover
   const workGrid = document.querySelector('.work-grid');
-  if (workGrid) {
+  if (workGrid && hasFinePointer && !prefersReducedMotion) {
     workGrid.addEventListener('mouseenter', () => {
       workGrid.style.animationPlayState = 'paused';
     });
@@ -914,6 +1154,22 @@
       workGrid.style.animationPlayState = 'running';
     });
   }
+
+  document.querySelectorAll('.wc-bg').forEach(bg => {
+    const styleValue = bg.style.backgroundImage || '';
+    const match = styleValue.match(/url\(["']?(.*?)["']?\)/);
+    if (!match || !match[1] || !match[1].startsWith('assets/')) return;
+
+    const fallbackUrl = match[1].replace('assets/', '');
+    const probe = new Image();
+    probe.onerror = () => {
+      bg.style.backgroundImage = `url('${fallbackUrl}')`;
+    };
+    probe.src = match[1];
+  });
+
+  updateBackgroundMotion();
+  onScroll();
 </script>
 
 </body>
