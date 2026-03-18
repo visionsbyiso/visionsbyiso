@@ -602,6 +602,126 @@
     }
     .cta-section h2 strong { font-weight: 500; font-style: normal; }
 
+    /* INQUIRE MODAL */
+    .inquire-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.35s var(--ease), visibility 0.35s var(--ease);
+    }
+    .inquire-modal.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .inquire-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(46,36,24,0.55);
+      backdrop-filter: blur(6px);
+    }
+    .inquire-panel {
+      position: relative;
+      width: min(92vw, 720px);
+      max-height: 88vh;
+      overflow: auto;
+      background: var(--warm-white);
+      border: 1px solid rgba(212,201,184,0.5);
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      padding: clamp(24px, 4vw, 44px);
+      z-index: 1;
+    }
+    .inquire-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(156,148,133,0.5);
+      background: rgba(245,241,235,0.9);
+      font-size: 18px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+    .inquire-close:hover { border-color: var(--terracotta); transform: translateY(-1px); }
+    .inquire-header p { color: var(--stone); margin-top: var(--sp-sm); }
+    .inquire-form { margin-top: var(--sp-lg); }
+    .inquire-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--sp-md);
+    }
+    .inquire-grid .full { grid-column: 1 / -1; }
+    .inquire-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .inquire-field input,
+    .inquire-field select,
+    .inquire-field textarea {
+      width: 100%;
+      border: 1px solid rgba(156,148,133,0.4);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.6);
+      padding: 12px 14px;
+      font-family: var(--sans);
+      font-size: 14px;
+      letter-spacing: 0;
+      color: var(--dark-earth);
+      transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .inquire-field textarea { min-height: 120px; resize: vertical; }
+    .inquire-field input:focus,
+    .inquire-field select:focus,
+    .inquire-field textarea:focus {
+      border-color: var(--terracotta);
+      box-shadow: 0 0 0 3px rgba(160,82,45,0.12);
+      outline: none;
+    }
+    .inquire-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-md);
+      margin-top: var(--sp-lg);
+      flex-wrap: wrap;
+    }
+    .inquire-note {
+      font-size: 12px;
+      color: var(--stone);
+      max-width: 320px;
+    }
+    .inquire-submit {
+      border: none;
+      background: var(--dark-earth);
+      color: var(--warm-white);
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-family: var(--sans);
+      cursor: pointer;
+      transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+    .inquire-submit:hover { background: var(--terracotta); transform: translateY(-1px); }
+    .modal-open { overflow: hidden; }
+    .modal-open .cursor { opacity: 0; }
+
     /* FOOTER */
     footer { background: var(--dark-earth); color: var(--parchment); padding: var(--sp-2xl) var(--sp-2xl) var(--sp-lg); }
 
@@ -705,6 +825,9 @@
       .about-inner { padding-inline: var(--sp-md); }
       .footer-grid { grid-template-columns: 1fr; }
       footer { padding: var(--sp-xl) var(--sp-md) var(--sp-lg); }
+      .inquire-panel { border-radius: 10px; }
+      .inquire-grid { grid-template-columns: 1fr; }
+      .inquire-actions { justify-content: flex-start; }
       .work-grid {
         width: 100%;
         animation: none;
@@ -993,6 +1116,72 @@
 </section>
 </main>
 
+<div class="inquire-modal" id="inquireModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="inquire-backdrop" data-inquire-close></div>
+  <div class="inquire-panel" role="document">
+    <button class="inquire-close" type="button" data-inquire-close aria-label="Close inquiry form">×</button>
+    <div class="inquire-header">
+      <p class="section-label">Start an Inquiry</p>
+      <h2>Tell us about your next chapter</h2>
+      <p>Share a few details and we’ll respond within 48 hours.</p>
+    </div>
+    <form class="inquire-form" id="inquireForm">
+      <div class="inquire-grid">
+        <label class="inquire-field">
+          <span>Name *</span>
+          <input type="text" name="name" autocomplete="name" required data-inquire-first>
+        </label>
+        <label class="inquire-field">
+          <span>Email *</span>
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label class="inquire-field">
+          <span>Business / Brand</span>
+          <input type="text" name="brand" autocomplete="organization">
+        </label>
+        <label class="inquire-field">
+          <span>Website / Instagram</span>
+          <input type="text" name="website" autocomplete="url">
+        </label>
+        <label class="inquire-field">
+          <span>Service</span>
+          <select name="service">
+            <option value="">Select a service</option>
+            <option>Brand Identity</option>
+            <option>Social Media Management</option>
+            <option>Content Creation</option>
+            <option>Website Design</option>
+            <option>Studio Days</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label class="inquire-field">
+          <span>Budget Range</span>
+          <select name="budget">
+            <option value="">Select a range</option>
+            <option>Under $2k</option>
+            <option>$2k – $5k</option>
+            <option>$5k – $10k</option>
+            <option>$10k+</option>
+          </select>
+        </label>
+        <label class="inquire-field full">
+          <span>Timeline</span>
+          <input type="text" name="timeline" placeholder="Ideal start date or launch window">
+        </label>
+        <label class="inquire-field full">
+          <span>Project Details *</span>
+          <textarea name="message" required placeholder="Tell us about your goals, scope, and what success looks like."></textarea>
+        </label>
+      </div>
+      <div class="inquire-actions">
+        <p class="inquire-note">Your details will open a draft email to hello@visionsbyiso.com in your mail app.</p>
+        <button class="inquire-submit" type="submit">Send Inquiry</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
@@ -1071,6 +1260,80 @@
 
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') setMenuState(false);
+    });
+  }
+
+  const inquireModal = document.getElementById('inquireModal');
+  const inquireForm = document.getElementById('inquireForm');
+  const inquireFirstField = document.querySelector('[data-inquire-first]');
+
+  function openInquire() {
+    if (!inquireModal) return;
+    inquireModal.classList.add('open');
+    inquireModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    window.setTimeout(() => inquireFirstField?.focus(), 50);
+  }
+
+  function closeInquire() {
+    if (!inquireModal) return;
+    inquireModal.classList.remove('open');
+    inquireModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+  }
+
+  document.querySelectorAll('a[href="#inquire"], a[href="/#inquire"], [data-inquire]').forEach(link => {
+    link.addEventListener('click', e => {
+      if (!inquireModal) return;
+      e.preventDefault();
+      openInquire();
+    });
+  });
+
+  if (inquireModal) {
+    inquireModal.addEventListener('click', e => {
+      if (e.target && e.target.matches('[data-inquire-close]')) {
+        closeInquire();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && inquireModal?.classList.contains('open')) {
+      closeInquire();
+    }
+  });
+
+  if (window.location.hash === '#inquire' && inquireModal) {
+    window.setTimeout(openInquire, 250);
+  }
+
+  if (inquireForm) {
+    inquireForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const data = new FormData(inquireForm);
+      const fields = [
+        ['Name', 'name'],
+        ['Email', 'email'],
+        ['Business / Brand', 'brand'],
+        ['Website / Instagram', 'website'],
+        ['Service', 'service'],
+        ['Budget Range', 'budget'],
+        ['Timeline', 'timeline'],
+        ['Project Details', 'message']
+      ];
+      const lines = fields
+        .map(([label, key]) => {
+          const value = String(data.get(key) || '').trim();
+          return value ? `${label}: ${value}` : '';
+        })
+        .filter(Boolean);
+
+      const subjectName = String(data.get('name') || 'New Inquiry').trim();
+      const subject = `Inquiry — ${subjectName}`;
+      const body = lines.join('\n');
+      const mailto = `mailto:hello@visionsbyiso.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
     });
   }
 
