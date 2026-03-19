@@ -1101,7 +1101,7 @@
   <div class="founder-text">
     <p class="section-label reveal">Meet the Artist</p>
     <h2 class="reveal">Creative Director<br><em>&amp; Studio Founder</em></h2>
-    <p class="reveal">A West Virginia native now based in Raleigh, North Carolina. After several years in the design agency world, the studio was founded in 2019 and has since partnered with a diverse range of industries — creating brands defined by meaningful storytelling, expressive visuals, and lasting positive impact.</p>
+    <p class="reveal">A Filipino brand partner based in Manila, Philippines, with a business-to-business passion for helping founders scale through efficient, clarity-first design systems that make marketing, content, and day-to-day brand work easier and more consistent.</p>
     <a href="#about" class="btn-light reveal">More About Us →</a>
   </div>
   <div class="founder-images reveal right">
@@ -1123,7 +1123,7 @@
     <div class="inquire-header">
       <p class="section-label">Start an Inquiry</p>
       <h2>Tell us about your next chapter</h2>
-      <p>Share a few details and we’ll respond within 48 hours.</p>
+      <p>Share a few details and we'll respond within 48 hours.</p>
     </div>
     <form class="inquire-form" id="inquireForm">
       <div class="inquire-grid">
@@ -1155,16 +1155,6 @@
             <option>Not sure yet</option>
           </select>
         </label>
-        <label class="inquire-field">
-          <span>Budget Range</span>
-          <select name="budget">
-            <option value="">Select a range</option>
-            <option>Under $2k</option>
-            <option>$2k – $5k</option>
-            <option>$5k – $10k</option>
-            <option>$10k+</option>
-          </select>
-        </label>
         <label class="inquire-field full">
           <span>Timeline</span>
           <input type="text" name="timeline" placeholder="Ideal start date or launch window">
@@ -1175,7 +1165,7 @@
         </label>
       </div>
       <div class="inquire-actions">
-        <p class="inquire-note">Your details will open a draft email to hello@visionsbyiso.com in your mail app.</p>
+        <p class="inquire-note">Your details will be sent directly to hello@visionsbyiso.com.</p>
         <button class="inquire-submit" type="submit">Send Inquiry</button>
       </div>
     </form>
@@ -1309,31 +1299,24 @@
   }
 
   if (inquireForm) {
-    inquireForm.addEventListener('submit', e => {
+    inquireForm.addEventListener('submit', async e => {
       e.preventDefault();
-      const data = new FormData(inquireForm);
-      const fields = [
-        ['Name', 'name'],
-        ['Email', 'email'],
-        ['Business / Brand', 'brand'],
-        ['Website / Instagram', 'website'],
-        ['Service', 'service'],
-        ['Budget Range', 'budget'],
-        ['Timeline', 'timeline'],
-        ['Project Details', 'message']
-      ];
-      const lines = fields
-        .map(([label, key]) => {
-          const value = String(data.get(key) || '').trim();
-          return value ? `${label}: ${value}` : '';
-        })
-        .filter(Boolean);
+      const payload = Object.fromEntries(new FormData(inquireForm).entries());
 
-      const subjectName = String(data.get('name') || 'New Inquiry').trim();
-      const subject = `Inquiry — ${subjectName}`;
-      const body = lines.join('\n');
-      const mailto = `mailto:hello@visionsbyiso.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailto;
+      try {
+        const res = await fetch('https://visionsbyiso-inquiry.visionsbyiso.workers.dev/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) throw new Error('Request failed');
+        inquireForm.reset();
+        closeInquire();
+        alert("Inquiry sent. We'll be in touch soon.");
+      } catch (error) {
+        alert('Something went wrong. Please email hello@visionsbyiso.com.');
+      }
     });
   }
 
