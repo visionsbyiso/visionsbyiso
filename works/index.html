@@ -2,23 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="Explore selected client work by Visions by ISO, including social media management, content creation, and brand identity projects." />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Visions by ISO" />
   <meta name="theme-color" content="#E8E2D6" />
+  <meta name="color-scheme" content="light" />
+  <meta name="format-detection" content="telephone=no" />
   <link rel="canonical" href="https://visionsbyiso.com/works/" />
+  <link rel="alternate" hreflang="en" href="https://visionsbyiso.com/works/" />
+  <link rel="alternate" hreflang="x-default" href="https://visionsbyiso.com/works/" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="ISO — Selected Works" />
+  <meta property="og:site_name" content="Visions by ISO" />
+  <meta property="og:title" content="Visions by ISO — Selected Works" />
   <meta property="og:description" content="A curated archive of social media, content, and brand identity work by Visions by ISO." />
   <meta property="og:url" content="https://visionsbyiso.com/works/" />
   <meta property="og:image" content="https://visionsbyiso.com/assets/Sunday%20Skin%20Center.webp" />
+  <meta property="og:image:alt" content="Selected work from Visions by ISO" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ISO — Selected Works" />
+  <meta name="twitter:title" content="Visions by ISO — Selected Works" />
   <meta name="twitter:description" content="A curated archive of social media, content, and brand identity work by Visions by ISO." />
   <meta name="twitter:image" content="https://visionsbyiso.com/assets/Sunday%20Skin%20Center.webp" />
-  <title>ISO - Selected Works</title>
+  <title>Visions by ISO — Selected Works</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -76,6 +86,21 @@
       line-height: 1.75;
       overflow-x: hidden;
       position: relative;
+    }
+
+    img, video {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
     }
 
     main, footer {
