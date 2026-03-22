@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offerings — Visions by ISO</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --parchment:#F5F1EB;
+  --warm-white:#F5F1EB;
+  --dark-earth:#2E2418;
+  --terracotta:#A0522D;
+  --olive-dusk:#6B6B4E;
+  --sand:#D4C9B8;
+  --clay:#C4956A;
+  --stone:#9C9485;
+
+  --bg:var(--parchment);
+  --bg2:#E8E2D6;
+  --dark:var(--dark-earth);
+  --mid:#6E665B;
+  --soft:var(--stone);
+  --light:var(--sand);
+  --rule:var(--sand);
+  --terra:var(--terracotta);
+
+  --fd:'Cormorant Garamond',Georgia,serif;
+  --fb:'DM Sans',system-ui,sans-serif;
+  --serif: var(--fd);
+  --sans: var(--fb);
+  --nav-sans: "DM Sans", system-ui, sans-serif;
+  --border: 1px solid var(--rule);
+  --shadow: 0 8px 30px rgba(46,36,24,0.06);
+  --shadow-md: 0 16px 50px rgba(46,36,24,0.12);
+  --radius: 4px;
+  --ease: cubic-bezier(0.25, 0, 0, 1);
+  --sp-md: 24px;
+  --sp-lg: 40px;
+  --sp-2xl: 80px;
+  --sp-xl: 60px;
+  --sp-3xl: 120px;
+  --sp-4xl: 160px;
+  --max-w: 1200px;
+  --nav-h: 88px;
+  --nav-gap: 88px;
+  --bar-h: 56px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+h1,h2,h3{text-wrap:balance}
+body{
+  font-family:var(--fb);
+  background:var(--bg);
+  color:var(--dark);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.menu-open{overflow:hidden}
+::selection{background:var(--dark);color:var(--bg)}
+
+/* NAV — match main site */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:30px var(--sp-2xl);
+  transition:background .35s var(--ease), padding .35s var(--ease), border-color .35s var(--ease);
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  background:rgba(232,226,214,0.95);
+  backdrop-filter:blur(12px);
+  border-bottom:var(--border);
+  box-shadow:0 6px 18px rgba(46,36,24,0.08);
+}
+.nav-logo{
+  font-family:var(--serif);
+  font-size:1.15rem;font-weight:500;
+  letter-spacing:.24em;text-transform:uppercase;
+  text-decoration:none;color:var(--dark);
+}
+.nav-logo span{
+  display:block;
+  font-style:italic;font-weight:300;font-size:.72rem;
+  letter-spacing:.16em;color:var(--soft);margin-top:-2px;
+}
+.nav-links{display:flex;gap:38px;list-style:none}
+.nav-links a{
+  font-family:var(--nav-sans);
+  font-size:10px;font-weight:500;
+  letter-spacing:.32em;text-transform:uppercase;
+  text-decoration:none;color:var(--dark);
+  position:relative;padding-bottom:3px;
+  transition:color .25s;
+}
+.nav-links a::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:100%;height:1px;
+  background:var(--terra);
+  transition:right .3s var(--ease);
+}
+.nav-links a:hover{color:var(--terra)}
+.nav-links a:hover::after{right:0}
+a:focus-visible,button:focus-visible{
+  outline:2px solid var(--terra);
+  outline-offset:3px;
+}
+.menu-toggle{
+  display:none;
+  width:44px;height:44px;
+  border:var(--border);
+  background:rgba(245,241,235,0.7);
+  border-radius:999px;
+  align-items:center;justify-content:center;
+  gap:4px;flex-direction:column;
+  cursor:pointer;
+  transition:border-color .3s var(--ease), background .3s var(--ease), transform .3s var(--ease);
+}
+.menu-toggle:hover{border-color:var(--terra);transform:translateY(-1px)}
+.menu-toggle span{
+  width:16px;height:1.5px;
+  background:var(--dark);
+  transition:transform .3s var(--ease), opacity .3s var(--ease);
+  transform-origin:center;
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(3px) rotate(45deg)}
+.menu-toggle[aria-expanded="true"] span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+.mobile-menu{
+  position:fixed;inset:0;
+  z-index:480;
+  background:rgba(43,34,24,0.34);
+  backdrop-filter:blur(6px);
+  opacity:0;visibility:hidden;
+  transition:opacity .3s var(--ease), visibility .3s var(--ease);
+  pointer-events:none;
+}
+.mobile-menu.open{opacity:1;visibility:visible;pointer-events:auto}
+.mobile-menu-panel{
+  width:min(86vw,360px);
+  height:100%;
+  margin-left:auto;
+  background:rgba(245,241,235,0.98);
+  border-left:var(--border);
+  display:flex;flex-direction:column;
+  gap:4px;
+  padding:110px var(--sp-md) var(--sp-lg);
+  transform:translateX(18px);
+  transition:transform .35s var(--ease);
+}
+.mobile-menu.open .mobile-menu-panel{transform:translateX(0)}
+.mobile-menu a{
+  font-family:var(--nav-sans);
+  font-size:11px;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--dark);
+  text-decoration:none;
+  border-bottom:var(--border);
+  padding:14px 2px;
+}
+.mobile-menu a:hover{color:var(--terra)}
+
+/* ═══ 2. STICKY PRODUCT BAR — align with site scale ═══ */
+.bar{
+  position:fixed;top:calc(var(--nav-h) - 1px);left:0;right:0;z-index:95;
+  background:var(--bg);
+  border-bottom:1px solid var(--rule);
+  display:flex;align-items:center;
+  padding:12px var(--sp-2xl);
+  gap:var(--sp-md);
+  min-height:var(--bar-h);
+  transition:top .35s var(--ease), background .35s var(--ease), border-color .35s var(--ease)
+}
+.bar-info{display:flex;flex-direction:column;gap:2px;min-width:200px}
+.bar-title{font-family:var(--fb);font-size:10px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:var(--dark)}
+.bar-sub{font-family:var(--fb);font-size:13px;font-weight:300;color:var(--soft);line-height:1.3}
+.bar-spacer{flex:1}
+.bar-btn{
+  font-family:var(--fb);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--warm-white);
+  background:var(--terracotta);
+  padding:10px 26px;
+  text-decoration:none;
+  border-radius:var(--radius);
+  transition:background .3s var(--ease), transform .3s var(--ease);
+  white-space:nowrap
+}
+.bar-btn:hover{background:var(--dark);transform:translateY(-1px)}
+
+/* Category tabs in bar */
+.bar-tabs{display:flex;gap:clamp(1rem,1.6vw,2rem);margin-left:clamp(1rem,2.5vw,3rem)}
+.bt{font-family:var(--fb);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--light);cursor:pointer;border:none;background:none;padding:0;transition:color .3s;white-space:nowrap}
+.bt:hover{color:var(--mid)}
+.bt.on{color:var(--dark);font-weight:400}
+
+/* ═══ 3. MAIN SPLIT — gallery left, info right ═══ */
+.pnl{display:none}.pnl.on{display:block}
+
+.split{display:grid;grid-template-columns:1fr 1fr}
+
+/* Left: gallery */
+.gal{display:flex;flex-direction:column}
+.gal-main{position:relative;overflow:hidden;aspect-ratio:4/5;background:var(--bg2)}
+.gal-main .sl{position:absolute;inset:0;opacity:0;transition:opacity .5s}
+.gal-main .sl.on{opacity:1}
+.sl-ph{width:100%;height:100%}
+.sl-ph::after{content:'';position:absolute;inset:0;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.55' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* Thumbnail strip with arrows — like Aesop */
+.gal-strip{display:flex;align-items:center;padding:clamp(8px,.6vw,10px) clamp(12px,1vw,16px);gap:clamp(4px,.4vw,6px);background:rgba(43,34,24,.03)}
+.gal-arr{width:clamp(28px,2.2vw,32px);height:clamp(28px,2.2vw,32px);border:1px solid var(--rule);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .25s}
+.gal-arr:hover{border-color:var(--dark)}
+.gal-arr svg{width:10px;height:10px;stroke:var(--mid);stroke-width:1.5;fill:none}
+.gal-thumbs{display:flex;gap:clamp(4px,.4vw,6px);overflow-x:auto;-webkit-overflow-scrolling:touch;flex:1}
+.gal-thumbs::-webkit-scrollbar{display:none}
+.th{width:clamp(64px,6vw,88px);height:clamp(64px,6vw,88px);flex-shrink:0;cursor:pointer;opacity:.4;transition:opacity .25s;border:2px solid transparent}
+.th.on{opacity:1;border-color:var(--dark)}
+.th:hover{opacity:.7}
+.th-in{width:100%;height:100%}
+
+/* Right: content */
+.info{padding:clamp(2.5rem,5vw,6rem) clamp(2.5rem,4vw,5rem);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+
+.info-label{font-family:var(--fb);font-size:10px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--terra);margin-bottom:clamp(1rem,1.8vw,2rem)}
+.info-title{font-family:var(--fd);font-size:clamp(34px,3.5vw,48px);font-weight:300;color:var(--dark);line-height:1.2;margin-bottom:clamp(.6rem,1vw,1rem)}
+.info-desc{font-family:var(--fb);font-size:14px;font-weight:300;color:var(--soft);line-height:1.85;margin-bottom:clamp(2rem,3.5vw,3.5rem);max-width:420px}
+
+/* ═══ 4. TABS BELOW GALLERY — Description | Ingredients | Packaging ═══ */
+.pkg-tabs{display:flex;justify-content:center;border-bottom:1px solid var(--rule);padding:0 clamp(1.5rem,3vw,3rem)}
+.pt{font-family:var(--fd);font-size:clamp(1.1rem,1.5vw,1.5rem);font-weight:400;color:var(--light);padding:clamp(1rem,1.5vw,1.5rem) 0;margin:0 clamp(1.2rem,2.5vw,3rem);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .3s;white-space:nowrap}
+.pt:hover{color:var(--mid)}
+.pt.on{color:var(--dark);border-bottom-color:var(--dark)}
+
+.pkg-content{padding:clamp(1.5rem,3vw,3rem) clamp(1.5rem,3vw,3rem) clamp(2rem,3.5vw,3.5rem);max-width:720px;margin:0 auto}
+.pc{display:none}.pc.on{display:block}
+
+.pc-desc{font-family:var(--fb);font-size:14px;font-weight:300;color:var(--mid);line-height:1.85;margin-bottom:clamp(1.5rem,2.5vw,2.5rem);text-align:center}
+
+.pc-row{border-top:1px solid var(--rule);padding:clamp(.7rem,1vw,1rem) 0}
+.pc-row:last-child{border-bottom:1px solid var(--rule)}
+.pc-k{font-family:var(--fb);font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--dark);margin-bottom:clamp(.1rem,.2vw,.2rem)}
+.pc-v{font-family:var(--fb);font-size:13px;font-weight:300;color:var(--soft);line-height:1.7}
+
+/* ═══ 5. LIFESTYLE SPLIT — image left, how-to right ═══ */
+.life{display:grid;grid-template-columns:1fr 1fr;min-height:clamp(400px,55vh,600px)}
+.life-img{position:relative;overflow:hidden}
+.life-img .lph{width:100%;height:100%;position:relative}
+.lph::after{content:'';position:absolute;inset:0;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.life-text{padding:clamp(2.5rem,5vw,6rem) clamp(2.5rem,4vw,5rem);display:flex;flex-direction:column;justify-content:center;background:var(--bg2)}
+
+.lt-label{font-family:var(--fb);font-size:10px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--dark);margin-bottom:clamp(.8rem,1.2vw,1.2rem)}
+.lt-title{font-family:var(--fd);font-size:clamp(28px,2.6vw,38px);font-weight:300;color:var(--dark);line-height:1.35;margin-bottom:clamp(1.5rem,2.5vw,2.5rem);max-width:420px}
+
+.lt-row{border-top:1px solid var(--rule);padding:clamp(.7rem,1vw,1rem) 0}
+.lt-row:last-child{border-bottom:1px solid var(--rule)}
+.lt-k{font-family:var(--fb);font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--dark);margin-bottom:.1rem}
+.lt-v{font-family:var(--fb);font-size:13px;font-weight:300;color:var(--soft);line-height:1.7}
+
+/* ═══ BUNDLES ═══ */
+.bundles{padding:var(--sp-4xl) 0;background:var(--warm-white)}
+.bun-h{
+  font-family:var(--fd);
+  font-size:clamp(34px,3.5vw,48px);
+  font-weight:300;
+  color:var(--dark);
+  max-width:var(--max-w);
+  margin:0 auto var(--sp-2xl);
+  padding:0 var(--sp-2xl)
+}
+.bun-g{
+  max-width:var(--max-w);
+  margin:0 auto;
+  padding:0 var(--sp-2xl);
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:3px
+}
+.bn{
+  padding:48px 38px 54px;
+  background:var(--parchment);
+  border-top:2px solid var(--sand)
+}
+.bn-nm{
+  font-family:var(--fd);
+  font-size:clamp(26px,2.5vw,34px);
+  font-weight:300;
+  color:var(--dark);
+  margin-bottom:var(--sp-md)
+}
+.bn-ls{list-style:none}
+.bn-ls li{
+  font-family:var(--fb);
+  font-size:13.5px;
+  font-weight:300;
+  color:var(--stone);
+  padding:8px 0;
+  border-top:1px solid rgba(212,201,184,0.4);
+  line-height:1.88
+}
+.bn-ls li:first-child{border-top:none;padding-top:0}
+
+/* ═══ CTA ═══ */
+.cta{padding:clamp(3.5rem,5vw,5rem) clamp(1.5rem,3vw,3rem);text-align:center;border-top:1px solid var(--rule)}
+.cta h2{font-family:var(--fd);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(--dark);margin-bottom:clamp(1.2rem,2vw,2rem)}
+.cta-btn{
+  font-family:var(--fb);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--warm-white);
+  background:var(--terracotta);
+  padding:15px 38px;
+  text-decoration:none;
+  display:inline-block;
+  border-radius:var(--radius);
+  transition:background .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease)
+}
+.cta-btn:hover{background:var(--dark);transform:translateY(-3px);box-shadow:var(--shadow-md)}
+
+/* ═══ FOOTER ═══ */
+footer{background:var(--dark);color:var(--parchment);padding:var(--sp-2xl) var(--sp-2xl) var(--sp-lg)}
+.footer-grid{
+  max-width:var(--max-w);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:2.5fr 1fr 1fr 1.5fr;
+  gap:var(--sp-2xl);
+  padding-bottom:var(--sp-2xl);
+  border-bottom:1px solid rgba(212,201,184,0.1);
+  margin-bottom:var(--sp-lg)
+}
+.footer-brand-name{display:block;font-family:var(--fd);font-size:1.1rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--parchment);margin-bottom:3px}
+.footer-brand-tag{display:block;font-family:var(--fd);font-size:.8rem;font-style:italic;font-weight:300;color:var(--stone);margin-bottom:var(--sp-md)}
+.footer-brand p{font-size:13px;line-height:1.75;color:var(--stone);max-width:260px}
+.footer-col h4{font-size:9px;letter-spacing:.44em;text-transform:uppercase;color:var(--clay);margin-bottom:var(--sp-md)}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul li a{font-size:13px;color:var(--stone);text-decoration:none;transition:color .2s}
+.footer-col ul li a:hover{color:var(--parchment)}
+.footer-newsletter p{font-size:13px;line-height:1.7;color:var(--stone);margin-bottom:var(--sp-sm)}
+.footer-form{display:flex;margin-top:var(--sp-sm)}
+.footer-form input{
+  flex:1;background:rgba(255,255,255,0.04);
+  border:1px solid rgba(212,201,184,0.18);border-right:none;
+  border-radius:var(--radius) 0 0 var(--radius);
+  padding:10px 14px;font-family:var(--sans);font-size:12px;
+  color:var(--parchment);outline:none;
+  transition:border-color .3s
+}
+.footer-form input::placeholder{color:var(--stone)}
+.footer-form input:focus{border-color:var(--clay)}
+.footer-form button{
+  background:var(--terracotta);border:none;
+  border-radius:0 var(--radius) var(--radius) 0;
+  padding:10px 20px;font-family:var(--sans);
+  font-size:9px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--warm-white);cursor:pointer;
+  transition:background .3s
+}
+.footer-form button:hover{background:var(--clay)}
+.footer-bottom{max-width:var(--max-w);margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--stone)}
+.footer-motto{font-family:var(--fd);font-size:.88rem;font-style:italic;font-weight:300;color:var(--clay)}
+
+/* ═══ HERO — full bleed like Aesop Skin Care ═══ */
+.hero{width:100%;height:clamp(450px,65vh,650px);position:relative;overflow:hidden;margin-top:calc(var(--nav-gap) + var(--bar-h))}
+.hero-ph{width:100%;height:100%;background:linear-gradient(145deg,#3a2b1d 0%,#5e4530 15%,#8a6a4a 30%,#a68a6a 42%,#c4a882 55%,#d8c4a8 68%,#e0d0b8 80%,#e8dcc8 100%);position:relative}
+.hero-ph::after{content:'';position:absolute;inset:0;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.55' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:clamp(2.5rem,5vw,5rem) clamp(1.5rem,3vw,3rem)}
+.hero-ov h1{font-family:var(--fd);font-size:clamp(50px,5.5vw,76px);font-weight:300;color:var(--warm-white);line-height:1.05;margin-bottom:clamp(.5rem,.8vw,.8rem)}
+.hero-ov p{font-family:var(--fb);font-size:14px;font-weight:300;color:rgba(245,241,235,.78);max-width:480px;line-height:1.85}
+
+/* ═══ MID TEXT — centered intro ═══ */
+.mid{padding:clamp(3.5rem,6vw,6rem) clamp(1.5rem,3vw,3rem);text-align:center;max-width:720px;margin:0 auto}
+.mid-label{font-family:var(--fb);font-size:10px;font-weight:500;letter-spacing:.44em;text-transform:uppercase;color:var(--terra);margin-bottom:clamp(.8rem,1.2vw,1.2rem)}
+.mid h2{font-family:var(--fd);font-size:clamp(34px,3.5vw,48px);font-weight:300;color:var(--dark);line-height:1.2;margin-bottom:clamp(.8rem,1.2vw,1.2rem)}
+.mid p{font-family:var(--fb);font-size:14px;font-weight:300;color:var(--soft);line-height:1.85;max-width:520px;margin:0 auto}
+
+/* Placeholder gradients */
+.g1{background:linear-gradient(155deg,#4a3828 0%,#6b5038 25%,#9a7a58 45%,#bfa882 65%,#d4c4a0 80%,#e2d8c4 100%)}
+.g2{background:linear-gradient(140deg,#5a4430 0%,#8a6e4e 40%,#c4a880 100%)}
+.g3{background:linear-gradient(160deg,#3a2818 0%,#6b5038 35%,#a08a6a 70%,#d4c0a0 100%)}
+.g4{background:linear-gradient(130deg,#4a3a28 0%,#7a6248 30%,#b09878 60%,#dac8a8 100%)}
+.g5{background:linear-gradient(150deg,#2e2018 0%,#5c4430 25%,#9a7e5e 55%,#c8b498 85%)}
+.g6{background:linear-gradient(145deg,#3e3020 0%,#5c4430 20%,#8a6844 40%,#b09068 58%,#c8b08a 72%,#ddd0b8 90%)}
+.g7{background:linear-gradient(135deg,#352818 0%,#584030 22%,#7a5e42 42%,#a08260 60%,#c0a880 76%)}
+.g8{background:linear-gradient(155deg,#403020 0%,#624a34 20%,#8c6e4e 40%,#b49470 58%,#ccb490 74%)}
+.g9{background:linear-gradient(150deg,#382a1c 0%,#5a4230 22%,#846848 44%,#a88e68 60%,#c4ae8e 78%)}
+.g10{background:linear-gradient(140deg,#4e3a28 0%,#7e6040 35%,#b49c74 60%,#d8c8a8 100%)}
+
+@media(max-width:900px){
+  nav,nav.scrolled{padding-left:var(--sp-lg);padding-right:var(--sp-lg)}
+  .nav-links{display:none}
+  .menu-toggle{display:inline-flex}
+  .bar{padding-left:var(--sp-lg);padding-right:var(--sp-lg);flex-wrap:wrap;row-gap:8px}
+  .bar-info{min-width:0}
+  .bar-btn{margin-left:auto}
+  .bar-tabs{display:none}
+  .bar-sub{display:none}
+  .split{grid-template-columns:1fr}
+  .gal-main{aspect-ratio:4/3}
+  .life{grid-template-columns:1fr}
+  .life-img{height:clamp(240px,40vw,320px)}
+  .bundles{padding:var(--sp-3xl) 0}
+  .bun-h,.bun-g{padding-left:var(--sp-lg);padding-right:var(--sp-lg)}
+  .bun-g{grid-template-columns:1fr;gap:var(--sp-md)}
+  .bn{padding:36px 28px 40px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:var(--sp-lg)}
+  .pkg-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+@media(max-width:600px){
+  nav,nav.scrolled{padding-left:var(--sp-md);padding-right:var(--sp-md)}
+  .bar{padding-left:var(--sp-md);padding-right:var(--sp-md);row-gap:6px}
+  .bar-btn{padding:9px 18px;font-size:9px}
+  .hero{height:clamp(360px,60vh,520px)}
+  .hero-ov{padding:var(--sp-2xl) var(--sp-md)}
+  .info{padding:var(--sp-2xl) var(--sp-md) var(--sp-3xl)}
+  .mobile-menu-panel{width:min(92vw,380px)}
+  .bundles{padding:var(--sp-3xl) 0}
+  .bun-h,.bun-g{padding-left:var(--sp-md);padding-right:var(--sp-md)}
+  .bn{padding:32px 22px 36px}
+  .footer-grid{grid-template-columns:1fr}
+  footer{padding:var(--sp-xl) var(--sp-md) var(--sp-lg)}
+  .footer-bottom{flex-direction:column;gap:.35rem;text-align:center}
+  .pt{font-size:1rem;margin-right:2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- 1. MAIN NAV -->
+<nav id="nav" aria-label="Primary">
+  <a class="nav-logo" href="/">
+    ISO
+    <span>visions by iso</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#about">About</a></li>
+    <li><a href="/works/">Work</a></li>
+    <li><a href="/offerings/">Offerings</a></li>
+    <li><a href="/#journal">Journal</a></li>
+    <li><a href="/#inquire">Inquire</a></li>
+  </ul>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileMenu">
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-panel">
+    <a href="/#about" data-close-menu>About</a>
+    <a href="/works/" data-close-menu>Work</a>
+    <a href="/offerings/" data-close-menu>Offerings</a>
+    <a href="/#journal" data-close-menu>Journal</a>
+    <a href="/#inquire" data-close-menu>Inquire</a>
+  </div>
+</div>
+
+<!-- 2. STICKY PRODUCT BAR -->
+<div class="bar" id="bar">
+  <div class="bar-info">
+    <span class="bar-title" id="barTitle">Content Direction</span>
+    <span class="bar-sub" id="barSub">Monthly creative direction</span>
+  </div>
+  <div class="bar-tabs">
+    <button class="bt on" data-c="cd">Content Direction</button>
+    <button class="bt" data-c="cs">Content Shoots</button>
+    <button class="bt" data-c="bi">Brand Identity</button>
+    <button class="bt" data-c="wd">Web Design</button>
+    <button class="bt" data-c="mc">Marketing & Layout</button>
+  </div>
+  <span class="bar-spacer"></span>
+  <a href="/#inquire" class="bar-btn">Work with Us</a>
+</div>
+
+<!-- 0. HERO — full bleed -->
+<section class="hero">
+  <div class="hero-ph"></div>
+  <div class="hero-ov">
+    <h1 id="heroTitle">Offerings</h1>
+    <p id="heroSub">Visual direction, brand identity, photography, and web design for wellness, beauty, and lifestyle brands.</p>
+  </div>
+</section>
+
+<!-- 0.5 MID TEXT -->
+<div class="mid">
+  <div class="mid-label">Our Services</div>
+  <h2 id="midTitle">Monthly social media management and creative direction for your brand.</h2>
+  <p id="midSub">Strategy, calendars, captions, scheduling, and reporting. You run the business, we keep it visible.</p>
+</div>
+
+<!-- ═══ CONTENT DIRECTION ═══ -->
+<div class="pnl on" data-p="cd" data-name="Content Direction" data-sub="Monthly creative direction" data-hero="Content Direction" data-herosub="Monthly social media management and creative direction for your brand." data-mid="Monthly social media management and creative direction for your brand." data-midsub="Strategy, calendars, captions, scheduling, and reporting. You run the business, we keep it visible.">
+
+  <!-- 3. Gallery left + Info right -->
+  <div class="split">
+    <div class="gal">
+      <div class="gal-main">
+        <div class="sl on"><div class="sl-ph g1"></div></div>
+        <div class="sl"><div class="sl-ph g2"></div></div>
+        <div class="sl"><div class="sl-ph g3"></div></div>
+        <div class="sl"><div class="sl-ph g4"></div></div>
+        <div class="sl"><div class="sl-ph g5"></div></div>
+      </div>
+      <div class="gal-strip">
+        <button class="gal-arr" onclick="prev(this)"><svg viewBox="0 0 10 10"><path d="M6.5 1.5L3 5l3.5 3.5"/></svg></button>
+        <div class="gal-thumbs">
+          <div class="th on" onclick="go(this,0)"><div class="th-in g1"></div></div>
+          <div class="th" onclick="go(this,1)"><div class="th-in g2"></div></div>
+          <div class="th" onclick="go(this,2)"><div class="th-in g3"></div></div>
+          <div class="th" onclick="go(this,3)"><div class="th-in g4"></div></div>
+          <div class="th" onclick="go(this,4)"><div class="th-in g5"></div></div>
+        </div>
+        <button class="gal-arr" onclick="next(this)"><svg viewBox="0 0 10 10"><path d="M3.5 1.5L7 5l-3.5 3.5"/></svg></button>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="info-label">Content Direction</div>
+      <h1 class="info-title">Monthly creative direction for your brand.</h1>
+      <p class="info-desc">Strategy, calendars, captions, scheduling, and reporting. You run the business, we keep it visible.</p>
+    </div>
+  </div>
+
+  <!-- 4. Package tabs — like Description | Ingredients | Packaging -->
+  <div class="pkg-tabs">
+    <button class="pt on" onclick="showPc(this,0)">The Prelude</button>
+    <button class="pt" onclick="showPc(this,1)">The Current</button>
+    <button class="pt" onclick="showPc(this,2)">The Signature</button>
+  </div>
+
+  <div class="pc on">
+    <div class="pkg-content">
+      <p class="pc-desc">One platform, one calendar, one clear starting point. For brands beginning to build a consistent presence.</p>
+      <div class="pc-row"><div class="pc-k">Platforms</div><div class="pc-v">1 platform (Instagram or Facebook)</div></div>
+      <div class="pc-row"><div class="pc-k">Posts</div><div class="pc-v">12 per month</div></div>
+      <div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Content calendar, captions, hashtag research</div></div>
+      <div class="pc-row"><div class="pc-k">Reporting</div><div class="pc-v">Monthly performance summary</div></div>
+    </div>
+  </div>
+  <div class="pc">
+    <div class="pkg-content">
+      <p class="pc-desc">Two platforms, deeper strategy, real momentum. For brands ready to grow and turn attention into bookings.</p>
+      <div class="pc-row"><div class="pc-k">Platforms</div><div class="pc-v">2 platforms</div></div>
+      <div class="pc-row"><div class="pc-k">Posts</div><div class="pc-v">16–20 per month with full captions and CTAs</div></div>
+      <div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Hashtag strategy, pillar rotation, story templates (4/month)</div></div>
+      <div class="pc-row"><div class="pc-k">Community</div><div class="pc-v">Daily engagement (30 min/day)</div></div>
+      <div class="pc-row"><div class="pc-k">Reporting</div><div class="pc-v">Monthly analytics with content recommendations</div></div>
+    </div>
+  </div>
+  <div class="pc">
+    <div class="pkg-content">
+      <p class="pc-desc">Everything directed and delivered. You run the business, we handle what the world sees.</p>
+      <div class="pc-row"><div class="pc-k">Platforms</div><div class="pc-v">2–3 platforms</div></div>
+      <div class="pc-row"><div class="pc-k">Posts</div><div class="pc-v">20–30 per month, content pillars and monthly strategy</div></div>
+      <div class="pc-row"><div class="pc-k">Reels</div><div class="pc-v">Direction and scripting (4/month)</div></div>
+      <div class="pc-row"><div class="pc-k">Community</div><div class="pc-v">Daily engagement, DM management, response frameworks</div></div>
+      <div class="pc-row"><div class="pc-k">Reporting</div><div class="pc-v">Bi-monthly analytics with strategy recommendations</div></div>
+      <div class="pc-row"><div class="pc-k">Priority</div><div class="pc-v">Direct communication and quarterly planning session</div></div>
+    </div>
+  </div>
+
+  <!-- 5. Lifestyle split — like Aesop's "How to use" -->
+  <div class="life">
+    <div class="life-img"><div class="lph g6"></div></div>
+    <div class="life-text">
+      <div class="lt-label">How it works</div>
+      <h3 class="lt-title">Everything from strategy to scheduling, handled with your brand voice in mind.</h3>
+      <div class="lt-row"><div class="lt-k">Platforms</div><div class="lt-v">Instagram, Facebook, TikTok</div></div>
+      <div class="lt-row"><div class="lt-k">Content types</div><div class="lt-v">Static posts, carousels, stories, Reels</div></div>
+      <div class="lt-row"><div class="lt-k">Delivery</div><div class="lt-v">Monthly content calendar with scheduling</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTENT SHOOTS ═══ -->
+<div class="pnl" data-p="cs" data-name="Content Shoots" data-sub="Photography and video" data-hero="Content Shoots" data-herosub="Photography and short-form video directed around your visual identity." data-mid="Photography and short-form video directed around your visual identity." data-midsub="From a quick monthly refresh to a full-day production. Every shoot is concepted, styled, and edited.">
+  <div class="split">
+    <div class="gal">
+      <div class="gal-main">
+        <div class="sl on"><div class="sl-ph g6"></div></div>
+        <div class="sl"><div class="sl-ph g7"></div></div>
+        <div class="sl"><div class="sl-ph g8"></div></div>
+        <div class="sl"><div class="sl-ph g9"></div></div>
+        <div class="sl"><div class="sl-ph g10"></div></div>
+        <div class="sl"><div class="sl-ph g3"></div></div>
+      </div>
+      <div class="gal-strip">
+        <button class="gal-arr" onclick="prev(this)"><svg viewBox="0 0 10 10"><path d="M6.5 1.5L3 5l3.5 3.5"/></svg></button>
+        <div class="gal-thumbs">
+          <div class="th on" onclick="go(this,0)"><div class="th-in g6"></div></div>
+          <div class="th" onclick="go(this,1)"><div class="th-in g7"></div></div>
+          <div class="th" onclick="go(this,2)"><div class="th-in g8"></div></div>
+          <div class="th" onclick="go(this,3)"><div class="th-in g9"></div></div>
+          <div class="th" onclick="go(this,4)"><div class="th-in g10"></div></div>
+          <div class="th" onclick="go(this,5)"><div class="th-in g3"></div></div>
+        </div>
+        <button class="gal-arr" onclick="next(this)"><svg viewBox="0 0 10 10"><path d="M3.5 1.5L7 5l-3.5 3.5"/></svg></button>
+      </div>
+    </div>
+    <div class="info">
+      <div class="info-label">Content Shoots</div>
+      <h1 class="info-title">Photography and video directed around your identity.</h1>
+      <p class="info-desc">From a quick monthly refresh to a full-day production.</p>
+    </div>
+  </div>
+  <div class="pkg-tabs">
+    <button class="pt on" onclick="showPc(this,0)">The Window Light</button>
+    <button class="pt" onclick="showPc(this,1)">The Collection</button>
+    <button class="pt" onclick="showPc(this,2)">The Volume</button>
+    <button class="pt" onclick="showPc(this,3)">The Scene</button>
+  </div>
+  <div class="pc on"><div class="pkg-content"><p class="pc-desc">A focused session for monthly content. In and out with exactly what you need.</p><div class="pc-row"><div class="pc-k">Duration</div><div class="pc-v">2–3 hours</div></div><div class="pc-row"><div class="pc-k">Photos</div><div class="pc-v">15–20 edited</div></div><div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Pre-shoot mood board, shot list, basic styling direction</div></div><div class="pc-row"><div class="pc-k">Delivery</div><div class="pc-v">5–7 business days</div></div></div></div>
+  <div class="pc"><div class="pkg-content"><p class="pc-desc">Styled, composed, every detail considered. The shoot that fills your visual library.</p><div class="pc-row"><div class="pc-k">Duration</div><div class="pc-v">4–5 hours</div></div><div class="pc-row"><div class="pc-k">Photos</div><div class="pc-v">30–40 edited</div></div><div class="pc-row"><div class="pc-k">Video</div><div class="pc-v">3–5 short-form clips</div></div><div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Concept, mood board, styling, location scouting (Metro Manila)</div></div><div class="pc-row"><div class="pc-k">Delivery</div><div class="pc-v">7–10 business days</div></div></div></div>
+  <div class="pc"><div class="pkg-content"><p class="pc-desc">Every angle, every room. A full season of visuals in one day.</p><div class="pc-row"><div class="pc-k">Duration</div><div class="pc-v">Up to 8 hours</div></div><div class="pc-row"><div class="pc-k">Photos</div><div class="pc-v">50–70 edited</div></div><div class="pc-row"><div class="pc-k">Video</div><div class="pc-v">8–10 short-form clips</div></div><div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Full creative direction, talent direction, multi-setup</div></div><div class="pc-row"><div class="pc-k">Delivery</div><div class="pc-v">10–14 business days</div></div></div></div>
+  <div class="pc"><div class="pkg-content"><p class="pc-desc">Short-form video concepted, directed, and produced with your brand in mind.</p><div class="pc-row"><div class="pc-k">Videos</div><div class="pc-v">4 Reels</div></div><div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Concept, scripting, on-site direction, editing with overlays and music</div></div><div class="pc-row"><div class="pc-k">Delivery</div><div class="pc-v">7–10 business days</div></div></div></div>
+  <div class="life">
+    <div class="life-img"><div class="lph g1"></div></div>
+    <div class="life-text">
+      <div class="lt-label">Good to know</div>
+      <h3 class="lt-title">Every shoot is directed around your visual identity. We bring the concept, you bring the space.</h3>
+      <div class="lt-row"><div class="lt-k">Talent</div><div class="lt-v">At cost + 10%</div></div>
+      <div class="lt-row"><div class="lt-k">Location</div><div class="lt-v">At cost, sourced and coordinated</div></div>
+      <div class="lt-row"><div class="lt-k">HMU</div><div class="lt-v">At cost + 10%</div></div>
+      <div class="lt-row"><div class="lt-k">Rush edit</div><div class="lt-v">+30% for 48-hour delivery</div></div>
+      <div class="lt-row"><div class="lt-k">Commercial license</div><div class="lt-v">+20%</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ BRAND IDENTITY ═══ -->
+<div class="pnl" data-p="bi" data-name="Brand Identity" data-sub="Visual foundation" data-hero="Brand Identity" data-herosub="The visual foundation everything else grows from. Logo, palette, typography, and guidelines." data-mid="The visual foundation everything else grows from." data-midsub="Logo, palette, typography, voice, and a guidelines document that keeps everything consistent.">
+  <div class="split">
+    <div class="gal">
+      <div class="gal-main">
+        <div class="sl on"><div class="sl-ph g7"></div></div>
+        <div class="sl"><div class="sl-ph g8"></div></div>
+        <div class="sl"><div class="sl-ph g10"></div></div>
+        <div class="sl"><div class="sl-ph g4"></div></div>
+        <div class="sl"><div class="sl-ph g2"></div></div>
+      </div>
+      <div class="gal-strip">
+        <button class="gal-arr" onclick="prev(this)"><svg viewBox="0 0 10 10"><path d="M6.5 1.5L3 5l3.5 3.5"/></svg></button>
+        <div class="gal-thumbs">
+          <div class="th on" onclick="go(this,0)"><div class="th-in g7"></div></div>
+          <div class="th" onclick="go(this,1)"><div class="th-in g8"></div></div>
+          <div class="th" onclick="go(this,2)"><div class="th-in g10"></div></div>
+          <div class="th" onclick="go(this,3)"><div class="th-in g4"></div></div>
+          <div class="th" onclick="go(this,4)"><div class="th-in g2"></div></div>
+        </div>
+        <button class="gal-arr" onclick="next(this)"><svg viewBox="0 0 10 10"><path d="M3.5 1.5L7 5l-3.5 3.5"/></svg></button>
+      </div>
+    </div>
+    <div class="info">
+      <div class="info-label">Brand Identity</div>
+      <h1 class="info-title">The visual foundation everything else grows from.</h1>
+      <p class="info-desc">Logo, palette, typography, and guidelines.</p>
+    </div>
+  </div>
+  <div class="pkg-tabs">
+    <button class="pt on" onclick="showPc(this,0)">The Surface</button>
+    <button class="pt" onclick="showPc(this,1)">The Revision</button>
+    <button class="pt" onclick="showPc(this,2)">The Blueprint</button>
+  </div>
+  <div class="pc on"><div class="pkg-content"><p class="pc-desc">Templates, covers, highlights, and a brand one-pager. Your visual impression, ready for social.</p><div class="pc-row"><div class="pc-k">Templates</div><div class="pc-v">8–12 post templates, 6–8 story variations</div></div><div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Profile/cover templates, highlight icons, brand one-pager</div></div></div></div>
+  <div class="pc"><div class="pkg-content"><p class="pc-desc">Same soul, refined surface. For businesses that have outgrown their current look.</p><div class="pc-row"><div class="pc-k">Audit</div><div class="pc-v">Brand audit and visual identity review</div></div><div class="pc-row"><div class="pc-k">Refresh</div><div class="pc-v">Updated palette, typography, refreshed logo</div></div><div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Brand guidelines (6–8 pages), social media brand kit</div></div></div></div>
+  <div class="pc"><div class="pkg-content"><p class="pc-desc">Built from the ground up. Discovery through delivery.</p><div class="pc-row"><div class="pc-k">Discovery</div><div class="pc-v">Strategy session and brand brief</div></div><div class="pc-row"><div class="pc-k">Logo</div><div class="pc-v">Primary, secondary, and submark</div></div><div class="pc-row"><div class="pc-k">System</div><div class="pc-v">Color palette, typography, voice and tone direction</div></div><div class="pc-row"><div class="pc-k">Guidelines</div><div class="pc-v">Full brand document (12–20 pages)</div></div><div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Social media brand kit, 2 rounds of revisions</div></div></div></div>
+</div>
+
+<!-- ═══ WEB DESIGN ═══ -->
+<div class="pnl" data-p="wd" data-name="Web Design" data-sub="Websites for your brand" data-hero="Web Design" data-herosub="Websites that hold the same feeling as your space." data-mid="Websites that hold the same feeling as your space." data-midsub="Single pages, full sites, or brand-and-web packages. Mobile responsive, booking-ready, built on your identity.">
+  <div class="split">
+    <div class="gal">
+      <div class="gal-main">
+        <div class="sl on"><div class="sl-ph g8"></div></div>
+        <div class="sl"><div class="sl-ph g5"></div></div>
+        <div class="sl"><div class="sl-ph g9"></div></div>
+        <div class="sl"><div class="sl-ph g3"></div></div>
+      </div>
+      <div class="gal-strip">
+        <button class="gal-arr" onclick="prev(this)"><svg viewBox="0 0 10 10"><path d="M6.5 1.5L3 5l3.5 3.5"/></svg></button>
+        <div class="gal-thumbs">
+          <div class="th on" onclick="go(this,0)"><div class="th-in g8"></div></div>
+          <div class="th" onclick="go(this,1)"><div class="th-in g5"></div></div>
+          <div class="th" onclick="go(this,2)"><div class="th-in g9"></div></div>
+          <div class="th" onclick="go(this,3)"><div class="th-in g3"></div></div>
+        </div>
+        <button class="gal-arr" onclick="next(this)"><svg viewBox="0 0 10 10"><path d="M3.5 1.5L7 5l-3.5 3.5"/></svg></button>
+      </div>
+    </div>
+    <div class="info">
+      <div class="info-label">Web Design</div>
+      <h1 class="info-title">Websites that hold the same feeling as your space.</h1>
+    </div>
+  </div>
+  <div class="pkg-tabs">
+    <button class="pt on" onclick="showPc(this,0)">The Landing</button>
+    <button class="pt" onclick="showPc(this,1)">The Address</button>
+    <button class="pt" onclick="showPc(this,2)">The Unveiling</button>
+  </div>
+  <div class="pc on"><div class="pkg-content"><p class="pc-desc">One page, done well. Where people arrive and decide to stay.</p><div class="pc-row"><div class="pc-k">Pages</div><div class="pc-v">Single page</div></div><div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Mobile responsive, basic SEO, contact or booking form</div></div><div class="pc-row"><div class="pc-k">Revisions</div><div class="pc-v">2 rounds</div></div></div></div>
+  <div class="pc"><div class="pkg-content"><p class="pc-desc">A complete website. Every room, open.</p><div class="pc-row"><div class="pc-k">Pages</div><div class="pc-v">3–6 custom pages</div></div><div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Mobile responsive, booking integration, SEO, blog setup</div></div><div class="pc-row"><div class="pc-k">Revisions</div><div class="pc-v">3 rounds + training session</div></div></div></div>
+  <div class="pc"><div class="pkg-content"><p class="pc-desc">Brand identity and website, delivered as one cohesive project.</p><div class="pc-row"><div class="pc-k">Identity</div><div class="pc-v">Full brand identity (The Blueprint)</div></div><div class="pc-row"><div class="pc-k">Website</div><div class="pc-v">Full website (The Address)</div></div><div class="pc-row"><div class="pc-k">Delivery</div><div class="pc-v">Phased over 6–8 weeks, everything aligned</div></div></div></div>
+</div>
+
+<!-- ═══ MARKETING & LAYOUT ═══ -->
+<div class="pnl" data-p="mc" data-name="Marketing & Layout" data-sub="Menus, decks, promos" data-hero="Marketing & Layout" data-herosub="Menus, decks, promos, and everything that keeps your brand polished at every touchpoint." data-mid="Menus, decks, promos, and everything that keeps your brand polished at every touchpoint." data-midsub="Rate cards, partnership decks, event flyers, and full collateral sets—all aligned to your brand.">
+  <div class="split">
+    <div class="gal">
+      <div class="gal-main">
+        <div class="sl on"><div class="sl-ph g9"></div></div>
+        <div class="sl"><div class="sl-ph g10"></div></div>
+        <div class="sl"><div class="sl-ph g1"></div></div>
+        <div class="sl"><div class="sl-ph g6"></div></div>
+      </div>
+      <div class="gal-strip">
+        <button class="gal-arr" onclick="prev(this)"><svg viewBox="0 0 10 10"><path d="M6.5 1.5L3 5l3.5 3.5"/></svg></button>
+        <div class="gal-thumbs">
+          <div class="th on" onclick="go(this,0)"><div class="th-in g9"></div></div>
+          <div class="th" onclick="go(this,1)"><div class="th-in g10"></div></div>
+          <div class="th" onclick="go(this,2)"><div class="th-in g1"></div></div>
+          <div class="th" onclick="go(this,3)"><div class="th-in g6"></div></div>
+        </div>
+        <button class="gal-arr" onclick="next(this)"><svg viewBox="0 0 10 10"><path d="M3.5 1.5L7 5l-3.5 3.5"/></svg></button>
+      </div>
+    </div>
+    <div class="info">
+      <div class="info-label">Marketing & Layout</div>
+      <h1 class="info-title">Menus, decks, promos, and everything in between.</h1>
+    </div>
+  </div>
+  <div class="pkg-tabs">
+    <button class="pt on" onclick="showPc(this,0)">The Display</button>
+    <button class="pt" onclick="showPc(this,1)">The Pitch</button>
+    <button class="pt" onclick="showPc(this,2)">The Announcement</button>
+    <button class="pt" onclick="showPc(this,3)">The Full Set</button>
+  </div>
+  <div class="pc on"><div class="pkg-content"><p class="pc-desc">Service menus, treatment lists, and pricing materials for digital or physical use.</p><div class="pc-row"><div class="pc-k">Deliverable</div><div class="pc-v">Menu or rate card layout</div></div><div class="pc-row"><div class="pc-k">Formats</div><div class="pc-v">Digital and print-ready</div></div><div class="pc-row"><div class="pc-k">Revisions</div><div class="pc-v">Up to 2 rounds</div></div></div></div>
+  <div class="pc"><div class="pkg-content"><p class="pc-desc">Polished presentation materials for partnerships, press, and outreach.</p><div class="pc-row"><div class="pc-k">Deliverable</div><div class="pc-v">5–12 slide deck</div></div><div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Copywriting support, PDF + editable format</div></div><div class="pc-row"><div class="pc-k">Revisions</div><div class="pc-v">Up to 2 rounds</div></div></div></div>
+  <div class="pc"><div class="pkg-content"><p class="pc-desc">Promotional pieces for launches, events, and seasonal campaigns.</p><div class="pc-row"><div class="pc-k">Deliverable</div><div class="pc-v">Flyer, poster, or banner</div></div><div class="pc-row"><div class="pc-k">Formats</div><div class="pc-v">Social-optimized and standard sizes</div></div><div class="pc-row"><div class="pc-k">Revisions</div><div class="pc-v">Up to 2 rounds per piece</div></div></div></div>
+  <div class="pc"><div class="pkg-content"><p class="pc-desc">Everything your brand needs at every touchpoint, designed as one cohesive set.</p><div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Menu/rate card, deck, 2–3 promo pieces, newsletter template, social ad creatives (set of 3)</div></div><div class="pc-row"><div class="pc-k">Delivery</div><div class="pc-v">All materials aligned and delivered together</div></div></div></div>
+</div>
+
+<!-- BUNDLES -->
+<section class="bundles">
+  <h2 class="bun-h">Bundles</h2>
+  <div class="bun-g">
+    <div class="bn"><div class="bn-nm">The Introduction</div><ul class="bn-ls"><li>Brand kit (The Surface)</li><li>Mini shoot (The Window Light)</li><li>1 month direction (The Prelude)</li><li>Delivered in 3–4 weeks</li></ul></div>
+    <div class="bn"><div class="bn-nm">The Crossing</div><ul class="bn-ls"><li>Brand refresh (The Revision)</li><li>Half-day shoot (The Collection)</li><li>3 months direction (The Current)</li><li>Quarterly strategy check-in</li></ul></div>
+    <div class="bn"><div class="bn-nm">The Beginning</div><ul class="bn-ls"><li>Full identity (The Blueprint)</li><li>Full website (The Address)</li><li>Full-day shoot (The Volume)</li><li>3 months direction (The Signature)</li></ul></div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>There's space here for you.</h2>
+  <a href="/#inquire" class="cta-btn">Work with Us</a>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-brand-name">ISO</span>
+      <span class="footer-brand-tag">See Deeply. Shape Intentionally.</span>
+      <p>An independent design studio devoted to building distinctive visual experiences — guided by artistry, strategy, and over a decade of industry experience.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/offerings/">Offerings</a></li>
+        <li><a href="/works/">Work</a></li>
+        <li><a href="/#journal">Journal</a></li>
+        <li><a href="/#inquire">Inquire</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Keep In Touch</h4>
+      <ul>
+        <li><a href="https://instagram.com/visionsbyiso">Instagram</a></li>
+        <li><a href="https://facebook.com/visionsbyiso">Facebook</a></li>
+        <li><a href="https://www.tiktok.com/@visionsbyiso">TikTok</a></li>
+        <li><a href="#">Reviews</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-newsletter" id="journal">
+      <h4>The Journal</h4>
+      <p>Notes from the studio desk on inspiration, practice, and the creative life.</p>
+      <div class="footer-form">
+        <input type="email" placeholder="hello@visionsbyiso.com" />
+        <button>Join</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">©ISO 2025 &nbsp;/&nbsp; Policies &nbsp;/&nbsp; Version 1.0</p>
+    <p class="footer-motto">In Its Most Inspired Form™</p>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileLinks = document.querySelectorAll('[data-close-menu]');
+const bar = document.getElementById('bar');
+const root = document.documentElement;
+let navObserver = null;
+let barObserver = null;
+
+function setMenuState(isOpen){
+  if(!menuToggle || !mobileMenu) return;
+  menuToggle.setAttribute('aria-expanded', String(isOpen));
+  mobileMenu.classList.toggle('open', isOpen);
+  mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+  document.body.classList.toggle('menu-open', isOpen);
+}
+
+if(menuToggle && mobileMenu){
+  menuToggle.addEventListener('click', ()=>{
+    const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+    setMenuState(!isOpen);
+  });
+  mobileMenu.addEventListener('click', e=>{
+    if(e.target === mobileMenu) setMenuState(false);
+  });
+  mobileLinks.forEach(link=>{
+    link.addEventListener('click', ()=> setMenuState(false));
+  });
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'Escape') setMenuState(false);
+  });
+}
+
+function setLayoutOffsets(){
+  if(nav){
+    const navHeight = nav.getBoundingClientRect().height;
+    root.style.setProperty('--nav-gap', `${navHeight}px`);
+  }
+  if(bar){
+    const barHeight = bar.getBoundingClientRect().height;
+    root.style.setProperty('--bar-h', `${barHeight}px`);
+  }
+}
+
+function updateNavHeight(){
+  if(!nav) return;
+  const navHeight = nav.getBoundingClientRect().height;
+  root.style.setProperty('--nav-h', `${navHeight}px`);
+}
+
+function updateBarHeight(){
+  if(!bar) return;
+  const barHeight = bar.getBoundingClientRect().height;
+  root.style.setProperty('--bar-h', `${barHeight}px`);
+}
+
+function initObservers(){
+  updateNavHeight();
+  updateBarHeight();
+  if('ResizeObserver' in window){
+    if(nav && !navObserver){
+      navObserver = new ResizeObserver(() => updateNavHeight());
+      navObserver.observe(nav);
+    }
+    if(bar && !barObserver){
+      barObserver = new ResizeObserver(() => updateBarHeight());
+      barObserver.observe(bar);
+    }
+  }
+}
+
+let navIsScrolled = false;
+function updateNavState(){
+  if(!nav) return;
+  const shouldScroll = window.scrollY > 60;
+  if(shouldScroll !== navIsScrolled){
+    navIsScrolled = shouldScroll;
+    nav.classList.toggle('scrolled', shouldScroll);
+  }
+}
+window.addEventListener('scroll', updateNavState, { passive: true });
+window.addEventListener('resize', ()=>{
+  if(window.innerWidth > 900) setMenuState(false);
+  setLayoutOffsets();
+  updateNavHeight();
+  updateBarHeight();
+});
+window.addEventListener('load', ()=>{
+  setLayoutOffsets();
+  initObservers();
+});
+setLayoutOffsets();
+initObservers();
+updateNavState();
+
+// Category switching via bar tabs
+document.querySelectorAll('.bt').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.bt').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.pnl').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    const p=document.querySelector(`[data-p="${b.dataset.c}"]`);
+    p.classList.add('on');
+    // Update bar text
+    document.getElementById('barTitle').textContent=p.dataset.name;
+    document.getElementById('barSub').textContent=p.dataset.sub;
+    // Update hero text
+    document.getElementById('heroTitle').textContent=p.dataset.hero;
+    document.getElementById('heroSub').textContent=p.dataset.herosub;
+    // Update mid text
+    document.getElementById('midTitle').textContent=p.dataset.mid;
+    document.getElementById('midSub').textContent=p.dataset.midsub;
+    // Reset gallery
+    p.querySelectorAll('.sl').forEach(s=>s.classList.remove('on'));
+    p.querySelectorAll('.sl')[0].classList.add('on');
+    p.querySelectorAll('.th').forEach(t=>t.classList.remove('on'));
+    p.querySelectorAll('.th')[0].classList.add('on');
+    // Reset package tabs
+    p.querySelectorAll('.pt').forEach(t=>t.classList.remove('on'));
+    p.querySelectorAll('.pt')[0].classList.add('on');
+    p.querySelectorAll('.pc').forEach(c=>c.classList.remove('on'));
+    p.querySelectorAll('.pc')[0].classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+// Gallery: go to index
+function go(thumb,idx){
+  const gal=thumb.closest('.gal');
+  gal.querySelectorAll('.sl').forEach(s=>s.classList.remove('on'));
+  gal.querySelectorAll('.th').forEach(t=>t.classList.remove('on'));
+  gal.querySelectorAll('.sl')[idx].classList.add('on');
+  thumb.classList.add('on');
+}
+
+// Gallery: prev/next arrows
+function getIdx(gal){
+  const slides=[...gal.querySelectorAll('.sl')];
+  return slides.findIndex(s=>s.classList.contains('on'));
+}
+function prev(btn){
+  const gal=btn.closest('.gal');
+  const slides=gal.querySelectorAll('.sl');
+  const thumbs=gal.querySelectorAll('.th');
+  let i=getIdx(gal)-1;
+  if(i<0)i=slides.length-1;
+  slides.forEach(s=>s.classList.remove('on'));
+  thumbs.forEach(t=>t.classList.remove('on'));
+  slides[i].classList.add('on');
+  thumbs[i].classList.add('on');
+}
+function next(btn){
+  const gal=btn.closest('.gal');
+  const slides=gal.querySelectorAll('.sl');
+  const thumbs=gal.querySelectorAll('.th');
+  let i=getIdx(gal)+1;
+  if(i>=slides.length)i=0;
+  slides.forEach(s=>s.classList.remove('on'));
+  thumbs.forEach(t=>t.classList.remove('on'));
+  slides[i].classList.add('on');
+  thumbs[i].classList.add('on');
+}
+
+// Package tabs (Description | Ingredients | Packaging style)
+function showPc(btn,idx){
+  const pnl=btn.closest('.pnl');
+  pnl.querySelectorAll('.pt').forEach(t=>t.classList.remove('on'));
+  pnl.querySelectorAll('.pc').forEach(c=>c.classList.remove('on'));
+  btn.classList.add('on');
+  pnl.querySelectorAll('.pc')[idx].classList.add('on');
+}
+</script>
+</body>
+</html>
