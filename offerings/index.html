@@ -422,7 +422,16 @@ footer{background:var(--dark);color:var(--parchment);padding:var(--sp-2xl) var(-
 
 /* ═══ HERO — full bleed like Aesop Skin Care ═══ */
 .hero{width:100%;height:clamp(450px,65vh,650px);position:relative;overflow:hidden;margin-top:calc(var(--nav-gap) + var(--bar-h))}
-.hero-ph{width:100%;height:100%;background:linear-gradient(145deg,#3a2b1d 0%,#5e4530 15%,#8a6a4a 30%,#a68a6a 42%,#c4a882 55%,#d8c4a8 68%,#e0d0b8 80%,#e8dcc8 100%);position:relative}
+.hero-ph{
+  width:100%;
+  height:100%;
+  background-color:#a98666;
+  background-image:url("/assets/offerings-hero.webp");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  position:relative
+}
 .hero-ph::after{content:'';position:absolute;inset:0;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.55' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .hero-ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:clamp(2.5rem,5vw,5rem) clamp(1.5rem,3vw,3rem)}
 .hero-ov h1{font-family:var(--fd);font-size:clamp(50px,5.5vw,76px);font-weight:300;color:var(--warm-white);line-height:1.05;margin-bottom:clamp(.5rem,.8vw,.8rem)}
@@ -434,17 +443,38 @@ footer{background:var(--dark);color:var(--parchment);padding:var(--sp-2xl) var(-
 .mid h2{font-family:var(--fd);font-size:clamp(34px,3.5vw,48px);font-weight:300;color:var(--dark);line-height:1.2;margin-bottom:clamp(.8rem,1.2vw,1.2rem)}
 .mid p{font-family:var(--fb);font-size:14px;font-weight:300;color:var(--soft);line-height:1.85;max-width:520px;margin:0 auto}
 
-/* Placeholder gradients */
-.g1{background:linear-gradient(155deg,#4a3828 0%,#6b5038 25%,#9a7a58 45%,#bfa882 65%,#d4c4a0 80%,#e2d8c4 100%)}
-.g2{background:linear-gradient(140deg,#5a4430 0%,#8a6e4e 40%,#c4a880 100%)}
-.g3{background:linear-gradient(160deg,#3a2818 0%,#6b5038 35%,#a08a6a 70%,#d4c0a0 100%)}
-.g4{background:linear-gradient(130deg,#4a3a28 0%,#7a6248 30%,#b09878 60%,#dac8a8 100%)}
-.g5{background:linear-gradient(150deg,#2e2018 0%,#5c4430 25%,#9a7e5e 55%,#c8b498 85%)}
-.g6{background:linear-gradient(145deg,#3e3020 0%,#5c4430 20%,#8a6844 40%,#b09068 58%,#c8b08a 72%,#ddd0b8 90%)}
-.g7{background:linear-gradient(135deg,#352818 0%,#584030 22%,#7a5e42 42%,#a08260 60%,#c0a880 76%)}
-.g8{background:linear-gradient(155deg,#403020 0%,#624a34 20%,#8c6e4e 40%,#b49470 58%,#ccb490 74%)}
-.g9{background:linear-gradient(150deg,#382a1c 0%,#5a4230 22%,#846848 44%,#a88e68 60%,#c4ae8e 78%)}
-.g10{background:linear-gradient(140deg,#4e3a28 0%,#7e6040 35%,#b49c74 60%,#d8c8a8 100%)}
+/* Offerings imagery */
+.sl-ph, .th-in, .lph{background-size:cover;background-position:center;background-repeat:no-repeat}
+.cd-01{background-image:url("/assets/offerings-cd-01.webp")}
+.cd-02{background-image:url("/assets/offerings-cd-02.webp")}
+.cd-03{background-image:url("/assets/offerings-cd-03.webp")}
+.cd-04{background-image:url("/assets/offerings-cd-04.webp")}
+.cd-05{background-image:url("/assets/offerings-cd-05.webp")}
+.cd-life{background-image:url("/assets/offerings-cd-life.webp")}
+
+.cs-01{background-image:url("/assets/offerings-cs-01.webp")}
+.cs-02{background-image:url("/assets/offerings-cs-02.webp")}
+.cs-03{background-image:url("/assets/offerings-cs-03.webp")}
+.cs-04{background-image:url("/assets/offerings-cs-04.webp")}
+.cs-05{background-image:url("/assets/offerings-cs-05.webp")}
+.cs-06{background-image:url("/assets/offerings-cs-06.webp")}
+.cs-life{background-image:url("/assets/offerings-cs-life.webp")}
+
+.bi-01{background-image:url("/assets/offerings-bi-01.webp")}
+.bi-02{background-image:url("/assets/offerings-bi-02.webp")}
+.bi-03{background-image:url("/assets/offerings-bi-03.webp")}
+.bi-04{background-image:url("/assets/offerings-bi-04.webp")}
+.bi-05{background-image:url("/assets/offerings-bi-05.webp")}
+
+.wd-01{background-image:url("/assets/offerings-wd-01.webp")}
+.wd-02{background-image:url("/assets/offerings-wd-02.webp")}
+.wd-03{background-image:url("/assets/offerings-wd-03.webp")}
+.wd-04{background-image:url("/assets/offerings-wd-04.webp")}
+
+.mc-01{background-image:url("/assets/offerings-mc-01.webp")}
+.mc-02{background-image:url("/assets/offerings-mc-02.webp")}
+.mc-03{background-image:url("/assets/offerings-mc-03.webp")}
+.mc-04{background-image:url("/assets/offerings-mc-04.webp")}
 
 @media(max-width:900px){
   nav,nav.scrolled{padding-left:var(--sp-lg);padding-right:var(--sp-lg)}
@@ -554,20 +584,20 @@ footer{background:var(--dark);color:var(--parchment);padding:var(--sp-2xl) var(-
   <div class="split">
     <div class="gal">
       <div class="gal-main">
-        <div class="sl on"><div class="sl-ph g1"></div></div>
-        <div class="sl"><div class="sl-ph g2"></div></div>
-        <div class="sl"><div class="sl-ph g3"></div></div>
-        <div class="sl"><div class="sl-ph g4"></div></div>
-        <div class="sl"><div class="sl-ph g5"></div></div>
+        <div class="sl on"><div class="sl-ph cd-01"></div></div>
+        <div class="sl"><div class="sl-ph cd-02"></div></div>
+        <div class="sl"><div class="sl-ph cd-03"></div></div>
+        <div class="sl"><div class="sl-ph cd-04"></div></div>
+        <div class="sl"><div class="sl-ph cd-05"></div></div>
       </div>
       <div class="gal-strip">
         <button class="gal-arr" onclick="prev(this)"><svg viewBox="0 0 10 10"><path d="M6.5 1.5L3 5l3.5 3.5"/></svg></button>
         <div class="gal-thumbs">
-          <div class="th on" onclick="go(this,0)"><div class="th-in g1"></div></div>
-          <div class="th" onclick="go(this,1)"><div class="th-in g2"></div></div>
-          <div class="th" onclick="go(this,2)"><div class="th-in g3"></div></div>
-          <div class="th" onclick="go(this,3)"><div class="th-in g4"></div></div>
-          <div class="th" onclick="go(this,4)"><div class="th-in g5"></div></div>
+          <div class="th on" onclick="go(this,0)"><div class="th-in cd-01"></div></div>
+          <div class="th" onclick="go(this,1)"><div class="th-in cd-02"></div></div>
+          <div class="th" onclick="go(this,2)"><div class="th-in cd-03"></div></div>
+          <div class="th" onclick="go(this,3)"><div class="th-in cd-04"></div></div>
+          <div class="th" onclick="go(this,4)"><div class="th-in cd-05"></div></div>
         </div>
         <button class="gal-arr" onclick="next(this)"><svg viewBox="0 0 10 10"><path d="M3.5 1.5L7 5l-3.5 3.5"/></svg></button>
       </div>
@@ -620,7 +650,7 @@ footer{background:var(--dark);color:var(--parchment);padding:var(--sp-2xl) var(-
 
   <!-- 5. Lifestyle split — like Aesop's "How to use" -->
   <div class="life">
-    <div class="life-img"><div class="lph g6"></div></div>
+    <div class="life-img"><div class="lph cd-life"></div></div>
     <div class="life-text">
       <div class="lt-label">How it works</div>
       <h3 class="lt-title">Everything from strategy to scheduling, handled with your brand voice in mind.</h3>
@@ -636,22 +666,22 @@ footer{background:var(--dark);color:var(--parchment);padding:var(--sp-2xl) var(-
   <div class="split">
     <div class="gal">
       <div class="gal-main">
-        <div class="sl on"><div class="sl-ph g6"></div></div>
-        <div class="sl"><div class="sl-ph g7"></div></div>
-        <div class="sl"><div class="sl-ph g8"></div></div>
-        <div class="sl"><div class="sl-ph g9"></div></div>
-        <div class="sl"><div class="sl-ph g10"></div></div>
-        <div class="sl"><div class="sl-ph g3"></div></div>
+        <div class="sl on"><div class="sl-ph cs-01"></div></div>
+        <div class="sl"><div class="sl-ph cs-02"></div></div>
+        <div class="sl"><div class="sl-ph cs-03"></div></div>
+        <div class="sl"><div class="sl-ph cs-04"></div></div>
+        <div class="sl"><div class="sl-ph cs-05"></div></div>
+        <div class="sl"><div class="sl-ph cs-06"></div></div>
       </div>
       <div class="gal-strip">
         <button class="gal-arr" onclick="prev(this)"><svg viewBox="0 0 10 10"><path d="M6.5 1.5L3 5l3.5 3.5"/></svg></button>
         <div class="gal-thumbs">
-          <div class="th on" onclick="go(this,0)"><div class="th-in g6"></div></div>
-          <div class="th" onclick="go(this,1)"><div class="th-in g7"></div></div>
-          <div class="th" onclick="go(this,2)"><div class="th-in g8"></div></div>
-          <div class="th" onclick="go(this,3)"><div class="th-in g9"></div></div>
-          <div class="th" onclick="go(this,4)"><div class="th-in g10"></div></div>
-          <div class="th" onclick="go(this,5)"><div class="th-in g3"></div></div>
+          <div class="th on" onclick="go(this,0)"><div class="th-in cs-01"></div></div>
+          <div class="th" onclick="go(this,1)"><div class="th-in cs-02"></div></div>
+          <div class="th" onclick="go(this,2)"><div class="th-in cs-03"></div></div>
+          <div class="th" onclick="go(this,3)"><div class="th-in cs-04"></div></div>
+          <div class="th" onclick="go(this,4)"><div class="th-in cs-05"></div></div>
+          <div class="th" onclick="go(this,5)"><div class="th-in cs-06"></div></div>
         </div>
         <button class="gal-arr" onclick="next(this)"><svg viewBox="0 0 10 10"><path d="M3.5 1.5L7 5l-3.5 3.5"/></svg></button>
       </div>
@@ -673,7 +703,7 @@ footer{background:var(--dark);color:var(--parchment);padding:var(--sp-2xl) var(-
   <div class="pc"><div class="pkg-content"><p class="pc-desc">Every angle, every room. A full season of visuals in one day.</p><div class="pc-row"><div class="pc-k">Duration</div><div class="pc-v">Up to 8 hours</div></div><div class="pc-row"><div class="pc-k">Photos</div><div class="pc-v">50–70 edited</div></div><div class="pc-row"><div class="pc-k">Video</div><div class="pc-v">8–10 short-form clips</div></div><div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Full creative direction, talent direction, multi-setup</div></div><div class="pc-row"><div class="pc-k">Delivery</div><div class="pc-v">10–14 business days</div></div></div></div>
   <div class="pc"><div class="pkg-content"><p class="pc-desc">Short-form video concepted, directed, and produced with your brand in mind.</p><div class="pc-row"><div class="pc-k">Videos</div><div class="pc-v">4 Reels</div></div><div class="pc-row"><div class="pc-k">Includes</div><div class="pc-v">Concept, scripting, on-site direction, editing with overlays and music</div></div><div class="pc-row"><div class="pc-k">Delivery</div><div class="pc-v">7–10 business days</div></div></div></div>
   <div class="life">
-    <div class="life-img"><div class="lph g1"></div></div>
+    <div class="life-img"><div class="lph cs-life"></div></div>
     <div class="life-text">
       <div class="lt-label">Good to know</div>
       <h3 class="lt-title">Every shoot is directed around your visual identity. We bring the concept, you bring the space.</h3>
@@ -691,20 +721,20 @@ footer{background:var(--dark);color:var(--parchment);padding:var(--sp-2xl) var(-
   <div class="split">
     <div class="gal">
       <div class="gal-main">
-        <div class="sl on"><div class="sl-ph g7"></div></div>
-        <div class="sl"><div class="sl-ph g8"></div></div>
-        <div class="sl"><div class="sl-ph g10"></div></div>
-        <div class="sl"><div class="sl-ph g4"></div></div>
-        <div class="sl"><div class="sl-ph g2"></div></div>
+        <div class="sl on"><div class="sl-ph bi-01"></div></div>
+        <div class="sl"><div class="sl-ph bi-02"></div></div>
+        <div class="sl"><div class="sl-ph bi-03"></div></div>
+        <div class="sl"><div class="sl-ph bi-04"></div></div>
+        <div class="sl"><div class="sl-ph bi-05"></div></div>
       </div>
       <div class="gal-strip">
         <button class="gal-arr" onclick="prev(this)"><svg viewBox="0 0 10 10"><path d="M6.5 1.5L3 5l3.5 3.5"/></svg></button>
         <div class="gal-thumbs">
-          <div class="th on" onclick="go(this,0)"><div class="th-in g7"></div></div>
-          <div class="th" onclick="go(this,1)"><div class="th-in g8"></div></div>
-          <div class="th" onclick="go(this,2)"><div class="th-in g10"></div></div>
-          <div class="th" onclick="go(this,3)"><div class="th-in g4"></div></div>
-          <div class="th" onclick="go(this,4)"><div class="th-in g2"></div></div>
+          <div class="th on" onclick="go(this,0)"><div class="th-in bi-01"></div></div>
+          <div class="th" onclick="go(this,1)"><div class="th-in bi-02"></div></div>
+          <div class="th" onclick="go(this,2)"><div class="th-in bi-03"></div></div>
+          <div class="th" onclick="go(this,3)"><div class="th-in bi-04"></div></div>
+          <div class="th" onclick="go(this,4)"><div class="th-in bi-05"></div></div>
         </div>
         <button class="gal-arr" onclick="next(this)"><svg viewBox="0 0 10 10"><path d="M3.5 1.5L7 5l-3.5 3.5"/></svg></button>
       </div>
@@ -730,18 +760,18 @@ footer{background:var(--dark);color:var(--parchment);padding:var(--sp-2xl) var(-
   <div class="split">
     <div class="gal">
       <div class="gal-main">
-        <div class="sl on"><div class="sl-ph g8"></div></div>
-        <div class="sl"><div class="sl-ph g5"></div></div>
-        <div class="sl"><div class="sl-ph g9"></div></div>
-        <div class="sl"><div class="sl-ph g3"></div></div>
+        <div class="sl on"><div class="sl-ph wd-01"></div></div>
+        <div class="sl"><div class="sl-ph wd-02"></div></div>
+        <div class="sl"><div class="sl-ph wd-03"></div></div>
+        <div class="sl"><div class="sl-ph wd-04"></div></div>
       </div>
       <div class="gal-strip">
         <button class="gal-arr" onclick="prev(this)"><svg viewBox="0 0 10 10"><path d="M6.5 1.5L3 5l3.5 3.5"/></svg></button>
         <div class="gal-thumbs">
-          <div class="th on" onclick="go(this,0)"><div class="th-in g8"></div></div>
-          <div class="th" onclick="go(this,1)"><div class="th-in g5"></div></div>
-          <div class="th" onclick="go(this,2)"><div class="th-in g9"></div></div>
-          <div class="th" onclick="go(this,3)"><div class="th-in g3"></div></div>
+          <div class="th on" onclick="go(this,0)"><div class="th-in wd-01"></div></div>
+          <div class="th" onclick="go(this,1)"><div class="th-in wd-02"></div></div>
+          <div class="th" onclick="go(this,2)"><div class="th-in wd-03"></div></div>
+          <div class="th" onclick="go(this,3)"><div class="th-in wd-04"></div></div>
         </div>
         <button class="gal-arr" onclick="next(this)"><svg viewBox="0 0 10 10"><path d="M3.5 1.5L7 5l-3.5 3.5"/></svg></button>
       </div>
@@ -766,18 +796,18 @@ footer{background:var(--dark);color:var(--parchment);padding:var(--sp-2xl) var(-
   <div class="split">
     <div class="gal">
       <div class="gal-main">
-        <div class="sl on"><div class="sl-ph g9"></div></div>
-        <div class="sl"><div class="sl-ph g10"></div></div>
-        <div class="sl"><div class="sl-ph g1"></div></div>
-        <div class="sl"><div class="sl-ph g6"></div></div>
+        <div class="sl on"><div class="sl-ph mc-01"></div></div>
+        <div class="sl"><div class="sl-ph mc-02"></div></div>
+        <div class="sl"><div class="sl-ph mc-03"></div></div>
+        <div class="sl"><div class="sl-ph mc-04"></div></div>
       </div>
       <div class="gal-strip">
         <button class="gal-arr" onclick="prev(this)"><svg viewBox="0 0 10 10"><path d="M6.5 1.5L3 5l3.5 3.5"/></svg></button>
         <div class="gal-thumbs">
-          <div class="th on" onclick="go(this,0)"><div class="th-in g9"></div></div>
-          <div class="th" onclick="go(this,1)"><div class="th-in g10"></div></div>
-          <div class="th" onclick="go(this,2)"><div class="th-in g1"></div></div>
-          <div class="th" onclick="go(this,3)"><div class="th-in g6"></div></div>
+          <div class="th on" onclick="go(this,0)"><div class="th-in mc-01"></div></div>
+          <div class="th" onclick="go(this,1)"><div class="th-in mc-02"></div></div>
+          <div class="th" onclick="go(this,2)"><div class="th-in mc-03"></div></div>
+          <div class="th" onclick="go(this,3)"><div class="th-in mc-04"></div></div>
         </div>
         <button class="gal-arr" onclick="next(this)"><svg viewBox="0 0 10 10"><path d="M3.5 1.5L7 5l-3.5 3.5"/></svg></button>
       </div>
