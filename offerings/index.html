@@ -437,7 +437,9 @@ nav,nav.scrolled{padding-left:var(--sp-lg);padding-right:var(--sp-lg)}
 .bar{padding-left:var(--sp-lg);padding-right:var(--sp-lg);flex-wrap:wrap;row-gap:8px}
 .bar-info{min-width:0}
 .bar-btn{margin-left:auto}
-.bar-tabs{display:flex;flex:1;min-width:0;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:clamp(.8rem,2.5vw,1.6rem);margin-left:0;padding-right:8px;scrollbar-width:none}
+.bar-tabs{display:flex;flex:1;min-width:0;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:clamp(.8rem,2.5vw,1.6rem);margin-left:0;padding-right:18px;scrollbar-width:none;scroll-snap-type:x mandatory}
+.bar-tabs .bt{scroll-snap-align:start}
+.bar::after{content:"";flex:0 0 32px}
 .bar-tabs::-webkit-scrollbar{display:none}
 .bar-sub{display:none}
 .split{grid-template-columns:1fr}
