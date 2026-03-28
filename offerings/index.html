@@ -237,6 +237,36 @@ white-space:nowrap
 .bt{font-family:var(--fb);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--light);cursor:pointer;border:none;background:none;padding:0;transition:color .3s;white-space:nowrap}
 .bt:hover{color:var(--mid)}
 .bt.on{color:var(--dark);font-weight:400}
+.bar-select{display:none}
+.bar-select select{
+appearance:none;
+-webkit-appearance:none;
+-moz-appearance:none;
+font-family:var(--fb);
+font-size:10px;
+font-weight:500;
+letter-spacing:.28em;
+text-transform:uppercase;
+color:var(--dark);
+background:var(--bg);
+border:1px solid var(--rule);
+border-radius:999px;
+padding:10px 36px 10px 16px;
+min-width:220px;
+cursor:pointer;
+}
+.bar-select::after{
+content:"";
+position:absolute;
+right:14px;
+top:50%;
+width:6px;
+height:6px;
+border-right:1.5px solid var(--dark);
+border-bottom:1.5px solid var(--dark);
+transform:translateY(-60%) rotate(45deg);
+pointer-events:none;
+}
 .pnl{display:none}.pnl.on{display:block}
 .split{display:grid;grid-template-columns:1fr 1fr}
 .gal{display:flex;flex-direction:column}
@@ -437,10 +467,8 @@ nav,nav.scrolled{padding-left:var(--sp-lg);padding-right:var(--sp-lg)}
 .bar{padding-left:var(--sp-lg);padding-right:var(--sp-lg);flex-wrap:wrap;row-gap:8px}
 .bar-info{min-width:0}
 .bar-btn{margin-left:auto}
-.bar-tabs{display:flex;flex:1;min-width:0;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:clamp(.8rem,2.5vw,1.6rem);margin-left:0;padding-right:18px;scrollbar-width:none;scroll-snap-type:x mandatory}
-.bar-tabs .bt{scroll-snap-align:start}
-.bar::after{content:"";flex:0 0 32px}
-.bar-tabs::-webkit-scrollbar{display:none}
+.bar-tabs{display:none}
+.bar-select{display:block;position:relative;flex:1;min-width:0}
 .bar-sub{display:none}
 .split{grid-template-columns:1fr}
 .gal-main{aspect-ratio:4/3}
@@ -513,6 +541,15 @@ footer{padding:var(--sp-xl) var(--sp-md) var(--sp-lg)}
     <button class="bt" data-c="bi">Brand Identity</button>
     <button class="bt" data-c="wd">Web Design</button>
     <button class="bt" data-c="mc">Marketing & Layout</button>
+  </div>
+  <div class="bar-select">
+    <select id="barSelect" aria-label="Select a service category">
+      <option value="cd" data-name="Content Direction" data-sub="Monthly creative direction">Content Direction</option>
+      <option value="cs" data-name="Content Shoots" data-sub="Photography + short-form video">Content Shoots</option>
+      <option value="bi" data-name="Brand Identity" data-sub="Logo, typography, visual system">Brand Identity</option>
+      <option value="wd" data-name="Web Design" data-sub="Website design + build">Web Design</option>
+      <option value="mc" data-name="Marketing & Layout" data-sub="Collateral + presentation assets">Marketing & Layout</option>
+    </select>
   </div>
   <span class="bar-spacer"></span>
   <a href="/#inquire" class="bar-btn">Work with Us</a>
@@ -931,6 +968,17 @@ initObservers();
 setLayoutOffsets();
 initObservers();
 updateNavState();
+const barSelect = document.getElementById('barSelect');
+function applyPanel(key){
+const btn=document.querySelector(`.bt[data-c="${key}"]`);
+if(!btn) return;
+btn.click();
+}
+if(barSelect){
+barSelect.addEventListener('change',()=>{
+applyPanel(barSelect.value);
+});
+}
 // Category switching via bar tabs
 document.querySelectorAll('.bt').forEach(b=>{
 b.addEventListener('click',()=>{
@@ -959,6 +1007,9 @@ p.querySelectorAll('.pt')[0].classList.add('on');
 p.querySelectorAll('.pc').forEach(c=>c.classList.remove('on'));
 p.querySelectorAll('.pc')[0].classList.add('on');
 window.scrollTo({top:0,behavior:'smooth'});
+if(barSelect){
+barSelect.value = b.dataset.c;
+}
 });
 });
 // Gallery: go to index
