@@ -970,47 +970,58 @@ setLayoutOffsets();
 initObservers();
 updateNavState();
 const barSelect = document.getElementById('barSelect');
-function applyPanel(key){
+const barTitle = document.getElementById('barTitle');
+const barSub = document.getElementById('barSub');
+const heroTitle = document.getElementById('heroTitle');
+const heroSub = document.getElementById('heroSub');
+const midTitle = document.getElementById('midTitle');
+const midSub = document.getElementById('midSub');
+function setActivePanel(key, shouldScroll){
 const btn=document.querySelector(`.bt[data-c="${key}"]`);
-if(!btn) return;
-btn.click();
+const p=document.querySelector(`[data-p="${key}"]`);
+if(!btn || !p) return;
+document.querySelectorAll('.bt').forEach(x=>x.classList.remove('on'));
+document.querySelectorAll('.pnl').forEach(x=>x.classList.remove('on'));
+btn.classList.add('on');
+p.classList.add('on');
+if(barTitle) barTitle.textContent=p.dataset.name;
+if(barSub) barSub.textContent=p.dataset.sub;
+if(heroTitle) heroTitle.textContent=p.dataset.hero;
+if(heroSub) heroSub.textContent=p.dataset.herosub;
+if(midTitle) midTitle.textContent=p.dataset.mid;
+if(midSub) midSub.textContent=p.dataset.midsub;
+const slides=p.querySelectorAll('.sl');
+if(slides.length){
+slides.forEach(s=>s.classList.remove('on'));
+slides[0].classList.add('on');
+}
+const thumbs=p.querySelectorAll('.th');
+if(thumbs.length){
+thumbs.forEach(t=>t.classList.remove('on'));
+thumbs[0].classList.add('on');
+}
+const pts=p.querySelectorAll('.pt');
+if(pts.length){
+pts.forEach(t=>t.classList.remove('on'));
+pts[0].classList.add('on');
+}
+const pcs=p.querySelectorAll('.pc');
+if(pcs.length){
+pcs.forEach(c=>c.classList.remove('on'));
+pcs[0].classList.add('on');
+}
+if(barSelect) barSelect.value = key;
+if(shouldScroll) window.scrollTo({top:0,behavior:'smooth'});
 }
 if(barSelect){
 barSelect.addEventListener('change',()=>{
-applyPanel(barSelect.value);
+setActivePanel(barSelect.value, true);
 });
 }
 // Category switching via bar tabs
 document.querySelectorAll('.bt').forEach(b=>{
 b.addEventListener('click',()=>{
-document.querySelectorAll('.bt').forEach(x=>x.classList.remove('on'));
-document.querySelectorAll('.pnl').forEach(x=>x.classList.remove('on'));
-b.classList.add('on');
-const p=document.querySelector(`[data-p="${b.dataset.c}"]`);
-p.classList.add('on');
-// Update bar text
-document.getElementById('barTitle').textContent=p.dataset.name;
-document.getElementById('barSub').textContent=p.dataset.sub;
-// Update hero text
-document.getElementById('heroTitle').textContent=p.dataset.hero;
-document.getElementById('heroSub').textContent=p.dataset.herosub;
-// Update mid text
-document.getElementById('midTitle').textContent=p.dataset.mid;
-document.getElementById('midSub').textContent=p.dataset.midsub;
-// Reset gallery
-p.querySelectorAll('.sl').forEach(s=>s.classList.remove('on'));
-p.querySelectorAll('.sl')[0].classList.add('on');
-p.querySelectorAll('.th').forEach(t=>t.classList.remove('on'));
-p.querySelectorAll('.th')[0].classList.add('on');
-// Reset package tabs
-p.querySelectorAll('.pt').forEach(t=>t.classList.remove('on'));
-p.querySelectorAll('.pt')[0].classList.add('on');
-p.querySelectorAll('.pc').forEach(c=>c.classList.remove('on'));
-p.querySelectorAll('.pc')[0].classList.add('on');
-window.scrollTo({top:0,behavior:'smooth'});
-if(barSelect){
-barSelect.value = b.dataset.c;
-}
+setActivePanel(b.dataset.c, true);
 });
 });
 // Gallery: go to index
@@ -1052,4 +1063,10 @@ thumbs[i].classList.add('on');
 function showPc(btn,idx){
 const pnl=btn.closest('.pnl');
 pnl.querySelectorAll('.pt').forEach(t=>t.classList.remove('on'));
-pnl.querySelectorAll('.pc').forEach(
+pnl.querySelectorAll('.pc').forEach(c=>c.classList.remove('on'));
+btn.classList.add('on');
+pnl.querySelectorAll('.pc')[idx].classList.add('on');
+}
+</script>
+</body>
+</html>
