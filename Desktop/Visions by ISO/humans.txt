@@ -1,0 +1,9 @@
+/* TEAM */
+Studio: Visions by ISO
+Site: https://visionsbyiso.com
+Contact: hello@visionsbyiso.com
+Location: Manila, Philippines
+
+/* SITE */
+Standards: HTML5, CSS3, JavaScript
+SEO: Technical SEO + structured data + AI-discovery files

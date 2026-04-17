@@ -1,0 +1,27 @@
+.DS_Store
+**/.DS_Store
+.cursor/
+.vscode/
+node_modules/
+dist/
+build/
+*.log
+*.tmp
+*.swp
+
+# Local raw/source media archives
+Edited/
+FEB 2026/
+
+# Local exports and scratch files
+*Claude_files/
+*Claude.html
+offerings page_files/
+offerings page.html
+_offerings_extracted.html
+sample.html
+drmed-v6.html
+Sunday Skin Center/
+videobg.mp4
+magsafe.mov
+*.AAE

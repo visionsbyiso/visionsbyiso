@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# AI and search crawler friendliness
+User-agen
