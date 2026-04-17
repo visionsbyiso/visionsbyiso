@@ -1281,4 +1281,134 @@ window.setTimeout(() => inquireFirstField?.focus(), 50);
 function closeInquire() {
 if (!inquireModal) return;
 inquireModal.classList.remove('open');
-inquireModal.setAttribute('ar
+inquireModal.setAttribute('aria-hidden', 'true');
+document.body.classList.remove('modal-open');
+}
+document.querySelectorAll('a[href="#inquire"], a[href="/#inquire"], [data-inquire]').forEach(link => {
+link.addEventListener('click', e => {
+if (!inquireModal) return;
+e.preventDefault();
+openInquire();
+});
+});
+if (inquireModal) {
+inquireModal.addEventListener('click', e => {
+if (e.target && e.target.matches('[data-inquire-close]')) {
+closeInquire();
+}
+});
+}
+document.addEventListener('keydown', e => {
+if (e.key === 'Escape' && inquireModal?.classList.contains('open')) {
+closeInquire();
+}
+});
+if (window.location.hash === '#inquire' && inquireModal) {
+window.setTimeout(openInquire, 250);
+}
+if (inquireForm) {
+inquireForm.addEventListener('submit', async e => {
+e.preventDefault();
+const payload = Object.fromEntries(new FormData(inquireForm).entries());
+try {
+const res = await fetch('https://visionsbyiso-inquiry.visionsbyiso.workers.dev/', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(payload)
+});
+if (!res.ok) throw new Error('Request failed');
+inquireForm.reset();
+closeInquire();
+alert("Inquiry sent. We'll be in touch soon.");
+} catch (error) {
+alert('Something went wrong. Please email hello@visionsbyiso.com.');
+}
+});
+}
+if (cursor && hasFinePointer && !prefersReducedMotion) {
+let mx = 0, my = 0, cx = 0, cy = 0;
+document.addEventListener('mousemove', e => {
+mx = e.clientX;
+my = e.clientY;
+});
+(function tick() {
+cx += (mx - cx) * 0.11;
+cy += (my - cy) * 0.11;
+cursor.style.left = cx + 'px';
+cursor.style.top = cy + 'px';
+requestAnimationFrame(tick);
+})();
+document.querySelectorAll('a, button, .work-card, .offering-card').forEach(el => {
+el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+});
+} else if (cursor) {
+cursor.style.display = 'none';
+document.body.style.cursor = 'auto';
+}
+let latestScrollY = window.scrollY;
+let bgTicking = false;
+function updateBackgroundMotion() {
+const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+const progress = Math.min(1, latestScrollY / maxScroll);
+const driftX = (progress - 0.5) * 58;
+const driftY = progress * 46;
+root.style.setProperty('--scroll-progress', progress.toFixed(4));
+root.style.setProperty('--drift-x', `${driftX.toFixed(1)}px`);
+root.style.setProperty('--drift-y', `${driftY.toFixed(1)}px`);
+bgTicking = false;
+}
+function onScroll() {
+latestScrollY = window.scrollY;
+nav.classList.toggle('scrolled', latestScrollY > 60);
+if (!bgTicking) {
+bgTicking = true;
+window.requestAnimationFrame(updateBackgroundMotion);
+}
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', () => {
+latestScrollY = window.scrollY;
+updateBackgroundMotion();
+if (window.innerWidth > 860) setMenuState(false);
+});
+const revealNodes = document.querySelectorAll('.reveal, .stagger');
+if ('IntersectionObserver' in window && !prefersReducedMotion) {
+const io = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
+io.unobserve(entry.target);
+}
+});
+}, { threshold: 0.15 });
+revealNodes.forEach(el => io.observe(el));
+} else {
+revealNodes.forEach(el => el.classList.add('visible'));
+}
+const workGrid = document.querySelector('.work-grid');
+if (workGrid && hasFinePointer && !prefersReducedMotion) {
+workGrid.addEventListener('mouseenter', () => {
+workGrid.style.animationPlayState = 'paused';
+});
+workGrid.addEventListener('mouseleave', () => {
+workGrid.style.animationPlayState = 'running';
+});
+}
+document.querySelectorAll('.wc-bg').forEach(bg => {
+const styleValue = bg.style.backgroundImage || '';
+const match = styleValue.match(/url\(["']?(.*?)["']?\)/);
+if (!match || !match[1] || !match[1].startsWith( '/assets/')) return;
+const fallbackUrl = match[1].replace( '/assets/', '');
+const probe = new Image();
+probe.onerror = () => {
+bg.style.backgroundImage = `url('${fallbackUrl}')`;
+};
+probe.src = match[1];
+});
+updateBackgroundMotion();
+onScroll();
+</script>
+
+</body>
+</html>

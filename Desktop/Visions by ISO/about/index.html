@@ -536,4 +536,84 @@ footer { padding: var(--sp-xl) var(--sp-md) var(--sp-lg); }
           <li><a href="/">Home</a></li>
           <li><a href="/#about">About</a></li>
           <li><a href="/offerings/">Offerings</a></li>
-          <li><a href="
+          <li><a href="/works/">Work</a></li>
+          <li><a href="/#journal">Journal</a></li>
+          <li><a href="/#inquire">Inquire</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Keep In Touch</h4>
+      <ul>
+        <li><a href="https://instagram.com/visionsbyiso">Instagram</a></li>
+        <li><a href="https://facebook.com/visionsbyiso">Facebook</a></li>
+        <li><a href="https://www.tiktok.com/@visionsbyiso">TikTok</a></li>
+        <li><a href="https://www.instagram.com/visionsbyiso/" target="_blank" rel="noopener noreferrer">Reviews</a></li>
+      </ul>
+      </div>
+      <div class="footer-col footer-newsletter" id="journal">
+        <h4>The Journal</h4>
+        <p>Notes from the studio desk on inspiration, practice, and the creative life.</p>
+        <div class="footer-form">
+          <input type="email" placeholder="hello@visionsbyiso.com" />
+          <button>Join</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy;ISO 2026 &nbsp;/&nbsp; Policies &nbsp;/&nbsp; Version 1.1</p>
+      <p class="footer-motto">In Its Most Inspired Form&trade;</p>
+    </div>
+  </footer>
+
+  <script>
+const nav = document.getElementById('nav');
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileLinks = document.querySelectorAll('[data-close-menu]');
+function setMenuState(isOpen) {
+if (!menuToggle || !mobileMenu) return;
+menuToggle.setAttribute('aria-expanded', String(isOpen));
+mobileMenu.classList.toggle('open', isOpen);
+mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+document.body.classList.toggle('menu-open', isOpen);
+}
+if (menuToggle && mobileMenu) {
+menuToggle.addEventListener('click', () => {
+const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+setMenuState(!isOpen);
+});
+mobileMenu.addEventListener('click', (e) => {
+if (e.target === mobileMenu) setMenuState(false);
+});
+mobileLinks.forEach((link) => {
+link.addEventListener('click', () => setMenuState(false));
+});
+document.addEventListener('keydown', (e) => {
+if (e.key === 'Escape') setMenuState(false);
+});
+}
+function updateNavState() {
+if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
+}
+window.addEventListener('scroll', updateNavState, { passive: true });
+window.addEventListener('resize', () => {
+if (window.innerWidth > 768) setMenuState(false);
+});
+updateNavState();
+const reveals = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach((entry) => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2 });
+reveals.forEach((el) => observer.observe(el));
+} else {
+reveals.forEach((el) => el.classList.add('visible'));
+}
+</script>
+</body>
+</html>

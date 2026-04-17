@@ -1404,4 +1404,76 @@ revealItems.forEach((el) => el.classList.add('visible'));
 }
 const marquee = document.querySelector('.glimpse-gallery.marquee');
 if (marquee) {
-const track = marquee.querySelector('.glimpse-t
+const track = marquee.querySelector('.glimpse-track');
+if (track && !track.dataset.duplicated) {
+const items = Array.from(track.children);
+items.forEach((item) => {
+const clone = item.cloneNode(true);
+clone.setAttribute('aria-hidden', 'true');
+track.appendChild(clone);
+});
+track.dataset.duplicated = 'true';
+}
+}
+const inquireModal = document.getElementById('inquireModal');
+const inquireForm = document.getElementById('inquireForm');
+const inquireFirstField = document.querySelector('[data-inquire-first]');
+function openInquire() {
+if (!inquireModal) return;
+inquireModal.classList.add('open');
+inquireModal.setAttribute('aria-hidden', 'false');
+document.body.classList.add('modal-open');
+window.setTimeout(() => inquireFirstField?.focus(), 50);
+}
+function closeInquire() {
+if (!inquireModal) return;
+inquireModal.classList.remove('open');
+inquireModal.setAttribute('aria-hidden', 'true');
+document.body.classList.remove('modal-open');
+}
+document.querySelectorAll('a[href="#inquire"], a[href="/#inquire"], [data-inquire]').forEach(link => {
+link.addEventListener('click', e => {
+if (!inquireModal) return;
+e.preventDefault();
+openInquire();
+});
+});
+if (inquireModal) {
+inquireModal.addEventListener('click', e => {
+if (e.target && e.target.matches('[data-inquire-close]')) {
+closeInquire();
+}
+});
+}
+document.addEventListener('keydown', e => {
+if (e.key === 'Escape' && inquireModal?.classList.contains('open')) {
+closeInquire();
+}
+});
+if (window.location.hash === '#inquire' && inquireModal) {
+window.setTimeout(openInquire, 250);
+}
+if (inquireForm) {
+inquireForm.addEventListener('submit', async e => {
+e.preventDefault();
+const payload = Object.fromEntries(new FormData(inquireForm).entries());
+try {
+const res = await fetch('https://visionsbyiso-inquiry.visionsbyiso.workers.dev/', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(payload)
+});
+if (!res.ok) throw new Error('Request failed');
+inquireForm.reset();
+closeInquire();
+alert("Inquiry sent. We'll be in touch soon.");
+} catch (error) {
+alert('Something went wrong. Please email hello@visionsbyiso.com.');
+}
+});
+}
+</script>
+
+
+
+</body></html>

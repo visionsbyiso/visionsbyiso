@@ -2,4 +2,15 @@ User-agent: *
 Allow: /
 
 # AI and search crawler friendliness
-User-agen
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Host: visionsbyiso.com
+Sitemap: https://visionsbyiso.com/sitemap.xml
+Sitemap: https://visionsbyiso.com/llms.txt

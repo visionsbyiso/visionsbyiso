@@ -884,4 +884,99 @@ image.srcset = buildSrcSet(fallback);
 });
 cover.appendChild(image);
 const titleOverlay = document.createElement("figcaption");
-titleOverlay.c
+titleOverlay.className = "work-title-overlay";
+titleOverlay.textContent = work.title;
+cover.appendChild(titleOverlay);
+const content = document.createElement("div");
+content.className = "work-content";
+const services = document.createElement("p");
+services.className = "work-services";
+services.textContent = work.services;
+content.appendChild(services);
+const summary = document.createElement("p");
+summary.className = "work-summary";
+summary.textContent = work.summary;
+content.appendChild(summary);
+const badges = document.createElement("div");
+badges.className = "work-badges";
+badges.appendChild(createBadge("Social + Content"));
+if (work.categories.includes("identity")) {
+badges.appendChild(createBadge("Brand Identity"));
+}
+content.appendChild(badges);
+card.appendChild(cover);
+card.appendChild(content);
+link.appendChild(card);
+return link;
+}
+function renderWorks(filter = "all") {
+const filteredWorks = works.filter(work => filter === "all" || work.categories.includes(filter));
+workGrid.innerHTML = "";
+filteredWorks.forEach((work, index) => {
+workGrid.appendChild(createWorkCard(work, index));
+});
+workCount.textContent = formatCount(filteredWorks.length);
+emptyState.style.display = filteredWorks.length ? "none" : "block";
+}
+function updateActiveFilter(selectedFilter) {
+filterButtons.forEach(button => {
+const isActive = button.dataset.filter === selectedFilter;
+button.classList.toggle("active", isActive);
+button.setAttribute("aria-pressed", String(isActive));
+});
+}
+filterButtons.forEach(button => {
+button.addEventListener("click", () => {
+const selectedFilter = button.dataset.filter || "all";
+updateActiveFilter(selectedFilter);
+renderWorks(selectedFilter);
+});
+});
+const revealNodes = document.querySelectorAll(".reveal");
+if ("IntersectionObserver" in window && !prefersReducedMotion) {
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add("visible");
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.15 });
+revealNodes.forEach(el => observer.observe(el));
+} else {
+revealNodes.forEach(el => el.classList.add("visible"));
+}
+let latestScrollY = window.scrollY;
+let bgTicking = false;
+function updateBackgroundMotion() {
+const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+const progress = Math.min(1, latestScrollY / maxScroll);
+const driftX = (progress - 0.5) * 58;
+const driftY = progress * 46;
+root.style.setProperty("--scroll-progress", progress.toFixed(4));
+root.style.setProperty("--drift-x", `${driftX.toFixed(1)}px`);
+root.style.setProperty("--drift-y", `${driftY.toFixed(1)}px`);
+bgTicking = false;
+}
+function onScroll() {
+latestScrollY = window.scrollY;
+nav.classList.toggle("scrolled", latestScrollY > 60);
+if (!bgTicking) {
+bgTicking = true;
+window.requestAnimationFrame(updateBackgroundMotion);
+}
+}
+window.addEventListener("scroll", () => {
+onScroll();
+}, { passive: true });
+window.addEventListener("resize", () => {
+latestScrollY = window.scrollY;
+updateBackgroundMotion();
+if (window.innerWidth > 860) setMenuState(false);
+});
+updateBackgroundMotion();
+onScroll();
+renderWorks("all");
+</script>
+</body>
+</html>

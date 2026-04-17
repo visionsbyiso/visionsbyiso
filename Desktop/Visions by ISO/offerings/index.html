@@ -1010,3 +1010,121 @@ if(!nav) return;
 const shouldScroll = window.scrollY > 60;
 if(shouldScroll !== navIsScrolled){
 navIsScrolled = shouldScroll;
+nav.classList.toggle('scrolled', shouldScroll);
+}
+}
+window.addEventListener('scroll', updateNavState, { passive: true });
+window.addEventListener('resize', ()=>{
+if(window.innerWidth > 900) setMenuState(false);
+setLayoutOffsets();
+updateNavHeight();
+updateBarHeight();
+});
+window.addEventListener('load', ()=>{
+setLayoutOffsets();
+initObservers();
+});
+setLayoutOffsets();
+initObservers();
+updateNavState();
+const barSelect = document.getElementById('barSelect');
+const barTitle = document.getElementById('barTitle');
+const barSub = document.getElementById('barSub');
+const heroTitle = document.getElementById('heroTitle');
+const heroSub = document.getElementById('heroSub');
+const midTitle = document.getElementById('midTitle');
+const midSub = document.getElementById('midSub');
+function setActivePanel(key, shouldScroll){
+const btn=document.querySelector(`.bt[data-c="${key}"]`);
+const p=document.querySelector(`[data-p="${key}"]`);
+if(!btn || !p) return;
+document.querySelectorAll('.bt').forEach(x=>x.classList.remove('on'));
+document.querySelectorAll('.pnl').forEach(x=>x.classList.remove('on'));
+btn.classList.add('on');
+p.classList.add('on');
+if(barTitle) barTitle.textContent=p.dataset.name;
+if(barSub) barSub.textContent=p.dataset.sub;
+if(heroTitle) heroTitle.textContent=p.dataset.hero;
+if(heroSub) heroSub.textContent=p.dataset.herosub;
+if(midTitle) midTitle.textContent=p.dataset.mid;
+if(midSub) midSub.textContent=p.dataset.midsub;
+const slides=p.querySelectorAll('.sl');
+if(slides.length){
+slides.forEach(s=>s.classList.remove('on'));
+slides[0].classList.add('on');
+}
+const thumbs=p.querySelectorAll('.th');
+if(thumbs.length){
+thumbs.forEach(t=>t.classList.remove('on'));
+thumbs[0].classList.add('on');
+}
+const pts=p.querySelectorAll('.pt');
+if(pts.length){
+pts.forEach(t=>t.classList.remove('on'));
+pts[0].classList.add('on');
+}
+const pcs=p.querySelectorAll('.pc');
+if(pcs.length){
+pcs.forEach(c=>c.classList.remove('on'));
+pcs[0].classList.add('on');
+}
+if(barSelect) barSelect.value = key;
+if(shouldScroll) window.scrollTo({top:0,behavior:'smooth'});
+}
+if(barSelect){
+barSelect.addEventListener('change',()=>{
+setActivePanel(barSelect.value, true);
+});
+}
+// Category switching via bar tabs
+document.querySelectorAll('.bt').forEach(b=>{
+b.addEventListener('click',()=>{
+setActivePanel(b.dataset.c, true);
+});
+});
+// Gallery: go to index
+function go(thumb,idx){
+const gal=thumb.closest('.gal');
+gal.querySelectorAll('.sl').forEach(s=>s.classList.remove('on'));
+gal.querySelectorAll('.th').forEach(t=>t.classList.remove('on'));
+gal.querySelectorAll('.sl')[idx].classList.add('on');
+thumb.classList.add('on');
+}
+// Gallery: prev/next arrows
+function getIdx(gal){
+const slides=[...gal.querySelectorAll('.sl')];
+return slides.findIndex(s=>s.classList.contains('on'));
+}
+function prev(btn){
+const gal=btn.closest('.gal');
+const slides=gal.querySelectorAll('.sl');
+const thumbs=gal.querySelectorAll('.th');
+let i=getIdx(gal)-1;
+if(i<0)i=slides.length-1;
+slides.forEach(s=>s.classList.remove('on'));
+thumbs.forEach(t=>t.classList.remove('on'));
+slides[i].classList.add('on');
+thumbs[i].classList.add('on');
+}
+function next(btn){
+const gal=btn.closest('.gal');
+const slides=gal.querySelectorAll('.sl');
+const thumbs=gal.querySelectorAll('.th');
+let i=getIdx(gal)+1;
+if(i>=slides.length)i=0;
+slides.forEach(s=>s.classList.remove('on'));
+thumbs.forEach(t=>t.classList.remove('on'));
+slides[i].classList.add('on');
+thumbs[i].classList.add('on');
+}
+// Package tabs (Description | Ingredients | Packaging style)
+function showPc(btn,idx){
+const pnl=btn.closest('.pnl');
+pnl.querySelectorAll('.pt').forEach(t=>t.classList.remove('on'));
+pnl.querySelectorAll('.pc').forEach(c=>c.classList.remove('on'));
+btn.classList.add('on');
+pnl.querySelectorAll('.pc')[idx].classList.add('on');
+}
+</script>
+</body>
+</html>
