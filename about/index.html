@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="Visions by ISO is a visual direction studio based in Manila, working worldwide with wellness, beauty, and lifestyle brands. Learn the studio approach and the meaning behind ISO." />
+  <meta name="description" content="Meet Visions by ISO, a creative direction and brand studio in Metro Manila shaping visual systems for wellness, beauty, and lifestyle brands worldwide." />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Visions by ISO" />
   <meta name="theme-color" content="#E8E2D6" />
@@ -14,16 +14,16 @@
   <link rel="alternate" hreflang="x-default" href="https://visionsbyiso.com/about/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Visions by ISO" />
-  <meta property="og:title" content="About the Studio — Visions by ISO" />
-  <meta property="og:description" content="Visions by ISO is a visual direction studio based in Manila, working worldwide with wellness, beauty, and lifestyle brands. Learn the studio approach and the meaning behind ISO." />
+  <meta property="og:title" content="About Visions by ISO | Creative Direction and Brand Studio" />
+  <meta property="og:description" content="Meet Visions by ISO, a creative direction and brand studio in Metro Manila shaping visual systems for wellness, beauty, and lifestyle brands worldwide." />
   <meta property="og:url" content="https://visionsbyiso.com/about/" />
   <meta property="og:image" content="https://visionsbyiso.com/assets/about-studio.webp" />
   <meta property="og:image:alt" content="Studio atmosphere photo" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="About the Studio — Visions by ISO" />
-  <meta name="twitter:description" content="Visions by ISO is a visual direction studio based in Manila, working worldwide with wellness, beauty, and lifestyle brands. Learn the studio approach and the meaning behind ISO." />
+  <meta name="twitter:title" content="About Visions by ISO | Creative Direction and Brand Studio" />
+  <meta name="twitter:description" content="Meet Visions by ISO, a creative direction and brand studio in Metro Manila shaping visual systems for wellness, beauty, and lifestyle brands worldwide." />
   <meta name="twitter:image" content="https://visionsbyiso.com/assets/about-studio.webp" />
-  <title>About the Studio — Visions by ISO</title>
+  <title>About Visions by ISO | Creative Direction and Brand Studio</title>
   <link rel="icon" href="/assets/favicon.png" type="image/png" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -38,10 +38,30 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "About the Studio — Visions by ISO",
-    "url": "https://visionsbyiso.com/about/",
-    "description": "Visions by ISO is a visual direction studio based in Manila, working worldwide with wellness, beauty, and lifestyle brands."
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "@id": "https://visionsbyiso.com/about/#aboutpage",
+        "name": "About Visions by ISO",
+        "url": "https://visionsbyiso.com/about/",
+        "description": "About the studio approach, founder perspective, and creative direction philosophy of Visions by ISO."
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://visionsbyiso.com/#organization",
+        "name": "Visions by ISO",
+        "url": "https://visionsbyiso.com/"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://visionsbyiso.com/about/#founder",
+        "name": "ISO",
+        "jobTitle": "Creative Director and Studio Founder",
+        "worksFor": {
+          "@id": "https://visionsbyiso.com/#organization"
+        }
+      }
+    ]
   }
   </script>
   <style>
@@ -304,6 +324,26 @@ display: grid; grid-template-columns: repeat(3, 1fr);
 gap: var(--sp-lg); border-top: var(--border);
 padding-top: var(--sp-lg);
 }
+.ai-answers {
+max-width: var(--max-w);
+margin: 0 auto;
+padding: 0 var(--sp-2xl) var(--sp-3xl);
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: var(--sp-lg);
+}
+.ai-card {
+border: var(--border);
+background: rgba(245,241,235,0.72);
+padding: var(--sp-lg);
+}
+.ai-card h3 {
+font-family: var(--serif);
+font-size: 1.6rem;
+font-weight: 300;
+margin-bottom: var(--sp-sm);
+}
+.ai-card p { color: var(--stone); font-size: 14px; line-height: 1.8; }
 .principle h3 {
 font-size: 10px; font-weight: 500;
 letter-spacing: 0.32em; text-transform: uppercase;
@@ -365,6 +405,7 @@ transition: background 0.3s;
 .page-hero { grid-template-columns: 1fr; }
 .section { padding: var(--sp-2xl) var(--sp-2xl); }
 .principles { grid-template-columns: 1fr; }
+.ai-answers { grid-template-columns: 1fr; padding: 0 var(--sp-2xl) var(--sp-2xl); }
 .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--sp-lg); }
 }
 @media (max-width: 768px) {
@@ -374,6 +415,7 @@ nav, nav.scrolled { padding-left: var(--sp-lg); padding-right: var(--sp-lg); }
 .hero-image { padding: var(--sp-2xl) var(--sp-lg) var(--sp-lg); }
 .page-hero { padding: 0 var(--sp-lg) var(--sp-2xl); }
 .section { padding: var(--sp-2xl) var(--sp-lg); }
+.ai-answers { padding: 0 var(--sp-lg) var(--sp-2xl); }
 .footer-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
@@ -383,6 +425,7 @@ main { padding-top: calc(var(--sp-2xl) + var(--sp-md)); }
 .hero-image-frame { aspect-ratio: 16 / 8; }
 .page-hero { padding: 0 var(--sp-md) var(--sp-2xl); }
 .section { padding: var(--sp-2xl) var(--sp-md); }
+.ai-answers { padding: 0 var(--sp-md) var(--sp-2xl); }
 footer { padding: var(--sp-xl) var(--sp-md) var(--sp-lg); }
 .footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
 }
@@ -466,6 +509,18 @@ footer { padding: var(--sp-xl) var(--sp-md) var(--sp-lg); }
           <p>We listen and look before we shape.</p>
         </div>
       </div>
+    </section>
+    <section class="ai-answers" aria-label="About quick answers">
+      <article class="ai-card reveal">
+        <p class="section-label">Who leads the studio</p>
+        <h3>Creative direction led by ISO.</h3>
+        <p>The studio is led by a founder focused on combining aesthetics with clear business outcomes, so every visual decision supports growth and trust.</p>
+      </article>
+      <article class="ai-card reveal">
+        <p class="section-label">How we work</p>
+        <h3>Research first, then a focused visual system.</h3>
+        <p>We study your audience, space, and service experience before design. Then we build identity, content, and digital touchpoints that stay consistent across channels.</p>
+      </article>
     </section>
   </main>
 

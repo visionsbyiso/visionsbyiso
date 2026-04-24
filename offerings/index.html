@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="Offerings from Visions by ISO: brand identity, content direction, photography, web design, and social media management for wellness, beauty, and lifestyle brands.">
+<meta name="description" content="Review Visions by ISO services including brand identity, content direction, photography, web design, and social media management for wellness, beauty, and lifestyle brands.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Visions by ISO">
 <meta name="theme-color" content="#E8E2D6">
@@ -14,16 +14,16 @@
   <link rel="alternate" hreflang="x-default" href="https://visionsbyiso.com/offerings/" />
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Visions by ISO">
-<meta property="og:title" content="Offerings — Visions by ISO">
-<meta property="og:description" content="Offerings from Visions by ISO: brand identity, content direction, photography, web design, and social media management for wellness, beauty, and lifestyle brands.">
+<meta property="og:title" content="Offerings | Brand Identity, Content, Photography, and Web Design">
+<meta property="og:description" content="Review Visions by ISO services including brand identity, content direction, photography, web design, and social media management for wellness, beauty, and lifestyle brands.">
 <meta property="og:url" content="https://visionsbyiso.com/offerings/">
 <meta property="og:image" content="https://visionsbyiso.com/assets/hero-main.webp">
 <meta property="og:image:alt" content="Visions by ISO brand imagery">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Offerings — Visions by ISO">
-<meta name="twitter:description" content="Offerings from Visions by ISO: brand identity, content direction, photography, web design, and social media management for wellness, beauty, and lifestyle brands.">
+<meta name="twitter:title" content="Offerings | Brand Identity, Content, Photography, and Web Design">
+<meta name="twitter:description" content="Review Visions by ISO services including brand identity, content direction, photography, web design, and social media management for wellness, beauty, and lifestyle brands.">
 <meta name="twitter:image" content="https://visionsbyiso.com/assets/hero-main.webp">
-<title>Offerings — Visions by ISO</title>
+<title>Offerings | Brand Identity, Content, Photography, and Web Design</title>
   <link rel="icon" href="/assets/favicon.png" type="image/png" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -38,10 +38,32 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Offerings — Visions by ISO",
-  "url": "https://visionsbyiso.com/offerings/",
-  "description": "Offerings from Visions by ISO: brand identity, content direction, photography, web design, and social media management for wellness, beauty, and lifestyle brands."
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://visionsbyiso.com/offerings/#webpage",
+      "name": "Offerings | Brand Identity, Content, Photography, and Web Design",
+      "url": "https://visionsbyiso.com/offerings/",
+      "description": "Service offerings by Visions by ISO for wellness, beauty, and lifestyle brands."
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://visionsbyiso.com/#service",
+      "name": "Visions by ISO",
+      "url": "https://visionsbyiso.com/",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Visions by ISO Offerings",
+        "itemListElement": [
+          { "@type": "Service", "name": "Content Direction" },
+          { "@type": "Service", "name": "Content Shoots" },
+          { "@type": "Service", "name": "Brand Identity" },
+          { "@type": "Service", "name": "Web Design" },
+          { "@type": "Service", "name": "Marketing and Layout" }
+        ]
+      }
+    }
+  ]
 }
 </script>
 <style>
@@ -369,6 +391,29 @@ border-radius:var(--radius);
 transition:background .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease)
 }
 .cta-btn:hover{background:var(--dark);transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.offerings-ai{
+max-width:var(--max-w);
+margin:0 auto;
+padding:var(--sp-3xl) var(--sp-2xl);
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:var(--sp-lg);
+background:var(--warm-white);
+border-top:1px solid var(--rule);
+}
+.offerings-ai-card{
+padding:var(--sp-lg);
+border:1px solid var(--rule);
+background:rgba(245,241,235,0.6);
+}
+.offerings-ai-card h3{
+font-family:var(--fd);
+font-size:clamp(26px,2.4vw,34px);
+font-weight:300;
+line-height:1.2;
+margin-bottom:var(--sp-sm);
+}
+.offerings-ai-card p{font-size:14px;color:var(--stone);line-height:1.85;}
 footer{background:var(--dark);color:var(--parchment);padding:var(--sp-2xl) var(--sp-2xl) var(--sp-lg)}
 .footer-grid{
 max-width:var(--max-w);
@@ -479,6 +524,7 @@ nav,nav.scrolled{padding-left:var(--sp-lg);padding-right:var(--sp-lg)}
 .bun-h,.bun-g{padding-left:var(--sp-lg);padding-right:var(--sp-lg)}
 .bun-g{grid-template-columns:1fr;gap:var(--sp-md)}
 .bn{padding:36px 28px 40px}
+.offerings-ai{grid-template-columns:1fr;padding:var(--sp-2xl) var(--sp-lg)}
 .footer-grid{grid-template-columns:1fr 1fr;gap:var(--sp-lg)}
 .pkg-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
@@ -493,6 +539,7 @@ nav,nav.scrolled{padding-left:var(--sp-md);padding-right:var(--sp-md)}
 .bundles{padding:var(--sp-3xl) 0}
 .bun-h,.bun-g{padding-left:var(--sp-md);padding-right:var(--sp-md)}
 .bn{padding:32px 22px 36px}
+.offerings-ai{padding:var(--sp-2xl) var(--sp-md)}
 .footer-grid{grid-template-columns:1fr}
 footer{padding:var(--sp-xl) var(--sp-md) var(--sp-lg)}
 .footer-bottom{flex-direction:column;gap:.35rem;text-align:center}
@@ -837,6 +884,19 @@ footer{padding:var(--sp-xl) var(--sp-md) var(--sp-lg)}
 <section class="cta">
   <h2>There's space here for you.</h2>
   <a href="/#inquire" class="cta-btn">Work with Us</a>
+</section>
+
+<section class="offerings-ai" aria-label="Offerings quick answers">
+  <article class="offerings-ai-card">
+    <div class="mid-label">How engagements work</div>
+    <h3>Choose a core service, then scale with bundles.</h3>
+    <p>Most clients start with one priority such as content direction or brand identity. We then layer photography, web design, or collateral to keep every touchpoint aligned.</p>
+  </article>
+  <article class="offerings-ai-card">
+    <div class="mid-label">Who these services are for</div>
+    <h3>Founders building premium brand consistency.</h3>
+    <p>These offerings are designed for wellness, beauty, and lifestyle brands that need clear positioning, repeatable content systems, and a stronger visual presence across channels.</p>
+  </article>
 </section>
 
 <footer>

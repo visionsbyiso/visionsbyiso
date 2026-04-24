@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="Visual direction, brand identity, photography, and web design for wellness, beauty, and lifestyle brands that shape how people feel when they walk through the door." />
+  <meta name="description" content="Visions by ISO is a visual direction studio in Metro Manila shaping brand identity, content direction, photography, and web design for wellness, beauty, and lifestyle brands worldwide." />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Visions by ISO" />
   <meta name="theme-color" content="#E8E2D6" />
@@ -14,16 +14,16 @@
   <link rel="alternate" hreflang="x-default" href="https://visionsbyiso.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Visions by ISO" />
-  <meta property="og:title" content="Visions by ISO — See Deeply. Shape Clearly." />
-  <meta property="og:description" content="Visual direction, brand identity, photography, and web design for wellness, beauty, and lifestyle brands that shape how people feel when they walk through the door." />
+  <meta property="og:title" content="Visions by ISO | Visual Direction Studio for Wellness, Beauty, and Lifestyle Brands" />
+  <meta property="og:description" content="Visions by ISO is a visual direction studio in Metro Manila shaping brand identity, content direction, photography, and web design for wellness, beauty, and lifestyle brands worldwide." />
   <meta property="og:url" content="https://visionsbyiso.com/" />
   <meta property="og:image" content="https://visionsbyiso.com/assets/Sunday%20Skin%20Center.webp" />
   <meta property="og:image:alt" content="Visions by ISO brand imagery" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Visions by ISO — See Deeply. Shape Clearly." />
-  <meta name="twitter:description" content="Visual direction, brand identity, photography, and web design for wellness, beauty, and lifestyle brands that shape how people feel when they walk through the door." />
+  <meta name="twitter:title" content="Visions by ISO | Visual Direction Studio for Wellness, Beauty, and Lifestyle Brands" />
+  <meta name="twitter:description" content="Visions by ISO is a visual direction studio in Metro Manila shaping brand identity, content direction, photography, and web design for wellness, beauty, and lifestyle brands worldwide." />
   <meta name="twitter:image" content="https://visionsbyiso.com/assets/Sunday%20Skin%20Center.webp" />
-  <title>Visions by ISO — See Deeply. Shape Clearly.</title>
+  <title>Visions by ISO | Visual Direction Studio for Wellness, Beauty, and Lifestyle Brands</title>
   <link rel="icon" href="/assets/favicon.png" type="image/png" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -39,21 +39,49 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Visions by ISO",
-    "url": "https://visionsbyiso.com/",
-    "description": "Visual direction, brand identity, photography, and web design for wellness, beauty, and lifestyle brands.",
-    "areaServed": "Worldwide",
-    "contactPoint": [{
-      "@type": "ContactPoint",
-      "contactType": "Inquiries",
-      "email": "hello@visionsbyiso.com",
-      "areaServed": "Worldwide"
-    }],
-    "sameAs": [
-      "https://instagram.com/visionsbyiso",
-      "https://facebook.com/visionsbyiso",
-      "https://www.tiktok.com/@visionsbyiso"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://visionsbyiso.com/#organization",
+        "name": "Visions by ISO",
+        "url": "https://visionsbyiso.com/",
+        "logo": "https://visionsbyiso.com/apple-touch-icon.png",
+        "sameAs": [
+          "https://instagram.com/visionsbyiso",
+          "https://facebook.com/visionsbyiso",
+          "https://www.tiktok.com/@visionsbyiso"
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://visionsbyiso.com/#service",
+        "name": "Visions by ISO",
+        "url": "https://visionsbyiso.com/",
+        "description": "Visual direction, brand identity, photography, and web design for wellness, beauty, and lifestyle brands.",
+        "areaServed": "Worldwide",
+        "serviceType": [
+          "Brand Identity",
+          "Content Direction",
+          "Photography",
+          "Web Design",
+          "Social Media Management"
+        ],
+        "contactPoint": [{
+          "@type": "ContactPoint",
+          "contactType": "Inquiries",
+          "email": "hello@visionsbyiso.com",
+          "areaServed": "Worldwide"
+        }]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://visionsbyiso.com/#website",
+        "url": "https://visionsbyiso.com/",
+        "name": "Visions by ISO",
+        "publisher": {
+          "@id": "https://visionsbyiso.com/#organization"
+        }
+      }
     ]
   }
   </script>
@@ -568,6 +596,31 @@ font-weight: 300; font-style: italic; line-height: 1.1;
 max-width: 700px; margin: 0 auto var(--sp-xl);
 }
 .cta-section h2 strong { font-weight: 500; font-style: normal; }
+.answers-section {
+padding: var(--sp-4xl) var(--sp-2xl);
+background: var(--warm-white);
+border-top: var(--border);
+}
+.answers-inner {
+max-width: var(--max-w);
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: var(--sp-2xl);
+}
+.answers-card {
+padding: var(--sp-lg);
+border: var(--border);
+background: rgba(245,241,235,0.7);
+}
+.answers-card h3 {
+font-family: var(--serif);
+font-size: clamp(26px, 2.4vw, 34px);
+font-weight: 300;
+line-height: 1.2;
+margin-bottom: var(--sp-md);
+}
+.answers-list p { margin-bottom: var(--sp-md); color: var(--stone); }
 .inquire-modal {
 position: fixed;
 inset: 0;
@@ -774,6 +827,8 @@ nav, nav.scrolled { padding-left: var(--sp-lg); padding-right: var(--sp-lg); }
 .work-section { padding: var(--sp-3xl) var(--sp-md); }
 .offerings-grid, .testimonials-grid { padding-inline: var(--sp-md); }
 .about-inner { padding-inline: var(--sp-md); }
+.answers-section { padding-inline: var(--sp-md); }
+.answers-inner { grid-template-columns: 1fr; }
 .footer-grid { grid-template-columns: 1fr; }
 footer { padding: var(--sp-xl) var(--sp-md) var(--sp-lg); }
 .inquire-panel { border-radius: 10px; }
@@ -1069,6 +1124,27 @@ body::before { opacity: 0.015; }
 <section class="cta-section" id="inquire">
   <h2 class="reveal">Let your business live<br>in its most <strong>inspired</strong> form</h2>
   <a href="#inquire" class="btn-primary reveal">Inquire Now</a>
+</section>
+
+<section class="answers-section" aria-label="Studio quick answers">
+  <div class="answers-inner">
+    <article class="answers-card reveal">
+      <p class="section-label">What Visions by ISO does</p>
+      <h3>Visual direction for brands that need consistency and distinction.</h3>
+      <div class="answers-list">
+        <p>We provide brand identity, content direction, photography, web design, and social media management for wellness, beauty, and lifestyle businesses.</p>
+        <p>Our goal is to make your online experience feel as intentional as your physical space.</p>
+      </div>
+    </article>
+    <article class="answers-card reveal">
+      <p class="section-label">Who we work with</p>
+      <h3>Wellness, beauty, and lifestyle founders in growth stages.</h3>
+      <div class="answers-list">
+        <p>We work with clinics, spas, studios, salons, and hospitality-led concepts that need a clear visual system.</p>
+        <p>Based in Metro Manila and available for remote collaborations worldwide.</p>
+      </div>
+    </article>
+  </div>
 </section>
 </main>
 
