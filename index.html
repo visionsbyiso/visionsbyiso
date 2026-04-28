@@ -274,6 +274,7 @@
       .full-bleed-inner { width: min(var(--max), calc(100% - 20px)); }
     }
   </style>
+  <link rel="stylesheet" href="/assets/editorial-motion.css" />
 </head>
 <body>
   <nav aria-label="Primary">
@@ -457,5 +458,6 @@
     }, { threshold: 0.12 });
     reveals.forEach((el) => observer.observe(el));
   </script>
+  <script src="/assets/editorial-motion.js" defer></script>
 </body>
 </html>
